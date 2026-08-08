@@ -1,10 +1,16 @@
 import api from './api'
+import { demoData, withDemoFallback } from './demoData'
 import type { Client, ClientPayload } from '@/types'
 
 export const clientService = {
   async getPublic(): Promise<Client[]> {
-    const { data } = await api.get<Client[]>('/api/clients')
-    return data
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Client[]>('/api/clients')
+        return data
+      },
+      () => demoData.clients(),
+    )
   },
 
   async getAdmin(): Promise<Client[]> {

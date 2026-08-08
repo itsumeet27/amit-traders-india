@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amittradersindia.com/sitemap.xml
+Sitemap: https://itsumeet27.github.io/amit-traders-india/sitemap.xml

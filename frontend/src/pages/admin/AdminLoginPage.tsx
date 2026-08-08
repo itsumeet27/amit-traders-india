@@ -4,6 +4,7 @@ import { Seo } from '@/components/Seo'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
 import { authService } from '@/services/authService'
+import { isDemoMode } from '@/services/demoData'
 import { getErrorMessage } from '@/utils'
 
 export function AdminLoginPage() {
@@ -25,7 +26,14 @@ export function AdminLoginPage() {
       await authService.login({ email, password })
       navigate('/admin')
     } catch (err) {
-      setError(getErrorMessage(err, 'Invalid credentials'))
+      setError(
+        getErrorMessage(
+          err,
+          isDemoMode()
+            ? 'Admin CMS requires a live API. This GitHub Pages demo serves the public site only.'
+            : 'Invalid credentials',
+        ),
+      )
     } finally {
       setLoading(false)
     }
@@ -39,6 +47,13 @@ export function AdminLoginPage() {
           <p className="text-xs uppercase tracking-[0.28em] text-gold">Amit Traders India</p>
           <h1 className="mt-2 font-display text-4xl text-primary">Admin sign in</h1>
           <p className="mt-2 text-sm text-leather">Manage products, enquiries, and company content.</p>
+          {isDemoMode() ? (
+            <p className="mt-4 border border-tan/40 bg-cream px-3 py-2 text-sm text-deep">
+              GitHub Pages hosts the public website in demo mode. Point{' '}
+              <code className="text-xs">VITE_API_BASE_URL</code> at a deployed Spring Boot API to
+              enable admin login.
+            </p>
+          ) : null}
           <form onSubmit={onSubmit} className="mt-8 space-y-4">
             <Input
               label="Email"

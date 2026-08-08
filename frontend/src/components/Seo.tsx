@@ -19,10 +19,12 @@ export function Seo({
   image,
   noIndex = false,
 }: SeoProps) {
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
   const fullTitle = title ? `${title} | ${SITE}` : `${SITE} | Premium Genuine Leather`
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://amittradersindia.com'
-  const url = `${origin}${path}`
-  const ogImage = image || `${origin}/og-default.svg`
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://itsumeet27.github.io'
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  const url = `${origin}${base}${normalizedPath === '/' ? '/' : normalizedPath}`
+  const ogImage = image || `${origin}${base}/og-default.svg`
 
   return (
     <Helmet>

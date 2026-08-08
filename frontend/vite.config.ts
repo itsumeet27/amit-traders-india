@@ -6,7 +6,11 @@ import { fileURLToPath } from 'node:url'
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 
+// GitHub Pages project site: https://<user>.github.io/amit-traders-india/
+const base = process.env.VITE_BASE_PATH || '/'
+
 export default defineConfig({
+  base,
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

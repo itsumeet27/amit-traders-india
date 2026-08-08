@@ -1,15 +1,31 @@
 import api from './api'
+import { demoData, withDemoFallback } from './demoData'
 import type { Category, CategoryPayload } from '@/types'
 
 export const categoryService = {
   async getPublic(): Promise<Category[]> {
-    const { data } = await api.get<Category[]>('/api/categories')
-    return data
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Category[]>('/api/categories')
+        return data
+      },
+      () => demoData.categories(),
+    )
   },
 
   async getBySlug(slug: string): Promise<Category> {
-    const { data } = await api.get<Category>(`/api/categories/${slug}`)
-    return data
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Category>(`/api/categories/${slug}`)
+        return data
+      },
+      async () => {
+        const categories = await demoData.categories()
+        const found = categories.find((c) => c.slug === slug)
+        if (!found) throw new Error('Category not found')
+        return found
+      },
+    )
   },
 
   async getAdmin(): Promise<Category[]> {

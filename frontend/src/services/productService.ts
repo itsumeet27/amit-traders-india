@@ -1,4 +1,5 @@
 import api from './api'
+import { demoData, withDemoFallback } from './demoData'
 import type { PageResponse, Product, ProductImagePayload, ProductPayload } from '@/types'
 
 export interface ProductQuery {
@@ -23,10 +24,15 @@ function toParams(query: ProductQuery = {}) {
 
 export const productService = {
   async getPublic(query: ProductQuery = {}): Promise<PageResponse<Product>> {
-    const { data } = await api.get<PageResponse<Product>>('/api/products', {
-      params: toParams(query),
-    })
-    return data
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<PageResponse<Product>>('/api/products', {
+          params: toParams(query),
+        })
+        return data
+      },
+      () => demoData.filterProducts(query),
+    )
   },
 
   async getFeatured(size = 8): Promise<Product[]> {
@@ -35,8 +41,13 @@ export const productService = {
   },
 
   async getBySlug(slug: string): Promise<Product> {
-    const { data } = await api.get<Product>(`/api/products/${slug}`)
-    return data
+    return withDemoFallback(
+      async () => {
+        const { data } = await api.get<Product>(`/api/products/${slug}`)
+        return data
+      },
+      () => demoData.productBySlug(slug),
+    )
   },
 
   async getAdmin(query: ProductQuery = {}): Promise<PageResponse<Product>> {

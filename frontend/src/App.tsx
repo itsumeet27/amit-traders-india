@@ -26,10 +26,12 @@ import { AdminMediaPage } from '@/pages/admin/AdminMediaPage'
 import { AdminSettingsPage } from '@/pages/admin/AdminSettingsPage'
 
 export default function App() {
+  const basename = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || undefined
+
   return (
     <HelmetProvider>
       <ToastProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Routes>
             <Route element={<PublicLayout />}>
               <Route index element={<HomePage />} />
