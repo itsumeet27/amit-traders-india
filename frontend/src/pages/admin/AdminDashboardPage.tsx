@@ -71,15 +71,23 @@ export function AdminDashboardPage() {
             })}
           </div>
 
-          <div className="mb-8 grid gap-4 sm:grid-cols-3">
+          <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="border border-light-tan/70 bg-off-white p-4">
-              <p className="text-xs uppercase tracking-[0.14em] text-leather">Active products</p>
-              <p className="mt-2 font-display text-3xl text-primary">{stats?.activeProducts ?? 0}</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-leather">Active categories</p>
+              <p className="mt-2 font-display text-3xl text-primary">
+                {stats?.activeCategories ?? stats?.totalCategories ?? 0}
+              </p>
             </div>
             <div className="border border-light-tan/70 bg-off-white p-4">
-              <p className="text-xs uppercase tracking-[0.14em] text-leather">In progress</p>
+              <p className="text-xs uppercase tracking-[0.14em] text-leather">Pending enquiries</p>
               <p className="mt-2 font-display text-3xl text-primary">
-                {stats?.inProgressEnquiries ?? 0}
+                {stats?.pendingEnquiries ?? stats?.inProgressEnquiries ?? 0}
+              </p>
+            </div>
+            <div className="border border-light-tan/70 bg-off-white p-4">
+              <p className="text-xs uppercase tracking-[0.14em] text-leather">Quoted</p>
+              <p className="mt-2 font-display text-3xl text-primary">
+                {stats?.quotedEnquiries ?? 0}
               </p>
             </div>
             <div className="border border-light-tan/70 bg-off-white p-4">

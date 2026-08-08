@@ -116,16 +116,25 @@ public class DataSeeder implements CommandLineRunner {
                         """)
                 .manufacturingStepsJson("""
                         [
-                          {"step":1,"title":"Brief & Sampling","description":"Share specs, materials, and branding — we cut samples for approval."},
-                          {"step":2,"title":"Material Selection","description":"Choose leather type, thickness, colour, and hardware."},
-                          {"step":3,"title":"Production","description":"Skilled artisans cut, stitch, and finish under QC checkpoints."},
-                          {"step":4,"title":"Pack & Ship","description":"Export packaging, documentation, and global logistics support."}
+                          {"step":1,"title":"Material Selection","description":"Source genuine leather grades, thicknesses, and finishes matched to the brief."},
+                          {"step":2,"title":"Design & Sampling","description":"Develop patterns and cut approval samples with branding and construction details."},
+                          {"step":3,"title":"Cutting","description":"Precision cutting of panels with disciplined material yield control."},
+                          {"step":4,"title":"Stitching","description":"Skilled stitching and assembly for strength, structure, and refined edge work."},
+                          {"step":5,"title":"Finishing","description":"Edge paint, hardware fitting, polishing, and surface finishing."},
+                          {"step":6,"title":"Quality Inspection","description":"Inline and final QC against agreed specifications and export standards."},
+                          {"step":7,"title":"Packaging & Dispatch","description":"Protective packing, labelling, documentation, and dispatch from Mumbai."}
                         ]
                         """)
                 .customManufacturingTitle("Custom Leather Manufacturing")
-                .customManufacturingDescription("From concept sketches to container-ready cartons — OEM and ODM programmes tailored to your brand. [SAMPLE]")
+                .customManufacturingDescription("From concept sketches to container-ready cartons — OEM and ODM programmes tailored to your brand. We manufacture to your design, dimensions, leather type, colour, finish, branding, logo, packaging, and quantity requirements. [SAMPLE]")
                 .customManufacturingFeaturesJson("""
-                        ["Private label & branding","Material & colour matching","Prototype sampling","Bulk production scaling","Export documentation"]
+                        [
+                          {"title":"Design","description":"Build to your sketches, tech packs, or reference samples."},
+                          {"title":"Dimensions & Fit","description":"Pattern development aligned to your size and construction specs."},
+                          {"title":"Leather & Colour","description":"Material and colour matching across full-grain and top-grain options."},
+                          {"title":"Branding & Logo","description":"Debossing, foil stamping, and private-label packaging."},
+                          {"title":"Quantity Programs","description":"Bulk production from 50 units with scalable capacity."}
+                        ]
                         """)
                 .ctaTitle("Ready to source premium leather?")
                 .ctaSubtitle("Tell us about your product needs — our Mumbai team responds within one business day. [SAMPLE]")

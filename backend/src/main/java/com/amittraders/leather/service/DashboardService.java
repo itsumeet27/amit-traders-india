@@ -30,17 +30,21 @@ public class DashboardService {
 
     @Transactional(readOnly = true)
     public DashboardStatsResponse getStats() {
+        long contacted = enquiryRepository.countByStatus(EnquiryStatus.CONTACTED);
+        long inProgress = enquiryRepository.countByStatus(EnquiryStatus.IN_PROGRESS);
+        long quoted = enquiryRepository.countByStatus(EnquiryStatus.QUOTED);
         return new DashboardStatsResponse(
                 productRepository.count(),
                 productRepository.countByActiveTrue(),
                 productRepository.countByFeaturedTrueAndActiveTrue(),
                 categoryRepository.count(),
+                categoryRepository.countByActiveTrue(),
                 clientRepository.count(),
                 enquiryRepository.count(),
                 enquiryRepository.countByStatus(EnquiryStatus.NEW),
-                enquiryRepository.countByStatus(EnquiryStatus.IN_PROGRESS)
-                        + enquiryRepository.countByStatus(EnquiryStatus.CONTACTED)
-                        + enquiryRepository.countByStatus(EnquiryStatus.QUOTED),
+                contacted + inProgress,
+                quoted,
+                contacted + inProgress + quoted,
                 enquiryRepository.countByStatus(EnquiryStatus.CONVERTED)
         );
     }

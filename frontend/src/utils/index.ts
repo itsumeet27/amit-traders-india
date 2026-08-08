@@ -44,9 +44,13 @@ export function parseTimeline(
 }
 
 export function parseFeatures(
-  value: string | FeatureItem[] | null | undefined,
+  value: string | FeatureItem[] | string[] | null | undefined,
 ): FeatureItem[] {
-  return parseJsonField<FeatureItem[]>(value, [])
+  const parsed = parseJsonField<FeatureItem[] | string[]>(value, [])
+  if (!Array.isArray(parsed)) return []
+  return parsed.map((item) =>
+    typeof item === 'string' ? { title: item, description: '' } : item,
+  )
 }
 
 export function formatDate(value?: string | null): string {

@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: leather_db
+      POSTGRES_USER: leather
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-leather_dev_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - leather_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U leather -d leather_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/leather_db
+      DB_USERNAME: leather
+      DB_PASSWORD: ${DB_PASSWORD:-leather_dev_pass}
+      JWT_SECRET: ${JWT_SECRET:-change-this-to-a-long-random-secret-key-at-least-256-bits}
+      FILE_STORAGE_PATH: /app/uploads
+      FILE_STORAGE_URL: /uploads
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://localhost:80,http://localhost}
+      SEED_DATA: ${SEED_DATA:-true}
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - leather_uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
+    ports:
+      - "5173:80"
+    depends_on:
+      - api
+
+volumes:
+  leather_pg_data:
+  leather_uploads:

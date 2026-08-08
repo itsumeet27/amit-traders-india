@@ -61,6 +61,7 @@ export interface WhyChooseItem {
 export interface TimelineStep {
   title: string
   description: string
+  step?: number
   order?: number
 }
 
@@ -146,9 +147,12 @@ export interface DashboardStats {
   activeProducts: number
   featuredProducts: number
   totalCategories: number
+  activeCategories?: number
   totalClients: number
   totalEnquiries: number
   newEnquiries: number
+  pendingEnquiries?: number
+  quotedEnquiries?: number
   inProgressEnquiries: number
   convertedEnquiries: number
 }

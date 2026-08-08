@@ -21,7 +21,9 @@ const defaults: TimelineStep[] = [
 ]
 
 export function ProcessTimeline({ steps }: { steps?: TimelineStep[] }) {
-  const list = (steps?.length ? steps : defaults).slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  const list = (steps?.length ? steps : defaults)
+    .slice()
+    .sort((a, b) => (a.step ?? a.order ?? 0) - (b.step ?? b.order ?? 0))
 
   return (
     <ol className="relative space-y-8 before:absolute before:left-[15px] before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-light-tan md:before:left-1/2">

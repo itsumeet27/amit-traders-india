@@ -15,8 +15,8 @@ export function DataTable({
       <table className="min-w-full text-left text-sm">
         <thead className="bg-cream/80 text-xs uppercase tracking-[0.14em] text-leather">
           <tr>
-            {headers.map((header) => (
-              <th key={header} className="whitespace-nowrap px-4 py-3 font-semibold">
+            {headers.map((header, index) => (
+              <th key={`${header || 'col'}-${index}`} className="whitespace-nowrap px-4 py-3 font-semibold">
                 {header}
               </th>
             ))}
