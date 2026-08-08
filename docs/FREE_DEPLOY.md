@@ -61,7 +61,7 @@ postgresql://USER:PASSWORD@ep-xxxxx.region.aws.neon.tech/neondb?sslmode=require
 | Key | Value |
 | --- | --- |
 | `DATABASE_URL` | Neon URI with `sslmode=require` |
-| `JWT_SECRET` | long random string (≥ 32 chars) |
+| `JWT_SECRET` | long random string (recommended ≥ 32 chars, e.g. `openssl rand -base64 48`) |
 | `CORS_ORIGINS` | `https://itsumeet27.github.io,http://localhost:5173` |
 | `SEED_DATA` | `true` |
 | `JPA_DDL_AUTO` | `update` |
