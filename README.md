@@ -139,29 +139,25 @@ Admin (`/api/admin/**`):
 - Enquiry list/filter/status/delete  
 - Media upload/list/delete  
 
+## Deploy to Railway (recommended for full stack)
+
+See **[docs/RAILWAY.md](docs/RAILWAY.md)** for the complete guide.
+
+Short version: Railway runs **Postgres + API + Web** as three services. The API reads `DATABASE_URL` from the Postgres plugin; the web service gets `API_BASE_URL` / `SITE_URL` at runtime so URLs match wherever you deploy.
+
+```text
+Local:     localhost:5173  →  localhost:8080  →  local Postgres
+Railway:   web domain      →  api domain      →  Railway Postgres
+GH Pages:  static demo only (no live DB)
+```
+
 ## Deploy to GitHub Pages
 
-The public frontend can be hosted at:
+The public frontend can also be hosted at:
 
 **https://itsumeet27.github.io/amit-traders-india/**
 
-> GitHub Pages serves static files only. The Spring Boot API / admin CMS need a separate host (Render, Railway, Fly.io, VPS, etc.). On Pages, the site runs in **demo mode** with bundled SAMPLE catalogue data so the public website still works. Enquiry submissions are stored in the browser when no API is available.
-
-### One-time setup
-
-1. Open **Settings → Pages**
-2. Under **Build and deployment → Source**, choose **GitHub Actions**
-3. Merge this branch (or push to `main`) — workflow `.github/workflows/deploy-github-pages.yml` builds and deploys automatically
-
-Optional: set repository variable `VITE_API_BASE_URL` to a live API origin to connect Pages to your backend (and leave demo mode off or keep it as fallback).
-
-### Local Pages-like build
-
-```bash
-cd frontend
-VITE_BASE_PATH=/amit-traders-india/ VITE_DEMO_MODE=true npm run build
-npx serve dist -s
-```
+> GitHub Pages serves static files only. Use Railway (or similar) for API + database. On Pages, demo mode uses bundled SAMPLE data.
 
 ## Docker Compose
 

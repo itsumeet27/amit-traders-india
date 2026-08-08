@@ -4,12 +4,23 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
-ARG VITE_API_BASE_URL=http://localhost:8080
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+# Optional bake-in defaults (Railway can still override at runtime via entrypoint)
+ARG VITE_API_BASE_URL=
+ARG VITE_SITE_URL=
+ARG VITE_DEMO_MODE=false
+ARG VITE_BASE_PATH=/
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL \
+    VITE_SITE_URL=$VITE_SITE_URL \
+    VITE_DEMO_MODE=$VITE_DEMO_MODE \
+    VITE_BASE_PATH=$VITE_BASE_PATH
 RUN npm run build
 
-FROM nginx:1.27-alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM caddy:2.9-alpine
+WORKDIR /app
+COPY Caddyfile /app/Caddyfile
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
+COPY --from=build /app/dist /app/dist
+RUN chmod +x /app/docker-entrypoint.sh \
+  && caddy fmt --overwrite /app/Caddyfile
+EXPOSE 3000
+ENTRYPOINT ["/app/docker-entrypoint.sh"]

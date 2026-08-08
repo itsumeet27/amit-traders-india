@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { getSiteUrl } from '@/config'
 
 interface SeoProps {
   title?: string
@@ -21,16 +22,24 @@ export function Seo({
 }: SeoProps) {
   const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
   const fullTitle = title ? `${title} | ${SITE}` : `${SITE} | Premium Genuine Leather`
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://itsumeet27.github.io'
+  const origin = getSiteUrl() || (typeof window !== 'undefined' ? window.location.origin : '')
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
   const url = `${origin}${base}${normalizedPath === '/' ? '/' : normalizedPath}`
-  const ogImage = image || `${origin}${base}/og-default.svg`
+  const ogImage = image?.startsWith('http')
+    ? image
+    : image
+      ? `${origin}${image.startsWith('/') ? image : `/${image}`}`
+      : `${origin}${base}/og-default.svg`
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      {noIndex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow" />}
+      {noIndex ? (
+        <meta name="robots" content="noindex,nofollow" />
+      ) : (
+        <meta name="robots" content="index,follow" />
+      )}
       <link rel="canonical" href={url} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={fullTitle} />

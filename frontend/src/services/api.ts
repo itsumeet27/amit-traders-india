@@ -1,15 +1,16 @@
 import axios from 'axios'
-
-const baseURL = import.meta.env.VITE_API_BASE_URL || ''
+import { getApiBaseUrl } from '@/config'
 
 export const api = axios.create({
-  baseURL,
+  baseURL: getApiBaseUrl(),
   headers: {
     Accept: 'application/json',
   },
 })
 
 api.interceptors.request.use((config) => {
+  // Resolve at request time so runtime-config.js can override after load
+  config.baseURL = getApiBaseUrl()
   const token = localStorage.getItem('admin_token')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
@@ -22,10 +23,12 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       const path = window.location.pathname
-      if (path.startsWith('/admin') && !path.includes('/admin/login')) {
+      const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+      const adminPrefix = `${base}/admin`
+      if (path.startsWith(adminPrefix) && !path.includes('/admin/login')) {
         localStorage.removeItem('admin_token')
         localStorage.removeItem('admin_user')
-        window.location.assign('/admin/login')
+        window.location.assign(`${base}/admin/login`)
       }
     }
     return Promise.reject(error)

@@ -1,7 +1,7 @@
 import type { Category, Client, CompanyProfile, PageResponse, Product } from '@/types'
+import { isDemoMode } from '@/config'
 
-const demoEnabled =
-  import.meta.env.VITE_DEMO_MODE === 'true' || import.meta.env.VITE_DEMO_MODE === '1'
+export { isDemoMode }
 
 function demoUrl(file: string): string {
   const base = import.meta.env.BASE_URL || '/'
@@ -16,15 +16,11 @@ async function fetchDemo<T>(file: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
-export function isDemoMode(): boolean {
-  return demoEnabled
-}
-
 export async function withDemoFallback<T>(
   live: () => Promise<T>,
   fallback: () => Promise<T>,
 ): Promise<T> {
-  if (demoEnabled) {
+  if (isDemoMode()) {
     try {
       return await live()
     } catch {

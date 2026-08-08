@@ -1,0 +1,7 @@
+# Root Railway notes — configure each service with its own Root Directory.
+# See docs/RAILWAY.md for the full guide.
+#
+# Services:
+#   1) Postgres (plugin)
+#   2) api  → Root Directory: backend
+#   3) web  → Root Directory: frontend

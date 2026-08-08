@@ -1,12 +1,12 @@
 import type { FeatureItem, TimelineStep, WhyChooseItem } from '@/types'
-
-const API_BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? ''
+import { getApiBaseUrl } from '@/config'
 
 export function resolveMediaUrl(url?: string | null): string {
   if (!url) return ''
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
     return url
   }
+  const API_BASE = getApiBaseUrl()
   if (url.startsWith('/')) {
     return `${API_BASE}${url}`
   }
