@@ -1,6 +1,6 @@
 import api from './api'
 import { demoData, withDemoFallback } from './demoData'
-import type { Category, CategoryPayload } from '@/types'
+import type { BulkDeleteResponse, Category, CategoryPayload } from '@/types'
 
 export const categoryService = {
   async getPublic(): Promise<Category[]> {
@@ -50,6 +50,11 @@ export const categoryService = {
 
   async remove(id: number): Promise<void> {
     await api.delete(`/api/admin/categories/${id}`)
+  },
+
+  async removeBulk(ids: number[]): Promise<BulkDeleteResponse> {
+    const { data } = await api.post<BulkDeleteResponse>('/api/admin/categories/bulk-delete', { ids })
+    return data
   },
 
   async reorder(items: { id: number; displayOrder: number }[]): Promise<void> {

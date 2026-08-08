@@ -4,6 +4,7 @@ import com.amittraders.leather.dto.PageResponse;
 import com.amittraders.leather.dto.ProductImageRequest;
 import com.amittraders.leather.dto.ProductRequest;
 import com.amittraders.leather.dto.ProductResponse;
+import com.amittraders.leather.dto.BulkDeleteResponse;
 import com.amittraders.leather.entity.Product;
 import com.amittraders.leather.entity.ProductCategory;
 import com.amittraders.leather.entity.ProductImage;
@@ -145,6 +146,25 @@ public class ProductService {
     @Transactional
     public void delete(Long id) {
         productRepository.delete(findById(id));
+    }
+
+    @Transactional
+    public BulkDeleteResponse deleteBulk(List<Long> ids) {
+        List<Long> deleted = new java.util.ArrayList<>();
+        List<BulkDeleteResponse.FailedItem> failed = new java.util.ArrayList<>();
+        for (Long id : ids) {
+            try {
+                if (!productRepository.existsById(id)) {
+                    failed.add(new BulkDeleteResponse.FailedItem(id, "Product not found"));
+                    continue;
+                }
+                productRepository.deleteById(id);
+                deleted.add(id);
+            } catch (Exception ex) {
+                failed.add(new BulkDeleteResponse.FailedItem(id, ex.getMessage() != null ? ex.getMessage() : "Delete failed"));
+            }
+        }
+        return new BulkDeleteResponse(deleted.size(), deleted, failed);
     }
 
     @Transactional

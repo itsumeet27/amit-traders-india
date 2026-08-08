@@ -1,6 +1,6 @@
 import api from './api'
 import { demoData, withDemoFallback } from './demoData'
-import type { PageResponse, Product, ProductImagePayload, ProductPayload } from '@/types'
+import type { BulkDeleteResponse, PageResponse, Product, ProductImagePayload, ProductPayload } from '@/types'
 
 export interface ProductQuery {
   page?: number
@@ -79,5 +79,10 @@ export const productService = {
 
   async remove(id: number): Promise<void> {
     await api.delete(`/api/admin/products/${id}`)
+  },
+
+  async removeBulk(ids: number[]): Promise<BulkDeleteResponse> {
+    const { data } = await api.post<BulkDeleteResponse>('/api/admin/products/bulk-delete', { ids })
+    return data
   },
 }

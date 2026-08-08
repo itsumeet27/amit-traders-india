@@ -1,5 +1,6 @@
 package com.amittraders.leather.service;
 
+import com.amittraders.leather.dto.BulkDeleteResponse;
 import com.amittraders.leather.dto.CategoryRequest;
 import com.amittraders.leather.dto.CategoryResponse;
 import com.amittraders.leather.dto.ReorderRequest;
@@ -90,6 +91,31 @@ public class CategoryService {
             throw new BadRequestException("Cannot delete category with linked products. Reassign or remove products first.");
         }
         categoryRepository.delete(category);
+    }
+
+    @Transactional
+    public BulkDeleteResponse deleteBulk(List<Long> ids) {
+        List<Long> deleted = new java.util.ArrayList<>();
+        List<BulkDeleteResponse.FailedItem> failed = new java.util.ArrayList<>();
+        for (Long id : ids) {
+            try {
+                if (!categoryRepository.existsById(id)) {
+                    failed.add(new BulkDeleteResponse.FailedItem(id, "Category not found"));
+                    continue;
+                }
+                if (productRepository.existsByCategoryId(id)) {
+                    failed.add(new BulkDeleteResponse.FailedItem(
+                            id, "Cannot delete category with linked products. Reassign or remove products first."));
+                    continue;
+                }
+                categoryRepository.deleteById(id);
+                deleted.add(id);
+            } catch (Exception ex) {
+                failed.add(new BulkDeleteResponse.FailedItem(
+                        id, ex.getMessage() != null ? ex.getMessage() : "Delete failed"));
+            }
+        }
+        return new BulkDeleteResponse(deleted.size(), deleted, failed);
     }
 
     @Transactional

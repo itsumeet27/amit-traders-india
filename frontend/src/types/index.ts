@@ -237,6 +237,12 @@ export interface EnquiryStatusUpdate {
   status: EnquiryStatus
 }
 
+export interface BulkDeleteResponse {
+  deletedCount: number
+  deletedIds: number[]
+  failed: { id: number; reason: string }[]
+}
+
 export interface ApiError {
   message?: string
   errors?: Record<string, string>

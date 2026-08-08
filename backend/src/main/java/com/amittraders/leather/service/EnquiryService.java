@@ -1,5 +1,6 @@
 package com.amittraders.leather.service;
 
+import com.amittraders.leather.dto.BulkDeleteResponse;
 import com.amittraders.leather.dto.EnquiryRequest;
 import com.amittraders.leather.dto.EnquiryResponse;
 import com.amittraders.leather.dto.EnquiryStatusUpdateRequest;
@@ -102,6 +103,26 @@ public class EnquiryService {
     @Transactional
     public void delete(Long id) {
         enquiryRepository.delete(findById(id));
+    }
+
+    @Transactional
+    public BulkDeleteResponse deleteBulk(java.util.List<Long> ids) {
+        java.util.List<Long> deleted = new java.util.ArrayList<>();
+        java.util.List<BulkDeleteResponse.FailedItem> failed = new java.util.ArrayList<>();
+        for (Long id : ids) {
+            try {
+                if (!enquiryRepository.existsById(id)) {
+                    failed.add(new BulkDeleteResponse.FailedItem(id, "Enquiry not found"));
+                    continue;
+                }
+                enquiryRepository.deleteById(id);
+                deleted.add(id);
+            } catch (Exception ex) {
+                failed.add(new BulkDeleteResponse.FailedItem(
+                        id, ex.getMessage() != null ? ex.getMessage() : "Delete failed"));
+            }
+        }
+        return new BulkDeleteResponse(deleted.size(), deleted, failed);
     }
 
     private Enquiry findById(Long id) {

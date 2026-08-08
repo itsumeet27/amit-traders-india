@@ -1,5 +1,7 @@
 package com.amittraders.leather.controller;
 
+import com.amittraders.leather.dto.BulkDeleteResponse;
+import com.amittraders.leather.dto.BulkIdsRequest;
 import com.amittraders.leather.dto.EnquiryResponse;
 import com.amittraders.leather.dto.EnquiryStatusUpdateRequest;
 import com.amittraders.leather.dto.PageResponse;
@@ -44,5 +46,10 @@ public class AdminEnquiryController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         enquiryService.delete(id);
+    }
+
+    @PostMapping("/bulk-delete")
+    public BulkDeleteResponse bulkDelete(@Valid @RequestBody BulkIdsRequest request) {
+        return enquiryService.deleteBulk(request.ids());
     }
 }

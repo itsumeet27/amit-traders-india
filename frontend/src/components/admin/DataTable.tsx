@@ -6,7 +6,7 @@ export function DataTable({
   children,
   className,
 }: {
-  headers: string[]
+  headers: ReactNode[]
   children: ReactNode
   className?: string
 }) {
@@ -16,7 +16,7 @@ export function DataTable({
         <thead className="bg-cream/80 text-xs uppercase tracking-[0.14em] text-leather">
           <tr>
             {headers.map((header, index) => (
-              <th key={`${header || 'col'}-${index}`} className="whitespace-nowrap px-4 py-3 font-semibold">
+              <th key={`col-${index}`} className="whitespace-nowrap px-4 py-3 font-semibold">
                 {header}
               </th>
             ))}

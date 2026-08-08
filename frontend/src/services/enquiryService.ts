@@ -1,6 +1,6 @@
 import api from './api'
 import { isDemoMode } from './demoData'
-import type { Enquiry, EnquiryRequest, EnquiryStatusUpdate, PageResponse } from '@/types'
+import type { BulkDeleteResponse, Enquiry, EnquiryRequest, EnquiryStatusUpdate, PageResponse } from '@/types'
 
 export interface EnquiryQuery {
   page?: number
@@ -80,5 +80,10 @@ export const enquiryService = {
 
   async remove(id: number): Promise<void> {
     await api.delete(`/api/admin/enquiries/${id}`)
+  },
+
+  async removeBulk(ids: number[]): Promise<BulkDeleteResponse> {
+    const { data } = await api.post<BulkDeleteResponse>('/api/admin/enquiries/bulk-delete', { ids })
+    return data
   },
 }

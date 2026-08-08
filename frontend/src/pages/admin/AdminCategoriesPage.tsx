@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Seo } from '@/components/Seo'
 import { PageHeader, DataTable } from '@/components/admin/DataTable'
 import { Button } from '@/components/ui/Button'
@@ -28,7 +28,8 @@ export function AdminCategoriesPage() {
   const [form, setForm] = useState<CategoryPayload>(blank)
   const [editId, setEditId] = useState<number | null>(null)
   const [open, setOpen] = useState(false)
-  const [deleteId, setDeleteId] = useState<number | null>(null)
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set())
+  const [deleteIds, setDeleteIds] = useState<number[] | null>(null)
   const [saving, setSaving] = useState(false)
   const { push } = useToast()
 
@@ -36,6 +37,7 @@ export function AdminCategoriesPage() {
     setLoading(true)
     try {
       setCategories(await categoryService.getAdmin())
+      setSelectedIds(new Set())
     } catch (error) {
       push(getErrorMessage(error), 'error')
     } finally {
@@ -46,6 +48,25 @@ export function AdminCategoriesPage() {
   useEffect(() => {
     void load()
   }, [])
+
+  const allSelected = useMemo(
+    () => categories.length > 0 && selectedIds.size === categories.length,
+    [categories, selectedIds],
+  )
+
+  function toggleOne(id: number) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function toggleAll() {
+    if (allSelected) setSelectedIds(new Set())
+    else setSelectedIds(new Set(categories.map((c) => c.id)))
+  }
 
   function openCreate() {
     setEditId(null)
@@ -84,12 +105,26 @@ export function AdminCategoriesPage() {
   }
 
   async function confirmDelete() {
-    if (deleteId == null) return
+    if (!deleteIds?.length) return
     setSaving(true)
     try {
-      await categoryService.remove(deleteId)
-      push('Category deleted', 'success')
-      setDeleteId(null)
+      if (deleteIds.length === 1) {
+        await categoryService.remove(deleteIds[0])
+        push('Category deleted', 'success')
+      } else {
+        const result = await categoryService.removeBulk(deleteIds)
+        if (result.failed.length) {
+          push(
+            `Deleted ${result.deletedCount}. ${result.failed.length} failed: ${result.failed
+              .map((f) => `#${f.id} (${f.reason})`)
+              .join('; ')}`,
+            result.deletedCount ? 'success' : 'error',
+          )
+        } else {
+          push(`Deleted ${result.deletedCount} categories`, 'success')
+        }
+      }
+      setDeleteIds(null)
       await load()
     } catch (error) {
       push(getErrorMessage(error), 'error')
@@ -98,6 +133,8 @@ export function AdminCategoriesPage() {
     }
   }
 
+  const deleteCount = deleteIds?.length ?? 0
+
   return (
     <>
       <Seo title="Admin Categories" path="/admin/categories" noIndex />
@@ -105,18 +142,53 @@ export function AdminCategoriesPage() {
         title="Categories"
         description="Organize the public product catalog."
         actions={
-          <Button size="sm" onClick={openCreate}>
-            Add category
-          </Button>
+          <>
+            {selectedIds.size > 0 ? (
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-red-800 text-red-800 hover:bg-red-50"
+                onClick={() => setDeleteIds([...selectedIds])}
+              >
+                Delete selected ({selectedIds.size})
+              </Button>
+            ) : null}
+            <Button size="sm" onClick={openCreate}>
+              Add category
+            </Button>
+          </>
         }
       />
 
       {loading ? (
         <LoadingSpinner />
       ) : categories.length ? (
-        <DataTable headers={['Name', 'Slug', 'Order', 'Active', '']}>
+        <DataTable
+          headers={[
+            <input
+              key="select-all"
+              type="checkbox"
+              aria-label="Select all categories"
+              checked={allSelected}
+              onChange={toggleAll}
+            />,
+            'Name',
+            'Slug',
+            'Order',
+            'Active',
+            '',
+          ]}
+        >
           {categories.map((category) => (
             <tr key={category.id} className="hover:bg-cream/40">
+              <td className="px-4 py-3">
+                <input
+                  type="checkbox"
+                  aria-label={`Select ${category.name}`}
+                  checked={selectedIds.has(category.id)}
+                  onChange={() => toggleOne(category.id)}
+                />
+              </td>
               <td className="px-4 py-3 font-medium text-primary">{category.name}</td>
               <td className="px-4 py-3 text-leather">{category.slug}</td>
               <td className="px-4 py-3">{category.displayOrder}</td>
@@ -128,7 +200,7 @@ export function AdminCategoriesPage() {
                 <button
                   type="button"
                   className="text-red-800"
-                  onClick={() => setDeleteId(category.id)}
+                  onClick={() => setDeleteIds([category.id])}
                 >
                   Delete
                 </button>
@@ -203,12 +275,16 @@ export function AdminCategoriesPage() {
       </Modal>
 
       <ConfirmDialog
-        open={deleteId != null}
-        title="Delete category"
-        message="Products linked to this category may need reassignment."
+        open={deleteIds != null}
+        title={deleteCount > 1 ? `Delete ${deleteCount} categories` : 'Delete category'}
+        message={
+          deleteCount > 1
+            ? 'Categories with linked products will be skipped. Reassign products first for those.'
+            : 'Products linked to this category may need reassignment.'
+        }
         confirmLabel="Delete"
         loading={saving}
-        onCancel={() => setDeleteId(null)}
+        onCancel={() => setDeleteIds(null)}
         onConfirm={() => void confirmDelete()}
       />
     </>
