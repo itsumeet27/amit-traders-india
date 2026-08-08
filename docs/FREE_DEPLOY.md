@@ -12,7 +12,45 @@ Neon Postgres (free)
 
 ---
 
+## Fix for “Cannot resolve reference to bean jpaSharedEM_entityManagerFactory”
+
+That message is a **follow-on error**. The real failure is almost always:
+
+**Postgres / Neon is not connected** (missing or wrong `DATABASE_URL`).
+
+Scroll **up** in the Render logs for lines like:
+- `Connection to localhost:5432 refused`
+- `FATAL: password authentication failed`
+- `SSL connection is required`
+- `Failed to parse DATABASE_URL`
+
+### Checklist on Render → Environment
+
+| Key | Must be |
+| --- | --- |
+| `DATABASE_URL` | Neon URI, e.g. `postgresql://USER:PASS@ep-….neon.tech/neondb?sslmode=require` |
+| `JWT_SECRET` | A **generated string**, not the command `openssl rand -base64 48` |
+| `CORS_ORIGINS` | `https://itsumeet27.github.io,http://localhost:5173` |
+
+**JWT_SECRET tip:** run this on your laptop, then paste the *output* into Render:
+
+```bash
+openssl rand -base64 48
+```
+
+Do **not** paste the command itself into the env var or build settings.
+
+Then: **Manual Deploy → Clear build cache & deploy**.
+
+After boot you should see a log like:
+`Datasource JDBC URL: jdbc:postgresql://ep-….neon.tech:5432/neondb?sslmode=require`
+
+If it still says `localhost`, `DATABASE_URL` is not set on the service.
+
+---
+
 ## Fix for “go: go.mod file not found”
+
 
 That error means Render is using the **Go** runtime instead of **Docker**.
 
