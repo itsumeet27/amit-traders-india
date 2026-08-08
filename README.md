@@ -139,25 +139,24 @@ Admin (`/api/admin/**`):
 - Enquiry list/filter/status/delete  
 - Media upload/list/delete  
 
-## Deploy to Railway (recommended for full stack)
+## Deploy free (recommended): GitHub Pages + Render + Neon
 
-See **[docs/RAILWAY.md](docs/RAILWAY.md)** for the complete guide.
-
-Short version: Railway runs **Postgres + API + Web** as three services. The API reads `DATABASE_URL` from the Postgres plugin; the web service gets `API_BASE_URL` / `SITE_URL` at runtime so URLs match wherever you deploy.
+See **[docs/FREE_DEPLOY.md](docs/FREE_DEPLOY.md)**.
 
 ```text
-Local:     localhost:5173  →  localhost:8080  →  local Postgres
-Railway:   web domain      →  api domain      →  Railway Postgres
-GH Pages:  static demo only (no live DB)
+GitHub Pages (frontend)  →  Render free API  →  Neon free Postgres
 ```
 
-## Deploy to GitHub Pages
+1. Create Neon DB → copy `DATABASE_URL`  
+2. Deploy `backend` on Render (Docker, free) with CORS for `https://itsumeet27.github.io`  
+3. Set GitHub Actions variable `VITE_API_BASE_URL` to the Render URL  
+4. Re-run **Deploy frontend to GitHub Pages**  
 
-The public frontend can also be hosted at:
+The Pages build uses **hybrid mode**: live API when awake, SAMPLE demo fallback when Render is sleeping.
 
-**https://itsumeet27.github.io/amit-traders-india/**
+## Deploy to Railway (optional paid/credits)
 
-> GitHub Pages serves static files only. Use Railway (or similar) for API + database. On Pages, demo mode uses bundled SAMPLE data.
+See **[docs/RAILWAY.md](docs/RAILWAY.md)** if you later move off free tiers.
 
 ## Docker Compose
 

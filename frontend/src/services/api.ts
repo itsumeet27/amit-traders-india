@@ -6,10 +6,11 @@ export const api = axios.create({
   headers: {
     Accept: 'application/json',
   },
+  // Render free tier cold starts can take 30–60s
+  timeout: 90000,
 })
 
 api.interceptors.request.use((config) => {
-  // Resolve at request time so runtime-config.js can override after load
   config.baseURL = getApiBaseUrl()
   const token = localStorage.getItem('admin_token')
   if (token) {

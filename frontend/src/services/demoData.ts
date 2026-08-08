@@ -1,5 +1,5 @@
 import type { Category, Client, CompanyProfile, PageResponse, Product } from '@/types'
-import { isDemoMode } from '@/config'
+import { getApiBaseUrl, isDemoMode } from '@/config'
 
 export { isDemoMode }
 
@@ -16,18 +16,52 @@ async function fetchDemo<T>(file: string): Promise<T> {
   return res.json() as Promise<T>
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+/** Retry helper for Render free-tier cold starts. */
+export async function withRetries<T>(
+  live: () => Promise<T>,
+  attempts = 3,
+  delayMs = 2500,
+): Promise<T> {
+  let lastError: unknown
+  for (let i = 0; i < attempts; i += 1) {
+    try {
+      return await live()
+    } catch (error) {
+      lastError = error
+      if (i < attempts - 1) await sleep(delayMs * (i + 1))
+    }
+  }
+  throw lastError
+}
+
+/**
+ * Live API first (with retries). If demo/hybrid mode is on, fall back to bundled
+ * SAMPLE JSON so GitHub Pages stays usable while Render wakes up.
+ */
 export async function withDemoFallback<T>(
   live: () => Promise<T>,
   fallback: () => Promise<T>,
 ): Promise<T> {
-  if (isDemoMode()) {
+  const hybrid = isDemoMode() && Boolean(getApiBaseUrl())
+  const demoOnly = isDemoMode() && !getApiBaseUrl()
+
+  if (demoOnly) {
+    return fallback()
+  }
+
+  if (hybrid) {
     try {
-      return await live()
+      return await withRetries(live, 3, 3000)
     } catch {
       return fallback()
     }
   }
-  return live()
+
+  return withRetries(live, 2, 2000)
 }
 
 export const demoData = {

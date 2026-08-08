@@ -32,8 +32,8 @@ app:
     secret: ${JWT_SECRET:change-this-to-a-long-random-secret-key-at-least-256-bits-for-hs256}
     expiration-ms: ${JWT_EXPIRATION_MS:86400000}
   cors:
-    # Comma-separated origins. For Railway set to your frontend public URL(s).
-    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173}
+    # Include GitHub Pages origin for free-tier (Render + Pages) deploy.
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,https://itsumeet27.github.io}
   file-storage:
     path: ${FILE_STORAGE_PATH:./uploads}
     url-prefix: ${FILE_STORAGE_URL:/uploads}
