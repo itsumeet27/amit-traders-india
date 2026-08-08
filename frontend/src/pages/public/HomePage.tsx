@@ -142,7 +142,7 @@ export function HomePage() {
           <SectionReveal>
             <p className="text-xs uppercase tracking-[0.28em] text-gold">Capability</p>
             <h2 className="mt-3 font-display text-4xl text-cream md:text-5xl">
-              Custom manufacturing, end to end
+              {company?.customManufacturingTitle || 'Custom manufacturing, end to end'}
             </h2>
             <p className="mt-5 text-base leading-relaxed text-light-tan">
               {company?.customManufacturingDescription ||
