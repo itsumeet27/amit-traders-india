@@ -1,0 +1,32 @@
+{
+  "name": "Amit Traders India",
+  "user": "ubuntu",
+  "install": "./.cursor/scripts/cloud-agent-install.sh",
+  "start": "./.cursor/scripts/cloud-agent-start.sh",
+  "ports": [
+    {
+      "name": "frontend",
+      "port": 5173
+    },
+    {
+      "name": "api",
+      "port": 8080
+    },
+    {
+      "name": "postgres",
+      "port": 5432
+    }
+  ],
+  "terminals": [
+    {
+      "name": "api",
+      "command": "cd backend && set -a && . ./.env && set +a && ./mvnw spring-boot:run",
+      "description": "Spring Boot REST API on port 8080"
+    },
+    {
+      "name": "frontend",
+      "command": "cd frontend && npm run dev -- --host 0.0.0.0 --port 5173",
+      "description": "Vite dev server for public site and admin CMS"
+    }
+  ]
+}
