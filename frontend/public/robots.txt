@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://amittradersindia.com/sitemap.xml
