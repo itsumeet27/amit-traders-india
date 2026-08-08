@@ -12,7 +12,25 @@ Neon Postgres (free)
 
 ---
 
+## Fix for “Connection to localhost:5432 refused”
+
+**Root cause found:** the `EnvironmentPostProcessor.imports` file used the wrong
+format, so `DATABASE_URL` was never applied and the app kept the local default.
+
+This is fixed. Also added `DataSourceConfig` that **always** reads `DATABASE_URL`
+from the environment (Neon) and refuses localhost when running on Render.
+
+### What you should do
+1. Pull/deploy branch `cursor/free-deploy-render-neon-7f5b` (latest commit)
+2. Confirm Render env has `DATABASE_URL` = Neon URI (no quotes)
+3. **Manual Deploy → Clear build cache & deploy** (important so the new JAR is used)
+4. Logs must show: `Configured DataSource JDBC URL: jdbc:postgresql://ep-...`
+5. If you still see localhost, the service is running an old build or `DATABASE_URL` is not on that service
+
+---
+
 ## Fix for “Unable to determine Dialect without JDBC metadata”
+
 
 This almost always means **Hibernate could not open a JDBC connection** to Neon
 (missing/wrong `DATABASE_URL`), not a real dialect bug.

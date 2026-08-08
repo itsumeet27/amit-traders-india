@@ -5,13 +5,17 @@ server:
 spring:
   application:
     name: leather-api
+  autoconfigure:
+    # We provide DataSource via DataSourceConfig so DATABASE_URL always wins
+    exclude: []
   datasource:
+    # Intentionally no hard-coded remote default. Local default only for laptop/dev.
+    # On Render, DataSourceConfig reads DATABASE_URL and refuses localhost.
     url: ${DB_URL:jdbc:postgresql://localhost:5432/leather_db}
     username: ${DB_USERNAME:leather}
     password: ${DB_PASSWORD:leather_dev_pass}
     driver-class-name: org.postgresql.Driver
     hikari:
-      # Free Render instances are memory-tight; keep the pool small.
       maximum-pool-size: ${DB_POOL_SIZE:3}
       minimum-idle: 0
       connection-timeout: 20000
