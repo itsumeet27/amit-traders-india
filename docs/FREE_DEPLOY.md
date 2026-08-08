@@ -12,7 +12,28 @@ Neon Postgres (free)
 
 ---
 
+## Fix for “Unable to determine Dialect without JDBC metadata”
+
+This almost always means **Hibernate could not open a JDBC connection** to Neon
+(missing/wrong `DATABASE_URL`), not a real dialect bug.
+
+We now set `PostgreSQLDialect` explicitly and normalize Neon URL params
+(`channel_binding` → `channelBinding`, force `sslmode=require`).
+
+Still required on Render:
+
+1. `DATABASE_URL` = Neon **connection string** from Neon Console → **Connect**  
+   Example: `postgresql://USER:PASSWORD@ep-xxxx.region.aws.neon.tech/neondb?sslmode=require`
+2. Prefer the **pooled** host (`-pooler` in hostname) if Neon shows it
+3. Redeploy branch `cursor/free-deploy-render-neon-7f5b` with **Clear build cache**
+4. Logs should show: `Datasource JDBC URL: jdbc:postgresql://ep-...` (not localhost)
+
+If `DATABASE_URL` is missing on Render, startup now fails fast with a clear message.
+
+---
+
 ## Fix for “Cannot resolve reference to bean jpaSharedEM_entityManagerFactory”
+
 
 That message is a **follow-on error**. The real failure is almost always:
 

@@ -10,25 +10,29 @@ import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
- * Maps Neon / Railway / Heroku-style {@code DATABASE_URL}
- * ({@code postgres://} or {@code postgresql://}) into Spring datasource properties.
- * Ensures remote hosts get {@code sslmode=require} (required by Neon).
+ * Maps Neon / Railway / Heroku-style {@code DATABASE_URL} into Spring datasource properties.
+ * Neon requires SSL; JDBC expects {@code channelBinding} (camelCase), not {@code channel_binding}.
  */
 public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProcessor, Ordered {
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
+        boolean onRender = firstNonBlank(
+                environment.getProperty("RENDER"),
+                environment.getProperty("RENDER_SERVICE_ID"),
+                environment.getProperty("RENDER_EXTERNAL_URL")) != null;
+
         String explicitJdbc = firstNonBlank(
                 environment.getProperty("DB_URL"),
                 environment.getProperty("SPRING_DATASOURCE_URL"));
         if (explicitJdbc != null && explicitJdbc.startsWith("jdbc:")) {
-            Map<String, Object> props = new HashMap<>();
-            props.put("spring.datasource.url", ensureSsl(explicitJdbc));
-            props.put("DB_URL", ensureSsl(explicitJdbc));
+            Map<String, Object> props = fromJdbcUrl(explicitJdbc);
             environment.getPropertySources().addFirst(new MapPropertySource("databaseUrlMapping", props));
             return;
         }
@@ -37,7 +41,15 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
                 environment.getProperty("DATABASE_URL"),
                 environment.getProperty("POSTGRES_URL"),
                 explicitJdbc);
+
         if (databaseUrl == null || databaseUrl.isBlank()) {
+            if (onRender) {
+                throw new IllegalStateException(
+                        "DATABASE_URL is not set on Render. "
+                                + "Add your Neon connection string in Environment, e.g. "
+                                + "postgresql://USER:PASSWORD@ep-xxxx.region.aws.neon.tech/neondb?sslmode=require "
+                                + "then clear build cache & redeploy.");
+            }
             return;
         }
 
@@ -48,8 +60,8 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
         } catch (Exception ex) {
             throw new IllegalStateException(
                     "Failed to parse DATABASE_URL for JDBC. "
-                            + "Use the Neon connection string, e.g. "
-                            + "postgresql://USER:PASSWORD@ep-xxx.region.aws.neon.tech/neondb?sslmode=require",
+                            + "Use the Neon connection string from the Neon Console → Connect. "
+                            + "Example: postgresql://USER:PASSWORD@ep-xxx.region.aws.neon.tech/neondb?sslmode=require",
                     ex);
         }
     }
@@ -57,11 +69,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
     static Map<String, Object> parseDatabaseUrl(String raw) throws Exception {
         String normalized = raw.trim().replace("\"", "");
         if (normalized.startsWith("jdbc:")) {
-            Map<String, Object> props = new HashMap<>();
-            String jdbc = ensureSsl(normalized);
-            props.put("spring.datasource.url", jdbc);
-            props.put("DB_URL", jdbc);
-            return props;
+            return fromJdbcUrl(normalized);
         }
         if (normalized.startsWith("postgres://")) {
             normalized = "postgresql://" + normalized.substring("postgres://".length());
@@ -70,7 +78,6 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
             throw new IllegalArgumentException("Unsupported database URL scheme: " + sanitizeForLog(raw));
         }
 
-        // Prefer URI parsing; fall back to manual split for awkward passwords.
         String username;
         String password;
         String host;
@@ -112,18 +119,44 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
             throw new IllegalArgumentException("DATABASE_URL missing host or database name");
         }
 
-        StringBuilder jdbc = new StringBuilder("jdbc:postgresql://")
-                .append(host).append(':').append(port).append('/').append(dbName);
+        String jdbc = "jdbc:postgresql://" + host + ':' + port + '/' + dbName;
         if (query != null && !query.isBlank()) {
-            jdbc.append('?').append(query);
+            jdbc = jdbc + '?' + query;
+        }
+        return buildProps(jdbc, username, password);
+    }
+
+    static Map<String, Object> fromJdbcUrl(String jdbcUrl) {
+        String url = jdbcUrl.trim();
+        String username = null;
+        String password = null;
+
+        // Neon Java-style: jdbc:postgresql://host/db?user=...&password=...
+        int q = url.indexOf('?');
+        if (q >= 0) {
+            Map<String, String> params = parseQuery(url.substring(q + 1));
+            if (params.containsKey("user")) {
+                username = params.get("user");
+                params.remove("user");
+            }
+            if (params.containsKey("password")) {
+                password = params.get("password");
+                params.remove("password");
+            }
+            String base = url.substring(0, q);
+            String rebuilt = params.isEmpty() ? base : base + '?' + joinQuery(params);
+            url = rebuilt;
         }
 
-        String jdbcUrl = ensureSsl(jdbc.toString());
+        return buildProps(url, username, password);
+    }
 
+    private static Map<String, Object> buildProps(String jdbcUrl, String username, String password) {
+        String sanitizedJdbc = sanitizeJdbcQuery(jdbcUrl);
         Map<String, Object> props = new HashMap<>();
-        props.put("spring.datasource.url", jdbcUrl);
-        props.put("DB_URL", jdbcUrl);
-        if (username != null) {
+        props.put("spring.datasource.url", sanitizedJdbc);
+        props.put("DB_URL", sanitizedJdbc);
+        if (username != null && !username.isBlank()) {
             props.put("spring.datasource.username", username);
             props.put("DB_USERNAME", username);
         }
@@ -134,16 +167,64 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
         return props;
     }
 
-    /** Neon and most cloud Postgres require SSL. */
+    /**
+     * Keep only JDBC-safe params. Convert channel_binding → channelBinding for pgJDBC/Neon.
+     * Always require SSL for non-local hosts.
+     */
+    static String sanitizeJdbcQuery(String jdbcUrl) {
+        boolean local = jdbcUrl.toLowerCase(Locale.ROOT).contains("localhost")
+                || jdbcUrl.toLowerCase(Locale.ROOT).contains("127.0.0.1");
+        int q = jdbcUrl.indexOf('?');
+        String base = q >= 0 ? jdbcUrl.substring(0, q) : jdbcUrl;
+        Map<String, String> params = q >= 0 ? parseQuery(jdbcUrl.substring(q + 1)) : new LinkedHashMap<>();
+
+        // Normalize Neon channel binding param name for JDBC
+        if (params.containsKey("channel_binding") && !params.containsKey("channelBinding")) {
+            params.put("channelBinding", params.remove("channel_binding"));
+        }
+
+        if (!local) {
+            params.putIfAbsent("sslmode", "require");
+            // Neon recommends channelBinding for Java; ignore if driver rejects — sslmode is enough to connect.
+            params.putIfAbsent("channelBinding", "require");
+        }
+
+        // Drop empty values
+        params.entrySet().removeIf(e -> e.getValue() == null || e.getValue().isBlank());
+
+        if (params.isEmpty()) {
+            return base;
+        }
+        return base + '?' + joinQuery(params);
+    }
+
     static String ensureSsl(String jdbcUrl) {
-        String lower = jdbcUrl.toLowerCase(Locale.ROOT);
-        if (lower.contains("localhost") || lower.contains("127.0.0.1")) {
-            return jdbcUrl;
+        return sanitizeJdbcQuery(jdbcUrl);
+    }
+
+    private static Map<String, String> parseQuery(String query) {
+        Map<String, String> params = new LinkedHashMap<>();
+        if (query == null || query.isBlank()) {
+            return params;
         }
-        if (lower.contains("sslmode=")) {
-            return jdbcUrl;
+        for (String part : query.split("&")) {
+            if (part.isBlank()) {
+                continue;
+            }
+            int eq = part.indexOf('=');
+            if (eq < 0) {
+                params.put(urlDecode(part), "");
+            } else {
+                params.put(urlDecode(part.substring(0, eq)), urlDecode(part.substring(eq + 1)));
+            }
         }
-        return jdbcUrl + (jdbcUrl.contains("?") ? "&" : "?") + "sslmode=require";
+        return params;
+    }
+
+    private static String joinQuery(Map<String, String> params) {
+        return params.entrySet().stream()
+                .map(e -> e.getKey() + "=" + e.getValue())
+                .collect(Collectors.joining("&"));
     }
 
     private static ParsedUrl parseManually(String postgresqlUrl) {
@@ -178,10 +259,7 @@ public class DatabaseUrlEnvironmentPostProcessor implements EnvironmentPostProce
         }
         String hostPort = hostPart.substring(0, slash);
         dbName = hostPart.substring(slash + 1);
-        if (hostPort.startsWith("[") && hostPort.contains("]")) {
-            // IPv6 — uncommon on Neon
-            host = hostPort;
-        } else if (hostPort.contains(":")) {
+        if (hostPort.contains(":")) {
             int c = hostPort.lastIndexOf(':');
             host = hostPort.substring(0, c);
             port = Integer.parseInt(hostPort.substring(c + 1));
