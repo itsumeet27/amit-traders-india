@@ -10,6 +10,19 @@ https://<your-api>.onrender.com   (Spring Boot Docker on Render free)
 Neon Postgres (free)
 ```
 
+
+## Live endpoints (current)
+
+| Layer | URL |
+| --- | --- |
+| Website | https://itsumeet27.github.io/amit-traders-india/ |
+| API | https://amit-traders-india-new.onrender.com |
+| Health | https://amit-traders-india-new.onrender.com/api/health |
+| Admin | https://itsumeet27.github.io/amit-traders-india/admin/login |
+
+Set GitHub Actions variable `VITE_API_BASE_URL=https://amit-traders-india-new.onrender.com` so future Pages builds stay connected.
+
+
 ---
 
 ## Fix for “Connection to localhost:5432 refused”
