@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { BrandLogo } from '@/components/BrandLogo'
 import { categoryService } from '@/services/categoryService'
 import type { Category } from '@/types'
 import clsx from 'clsx'
@@ -50,15 +51,8 @@ export function Header() {
           : 'border-transparent bg-off-white/80 backdrop-blur-sm',
       )}
     >
-      <div className="container-wide flex items-center justify-between gap-4 px-5 py-3.5 md:px-8 lg:px-12">
-        <Link to="/" className="group min-w-0">
-          <span className="font-display text-2xl font-semibold tracking-tight text-primary md:text-[1.7rem]">
-            Amit Traders India
-          </span>
-          <span className="mt-0.5 block text-[10px] uppercase tracking-[0.22em] text-gold">
-            Genuine Leather · Mumbai
-          </span>
-        </Link>
+      <div className="container-wide flex items-center justify-between gap-4 px-5 py-3 md:px-8 lg:px-12">
+        <BrandLogo variant="full" />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {links.map((link) => (
