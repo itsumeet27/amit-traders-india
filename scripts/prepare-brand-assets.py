@@ -92,6 +92,11 @@ def main() -> None:
     icon = icon_region.crop(icon_box) if icon_box else icon_region
     icon = square_icon(icon, ICON_SIZE)
     icon.save(ICON, format="PNG", optimize=True, compress_level=9)
+
+    # Optional WebP copies for faster loading (not required by UI).
+    full.save(BRAND / "logo.webp", format="WEBP", quality=88, method=6)
+    icon.save(BRAND / "logo-icon.webp", format="WEBP", quality=88, method=6)
+
     print(f"Wrote {ICON} ({icon.size[0]}x{icon.size[1]}, {ICON.stat().st_size // 1024} KB)")
 
 
