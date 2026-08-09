@@ -1,0 +1,34 @@
+# Free-tier: Neon (DB) + Render (API) + GitHub Pages (frontend)
+# IMPORTANT: runtime MUST be "docker" (Java/Spring Boot). Do NOT use Go/Node/Python.
+#
+# Dashboard (manual): New → Web Service → Language = Docker
+#   Dockerfile Path: ./backend/Dockerfile
+#   Docker Build Context Directory: ./backend
+#
+# See docs/FREE_DEPLOY.md
+
+services:
+  - type: web
+    name: leather-api
+    runtime: docker
+    plan: free
+    region: oregon
+    # Paths are relative to the repository root (monorepo-safe)
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io,http://localhost:5173
+      - key: SEED_DATA
+        value: "true"
+      - key: JPA_DDL_AUTO
+        value: update
+      - key: FILE_STORAGE_PATH
+        value: /tmp/uploads
+      - key: JAVA_TOOL_OPTIONS
+        value: -XX:MaxRAMPercentage=75.0 -Xms128m

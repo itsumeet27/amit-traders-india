@@ -1,0 +1,3 @@
+# Fallback registration for tooling that still reads spring.factories
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.amittraders.leather.config.DatabaseUrlEnvironmentPostProcessor

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6B4632"/>
+      <stop offset="55%" stop-color="#4A2F22"/>
+      <stop offset="100%" stop-color="#3B2418"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="80" y="80" width="1040" height="470" fill="none" stroke="#B89B68" stroke-width="2" opacity="0.55"/>
+  <text x="120" y="280" fill="#F5EFE6" font-family="Georgia, serif" font-size="72">Amit Traders India</text>
+  <text x="120" y="350" fill="#D8C3A5" font-family="Arial, sans-serif" font-size="28">Premium Genuine Leather · Mumbai</text>
+</svg>
