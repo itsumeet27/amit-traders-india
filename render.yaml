@@ -23,7 +23,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: https://itsumeet27.github.io,http://localhost:5173
+        value: https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io,http://localhost:5173
       - key: SEED_DATA
         value: "true"
       - key: JPA_DDL_AUTO

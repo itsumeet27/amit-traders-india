@@ -15,12 +15,20 @@ Neon Postgres (free)
 
 | Layer | URL |
 | --- | --- |
-| Website | https://itsumeet27.github.io/amit-traders-india/ |
+| Website (custom domain) | https://amittradersindia.com |
+| Website (www) | https://www.amittradersindia.com |
+| Website (GitHub Pages fallback) | https://itsumeet27.github.io/amit-traders-india/ |
 | API | https://amit-traders-india-new.onrender.com |
 | Health | https://amit-traders-india-new.onrender.com/api/health |
-| Admin | https://itsumeet27.github.io/amit-traders-india/admin/login |
+| Admin | https://amittradersindia.com/admin/login |
 
 Set GitHub Actions variable `VITE_API_BASE_URL=https://amit-traders-india-new.onrender.com` so future Pages builds stay connected.
+
+On Render, set:
+
+```text
+CORS_ORIGINS=https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io,http://localhost:5173
+```
 
 
 ---
@@ -176,6 +184,20 @@ You still must paste `DATABASE_URL` when prompted.
 
 Hybrid mode: live API when awake, SAMPLE demo fallback when Render sleeps.
 
+### Custom domain (`amittradersindia.com`)
+
+The Pages workflow builds with `VITE_BASE_PATH=/` and writes a `CNAME` for `amittradersindia.com`.
+
+**You still need (one-time):**
+
+1. **GoDaddy DNS**
+   - `A` `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `CNAME` `www` → `itsumeet27.github.io`
+2. **GitHub → repo → Settings → Pages**
+   - Custom domain: `amittradersindia.com`
+   - Enable **Enforce HTTPS** after DNS check passes
+3. **Render** `CORS_ORIGINS` must include `https://amittradersindia.com` and `https://www.amittradersindia.com` (then redeploy)
+
 ---
 
 ## 4. Local
@@ -193,5 +215,7 @@ cd frontend && npm run dev
 - [ ] Render **Language = Docker** (not Go)  
 - [ ] Dockerfile path `./backend/Dockerfile`, context `./backend`  
 - [ ] Neon `DATABASE_URL` set  
-- [ ] `CORS_ORIGINS` includes `https://itsumeet27.github.io`  
+- [ ] `CORS_ORIGINS` includes `https://amittradersindia.com` and `https://www.amittradersindia.com`  
 - [ ] Pages variable `VITE_API_BASE_URL` set + workflow run  
+- [ ] GoDaddy DNS A/CNAME pointed at GitHub Pages  
+- [ ] GitHub Pages custom domain + Enforce HTTPS  

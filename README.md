@@ -148,9 +148,10 @@ GitHub Pages (frontend)  →  Render free API  →  Neon free Postgres
 ```
 
 1. Create Neon DB → copy `DATABASE_URL`  
-2. Deploy `backend` on Render (Docker, free) with CORS for `https://itsumeet27.github.io`  
+2. Deploy `backend` on Render (Docker, free) with CORS for `https://amittradersindia.com` (and www / github.io as needed)  
 3. Set GitHub Actions variable `VITE_API_BASE_URL` to the Render URL  
-4. Re-run **Deploy frontend to GitHub Pages**  
+4. Point GoDaddy DNS at GitHub Pages and set custom domain `amittradersindia.com` in Pages settings  
+5. Re-run **Deploy frontend to GitHub Pages**  
 
 The Pages build uses **hybrid mode**: live API when awake, SAMPLE demo fallback when Render is sleeping.
 

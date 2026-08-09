@@ -1,8 +1,8 @@
 name: Deploy frontend to GitHub Pages
 
-# Publishes the public site to the `gh-pages` branch (legacy Pages source)
-# and optionally to GitHub Actions Pages. Set repo variable VITE_API_BASE_URL
-# to your Render API origin for seamless live + demo-fallback integration.
+# Publishes the public site to the `gh-pages` branch for GitHub Pages.
+# Custom domain: amittradersindia.com (CNAME written on each deploy).
+# Set repo variable VITE_API_BASE_URL to your Render API origin.
 
 on:
   push:
@@ -39,11 +39,12 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Build for GitHub Pages
+      - name: Build for GitHub Pages (custom domain)
         working-directory: frontend
         env:
-          VITE_BASE_PATH: /amit-traders-india/
-          VITE_SITE_URL: https://itsumeet27.github.io/amit-traders-india
+          # Apex custom domain serves at site root (not /amit-traders-india/)
+          VITE_BASE_PATH: /
+          VITE_SITE_URL: https://amittradersindia.com
           # Hybrid mode: try live Render API, fall back to SAMPLE demo data if asleep
           VITE_DEMO_MODE: 'true'
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
@@ -51,10 +52,11 @@ jobs:
           npm run build
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
+          printf 'amittradersindia.com\n' > dist/CNAME
           python3 <<'PY'
           import os
           api = os.environ.get("VITE_API_BASE_URL") or ""
-          site = os.environ.get("VITE_SITE_URL") or "https://itsumeet27.github.io/amit-traders-india"
+          site = os.environ.get("VITE_SITE_URL") or "https://amittradersindia.com"
           content = (
               "window.__APP_CONFIG__ = {\n"
               f'  apiBaseUrl: "{api}",\n'
@@ -63,7 +65,7 @@ jobs:
               "};\n"
           )
           open("dist/runtime-config.js", "w", encoding="utf-8").write(content)
-          print("runtime-config.js written; apiBaseUrl=", api or "<empty>")
+          print("runtime-config.js written; apiBaseUrl=", api or "<empty>", "siteUrl=", site)
           PY
 
       - name: Deploy to gh-pages branch
@@ -73,5 +75,6 @@ jobs:
           publish_dir: frontend/dist
           publish_branch: gh-pages
           force_orphan: true
+          cname: amittradersindia.com
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com

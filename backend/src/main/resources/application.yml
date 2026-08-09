@@ -48,7 +48,7 @@ app:
     expiration-ms: ${JWT_EXPIRATION_MS:86400000}
   cors:
     # Include GitHub Pages origin for free-tier (Render + Pages) deploy.
-    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,https://itsumeet27.github.io}
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io}
   file-storage:
     path: ${FILE_STORAGE_PATH:./uploads}
     url-prefix: ${FILE_STORAGE_URL:/uploads}
