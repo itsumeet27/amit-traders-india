@@ -49,35 +49,10 @@ export function Header() {
         scrolled && 'shadow-[0_8px_30px_-18px_rgba(41,37,34,0.35)]',
       )}
     >
-      <div className="container-wide px-5 md:px-8 lg:px-12">
-        <div className="relative flex items-center justify-center py-4 md:py-5">
-          <button
-            type="button"
-            className="absolute left-0 inline-flex items-center justify-center p-2 text-primary lg:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+      <div className="container-wide flex items-center justify-between gap-4 px-5 py-2.5 md:px-8 md:py-3 lg:px-12">
+        <BrandLogo variant="wordmark" />
 
-          <BrandLogo
-            variant="full"
-            align="center"
-            className="h-[4.5rem] max-w-[15rem] sm:h-20 sm:max-w-[18rem] md:h-24 md:max-w-[22rem] lg:h-28 lg:max-w-[26rem]"
-          />
-
-          <div className="absolute right-0 lg:hidden">
-            <Button to="/quote" size="sm">
-              Quote
-            </Button>
-          </div>
-        </div>
-
-        <nav
-          className="hidden items-center justify-center gap-0.5 border-t border-light-tan/50 py-2.5 lg:flex"
-          aria-label="Primary"
-        >
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -93,11 +68,22 @@ export function Header() {
               {link.label}
             </NavLink>
           ))}
-          <span className="mx-2 h-4 w-px bg-light-tan/80" aria-hidden />
-          <Button to="/quote" size="sm">
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <Button to="/quote" size="sm" className="hidden sm:inline-flex">
             Request Quote
           </Button>
-        </nav>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center p-2 text-primary lg:hidden"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open ? (
