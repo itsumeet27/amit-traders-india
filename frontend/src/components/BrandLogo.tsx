@@ -5,6 +5,8 @@ import clsx from 'clsx'
 type BrandLogoProps = {
   /** Full wordmark for header; icon-only for compact spaces */
   variant?: 'full' | 'icon'
+  /** Horizontal alignment of the logo image */
+  align?: 'left' | 'center'
   className?: string
   to?: string
   onClick?: () => void
@@ -45,6 +47,7 @@ function TextFallback({ compact }: { compact?: boolean }) {
 
 export function BrandLogo({
   variant = 'full',
+  align = 'left',
   className,
   to = '/',
   onClick,
@@ -53,7 +56,8 @@ export function BrandLogo({
   const [broken, setBroken] = useState(false)
 
   const imgClassName = clsx(
-    'block w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-90',
+    'block w-auto object-contain transition-opacity duration-300 group-hover:opacity-90',
+    align === 'center' ? 'mx-auto object-center' : 'object-left',
     asset.className,
     className,
   )
@@ -87,14 +91,25 @@ export function BrandLogo({
 
   if (onClick) {
     return (
-      <button type="button" onClick={onClick} className="group min-w-0 text-left">
+      <button
+        type="button"
+        onClick={onClick}
+        className={clsx('group min-w-0', align === 'center' ? 'text-center' : 'text-left')}
+      >
         {image}
       </button>
     )
   }
 
   return (
-    <Link to={to} className="group min-w-0 shrink-0" aria-label="Amit Traders India — Home">
+    <Link
+      to={to}
+      className={clsx(
+        'group min-w-0 shrink-0',
+        align === 'center' ? 'mx-auto text-center' : '',
+      )}
+      aria-label="Amit Traders India — Home"
+    >
       {image}
     </Link>
   )

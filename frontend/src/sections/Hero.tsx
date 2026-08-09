@@ -51,7 +51,7 @@ export function Hero({ company }: { company: CompanyProfile | null }) {
             to="/products"
             size="lg"
             variant="outline"
-            className="border-cream/40 text-cream hover:bg-cream/10 hover:border-cream"
+            className="border-cream/50 bg-cream/10 text-cream hover:border-cream hover:bg-cream/20"
           >
             {secondaryCta}
           </Button>

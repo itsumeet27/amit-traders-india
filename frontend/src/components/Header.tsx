@@ -45,16 +45,39 @@ export function Header() {
   return (
     <header
       className={clsx(
-        'sticky top-0 z-50 border-b transition-all duration-300',
-        scrolled
-          ? 'border-light-tan/80 bg-off-white/95 shadow-[0_8px_30px_-18px_rgba(41,37,34,0.45)] backdrop-blur'
-          : 'border-transparent bg-off-white/80 backdrop-blur-sm',
+        'sticky top-0 z-50 border-b border-light-tan/60 bg-brand-bg transition-shadow duration-300',
+        scrolled && 'shadow-[0_8px_30px_-18px_rgba(41,37,34,0.35)]',
       )}
     >
-      <div className="container-wide flex items-center justify-between gap-4 px-5 py-2.5 md:px-8 md:py-3 lg:px-12">
-        <BrandLogo variant="full" />
+      <div className="container-wide px-5 md:px-8 lg:px-12">
+        <div className="relative flex items-center justify-center py-3 md:py-4">
+          <button
+            type="button"
+            className="absolute left-0 inline-flex items-center justify-center p-2 text-primary lg:hidden"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+          <BrandLogo
+            variant="full"
+            align="center"
+            className="h-14 max-w-[12rem] sm:h-16 sm:max-w-[14rem] md:h-[4.5rem] md:max-w-[16rem]"
+          />
+
+          <div className="absolute right-0 lg:hidden">
+            <Button to="/quote" size="sm">
+              Quote
+            </Button>
+          </div>
+        </div>
+
+        <nav
+          className="hidden items-center justify-center gap-0.5 border-t border-light-tan/50 py-2.5 lg:flex"
+          aria-label="Primary"
+        >
           {links.map((link) => (
             <NavLink
               key={link.to}
@@ -70,26 +93,15 @@ export function Header() {
               {link.label}
             </NavLink>
           ))}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Button to="/quote" size="sm" className="hidden sm:inline-flex">
+          <span className="mx-2 h-4 w-px bg-light-tan/80" aria-hidden />
+          <Button to="/quote" size="sm">
             Request Quote
           </Button>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center p-2 text-primary lg:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        </nav>
       </div>
 
       {open ? (
-        <div className="border-t border-light-tan/70 bg-off-white lg:hidden">
+        <div className="border-t border-light-tan/70 bg-brand-bg lg:hidden">
           <nav className="flex flex-col px-5 py-4" aria-label="Mobile">
             {links.map((link) => (
               <NavLink
@@ -97,7 +109,7 @@ export function Header() {
                 to={link.to}
                 end={link.to === '/'}
                 onClick={() => setOpen(false)}
-                className="border-b border-cream py-3 text-base text-deep"
+                className="border-b border-light-tan/40 py-3 text-base text-deep"
               >
                 {link.label}
               </NavLink>
@@ -107,7 +119,7 @@ export function Header() {
                 key={cat.id}
                 to={`/products?category=${cat.slug}`}
                 onClick={() => setOpen(false)}
-                className="border-b border-cream py-3 pl-3 text-sm text-leather"
+                className="border-b border-light-tan/40 py-3 pl-3 text-sm text-leather"
               >
                 {cat.name}
               </Link>
