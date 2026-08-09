@@ -50,7 +50,7 @@ export function Header() {
       )}
     >
       <div className="container-wide px-5 md:px-8 lg:px-12">
-        <div className="relative flex items-center justify-center py-3 md:py-4">
+        <div className="relative flex items-center justify-center py-4 md:py-5">
           <button
             type="button"
             className="absolute left-0 inline-flex items-center justify-center p-2 text-primary lg:hidden"
@@ -64,7 +64,7 @@ export function Header() {
           <BrandLogo
             variant="full"
             align="center"
-            className="h-14 max-w-[12rem] sm:h-16 sm:max-w-[14rem] md:h-[4.5rem] md:max-w-[16rem]"
+            className="h-[4.5rem] max-w-[15rem] sm:h-20 sm:max-w-[18rem] md:h-24 md:max-w-[22rem] lg:h-28 lg:max-w-[26rem]"
           />
 
           <div className="absolute right-0 lg:hidden">
