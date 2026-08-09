@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 type BrandLogoProps = {
-  /** Full wordmark for header; icon-only for favicon-sized spaces */
+  /** Full wordmark for header; icon-only for compact spaces */
   variant?: 'full' | 'icon'
   className?: string
   to?: string
@@ -12,17 +12,15 @@ type BrandLogoProps = {
 
 const ASSETS = {
   full: {
-    png: '/brand/logo.png',
-    webp: '/brand/logo.webp',
+    src: '/brand/logo.png',
     alt: 'Amit Traders — Manufacturers and suppliers of leather goods',
     className:
-      'h-12 max-w-[10.5rem] sm:h-[3.35rem] sm:max-w-[12.5rem] md:h-14 md:max-w-[14.5rem]',
+      'h-14 max-w-[11rem] sm:h-16 sm:max-w-[13rem] md:h-[4.25rem] md:max-w-[15rem]',
   },
   icon: {
-    png: '/brand/logo-icon.png',
-    webp: '/brand/logo-icon.webp',
+    src: '/brand/logo-icon.png',
     alt: 'Amit Traders',
-    className: 'h-9 w-9',
+    className: 'h-10 w-10',
   },
 } as const
 
@@ -54,21 +52,18 @@ export function BrandLogo({
   const [broken, setBroken] = useState(false)
 
   const image = !broken ? (
-    <picture>
-      <source srcSet={asset.webp} type="image/webp" />
-      <img
-        src={asset.png}
-        alt={asset.alt}
-        className={clsx(
-          'block w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-90',
-          asset.className,
-          className,
-        )}
-        decoding="async"
-        fetchPriority="high"
-        onError={() => setBroken(true)}
-      />
-    </picture>
+    <img
+      src={asset.src}
+      alt={asset.alt}
+      className={clsx(
+        'block w-auto object-contain object-left transition-opacity duration-300 group-hover:opacity-90',
+        asset.className,
+        className,
+      )}
+      decoding="async"
+      fetchPriority="high"
+      onError={() => setBroken(true)}
+    />
   ) : (
     <TextFallback compact={variant === 'icon'} />
   )
