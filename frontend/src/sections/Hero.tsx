@@ -47,12 +47,7 @@ export function Hero({ company }: { company: CompanyProfile | null }) {
           <Button to="/quote" size="lg" variant="secondary">
             {primaryCta}
           </Button>
-          <Button
-            to="/products"
-            size="lg"
-            variant="outline"
-            className="border-cream/50 bg-cream/10 text-cream hover:border-cream hover:bg-cream/20"
-          >
+          <Button to="/products" size="lg" variant="outline-light">
             {secondaryCta}
           </Button>
         </div>

@@ -2,7 +2,7 @@ import { forwardRef, type ButtonHTMLAttributes } from 'react'
 import { Link, type LinkProps } from 'react-router-dom'
 import clsx from 'clsx'
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'danger'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'outline-light' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
 
 const base =
@@ -16,6 +16,8 @@ const variants: Record<Variant, string> = {
   ghost: 'bg-transparent text-primary hover:bg-cream',
   outline:
     'border border-leather/30 text-primary bg-transparent hover:border-leather hover:bg-cream/70',
+  'outline-light':
+    'border border-cream/50 bg-cream/15 text-cream hover:border-cream hover:bg-cream/25',
   danger: 'bg-red-800 text-white hover:bg-red-900',
 }
 
