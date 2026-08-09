@@ -16,7 +16,7 @@ const ASSETS = {
     webp: '/brand/logo.webp',
     alt: 'Amit Traders — Manufacturers and suppliers of leather goods',
     className:
-      'h-[3.25rem] max-w-[min(100%,13.5rem)] sm:h-14 sm:max-w-[15.5rem] md:max-w-[17.5rem]',
+      'h-12 max-w-[10.5rem] sm:h-[3.35rem] sm:max-w-[12.5rem] md:h-14 md:max-w-[14.5rem]',
   },
   icon: {
     png: '/brand/logo-icon.png',

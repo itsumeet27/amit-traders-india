@@ -51,7 +51,7 @@ export function Header() {
           : 'border-transparent bg-off-white/80 backdrop-blur-sm',
       )}
     >
-      <div className="container-wide flex items-center justify-between gap-4 px-5 py-3 md:px-8 lg:px-12">
+      <div className="container-wide flex items-center justify-between gap-4 px-5 py-2.5 md:px-8 md:py-3 lg:px-12">
         <BrandLogo variant="full" />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
