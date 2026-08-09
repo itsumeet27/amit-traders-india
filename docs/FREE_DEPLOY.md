@@ -90,7 +90,7 @@ Scroll **up** in the Render logs for lines like:
 | --- | --- |
 | `DATABASE_URL` | Neon URI, e.g. `postgresql://USER:PASS@ep-….neon.tech/neondb?sslmode=require` |
 | `JWT_SECRET` | A **generated string**, not the command `openssl rand -base64 48` |
-| `CORS_ORIGINS` | `https://itsumeet27.github.io,http://localhost:5173` |
+| `CORS_ORIGINS` | `https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io,http://localhost:5173` |
 
 **JWT_SECRET tip:** run this on your laptop, then paste the *output* into Render:
 
@@ -160,7 +160,7 @@ postgresql://USER:PASSWORD@ep-xxxxx.region.aws.neon.tech/neondb?sslmode=require
 | --- | --- |
 | `DATABASE_URL` | Neon URI with `sslmode=require` |
 | `JWT_SECRET` | long random string (recommended ≥ 32 chars, e.g. `openssl rand -base64 48`) |
-| `CORS_ORIGINS` | `https://itsumeet27.github.io,http://localhost:5173` |
+| `CORS_ORIGINS` | `https://amittradersindia.com,https://www.amittradersindia.com,https://itsumeet27.github.io,http://localhost:5173` |
 | `SEED_DATA` | `true` |
 | `JPA_DDL_AUTO` | `update` |
 | `FILE_STORAGE_PATH` | `/tmp/uploads` |
@@ -183,6 +183,16 @@ You still must paste `DATABASE_URL` when prompted.
 3. Actions → **Deploy frontend to GitHub Pages** → Run workflow  
 
 Hybrid mode: live API when awake, SAMPLE demo fallback when Render sleeps.
+
+### Keep Render awake (GitHub Actions)
+
+Workflow **Render keep-alive** (`.github/workflows/render-keepalive.yml`) pings
+`/api/health` every **10 minutes** so the free Render service does not spin down
+after 15 minutes of idle traffic.
+
+- Runs automatically on a schedule (and via **Actions → Render keep-alive → Run workflow**)
+- Optional override: repo variable `RENDER_HEALTH_URL`
+- Do **not** restart the service on a timer — that causes downtime; a health ping is enough
 
 ### Custom domain (`amittradersindia.com`)
 
