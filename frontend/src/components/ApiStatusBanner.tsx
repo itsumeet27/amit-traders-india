@@ -17,7 +17,7 @@ const ApiStatusContext = createContext<ApiStatusContextValue>({
 
 async function probeHealth(apiBaseUrl: string): Promise<boolean> {
   const controller = new AbortController()
-  const timer = window.setTimeout(() => controller.abort(), 45000)
+  const timer = window.setTimeout(() => controller.abort(), 90000)
   try {
     const res = await fetch(`${apiBaseUrl}/api/health`, {
       signal: controller.signal,

@@ -1,35 +1,36 @@
 name: Render keep-alive
 
 # Keeps the free Render API awake by pinging /api/health on a schedule.
-# (Render free tier spins down after ~15 minutes with no traffic.)
-# Prefer this over restarting — a restart causes downtime every cycle.
+# Render free tier spins down after ~15 minutes with no traffic.
+# GitHub Actions cron can be delayed, so we ping every 5 minutes and
+# allow a long cold-start window.
 
 on:
   schedule:
-    # Every 10 minutes (buffer under Render’s 15-minute idle spin-down).
-    # GitHub may delay cron slightly under load.
-    - cron: '*/10 * * * *'
+    # Every 5 minutes (GitHub may delay; tighter interval absorbs lag).
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 concurrency:
   group: render-keepalive
-  cancel-in-progress: true
+  # Do not cancel an in-flight cold-start wake when the next tick arrives.
+  cancel-in-progress: false
 
 jobs:
   ping:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - name: Wake Render API
         env:
-          HEALTH_URL: ${{ vars.RENDER_HEALTH_URL || 'https://amit-traders-india-new.onrender.com/api/health' }}
+          HEALTH_URL: ${{ vars.RENDER_HEALTH_URL != '' && vars.RENDER_HEALTH_URL || 'https://amit-traders-india-new.onrender.com/api/health' }}
         run: |
           set -euo pipefail
-          echo "Pinging $HEALTH_URL"
-          # Retry a few times — cold start can take 30–90s on free tier
+          echo "Pinging $HEALTH_URL at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          # Cold start on free tier can take 60–120s
           ok=0
-          for i in 1 2 3 4 5 6 7 8 9 10; do
-            code=$(curl -sS -o /tmp/health.json -w '%{http_code}' --max-time 45 "$HEALTH_URL" || echo "000")
+          for i in $(seq 1 20); do
+            code=$(curl -sS -o /tmp/health.json -w '%{http_code}' --connect-timeout 20 --max-time 60 "$HEALTH_URL" || echo "000")
             echo "Attempt $i → HTTP $code"
             if [ "$code" = "200" ]; then
               cat /tmp/health.json || true
@@ -37,32 +38,10 @@ jobs:
               ok=1
               break
             fi
-            sleep 10
+            sleep 8
           done
           if [ "$ok" != "1" ]; then
             echo "Health check did not return 200 after retries"
             exit 1
           fi
-
-  # Optional hard restart via Render API (only if secrets are configured).
-  # Not enabled by default — causes brief downtime. Prefer the ping job above.
-  restart:
-    if: ${{ github.event_name == 'workflow_dispatch' && vars.RENDER_ENABLE_RESTART == 'true' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Restart Render service
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
-        run: |
-          set -euo pipefail
-          if [ -z "${RENDER_API_KEY:-}" ] || [ -z "${RENDER_SERVICE_ID:-}" ]; then
-            echo "Missing RENDER_API_KEY or RENDER_SERVICE_ID secrets — skip restart"
-            exit 1
-          fi
-          curl -sS -X POST \
-            "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/restart" \
-            -H "Authorization: Bearer ${RENDER_API_KEY}" \
-            -H "Accept: application/json" \
-            -w "\nHTTP %{http_code}\n"
+          echo "Keep-alive OK"
