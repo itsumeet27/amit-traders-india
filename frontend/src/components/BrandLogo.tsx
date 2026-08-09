@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import clsx from 'clsx'
 
 type BrandLogoProps = {
-  /** Full wordmark for header; icon-only for compact spaces */
-  variant?: 'full' | 'icon'
+  /** Full stacked logo; wordmark for header text; icon for favicon-sized spaces */
+  variant?: 'full' | 'wordmark' | 'icon'
   /** Horizontal alignment of the logo image */
   align?: 'left' | 'center'
   className?: string
@@ -20,6 +20,13 @@ const ASSETS = {
     className:
       'h-14 max-w-[11rem] sm:h-16 sm:max-w-[13rem] md:h-[4.25rem] md:max-w-[15rem]',
   },
+  wordmark: {
+    png: '/brand/logo-wordmark.png',
+    webp: '/brand/logo-wordmark.webp',
+    alt: 'Amit Traders — Genuine leather manufacturers and suppliers',
+    className:
+      'h-12 max-w-[11.5rem] sm:h-[3.35rem] sm:max-w-[13rem] md:h-14 md:max-w-[15rem]',
+  },
   icon: {
     png: '/brand/logo-icon.png',
     alt: 'Amit Traders',
@@ -27,7 +34,7 @@ const ASSETS = {
   },
 } as const
 
-function TextFallback({ compact }: { compact?: boolean }) {
+function TextFallback({ compact, showTagline = true }: { compact?: boolean; showTagline?: boolean }) {
   if (compact) {
     return (
       <span className="font-display text-xl font-semibold tracking-tight text-primary">AT</span>
@@ -38,9 +45,11 @@ function TextFallback({ compact }: { compact?: boolean }) {
       <span className="font-display text-2xl font-semibold tracking-tight text-primary md:text-[1.7rem]">
         Amit Traders India
       </span>
-      <span className="mt-0.5 block text-[10px] uppercase tracking-[0.22em] text-gold">
-        Genuine Leather · Mumbai
-      </span>
+      {showTagline ? (
+        <span className="mt-0.5 block text-[10px] uppercase tracking-[0.22em] text-gold md:text-[11px]">
+          Genuine Leather · Mumbai
+        </span>
+      ) : null}
     </>
   )
 }
@@ -86,7 +95,7 @@ export function BrandLogo({
       />
     )
   ) : (
-    <TextFallback compact={variant === 'icon'} />
+    <TextFallback compact={variant === 'icon'} showTagline={variant !== 'icon'} />
   )
 
   if (onClick) {

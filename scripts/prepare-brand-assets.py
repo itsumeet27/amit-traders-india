@@ -5,8 +5,9 @@ Usage:
   python3 scripts/prepare-brand-assets.py
 
 Reads:  frontend/public/brand/logo.png (full logo from user)
-Writes: frontend/public/brand/logo.png      (trimmed + optimized for header)
-        frontend/public/brand/logo-icon.png (hide mark only, for favicon)
+Writes: frontend/public/brand/logo.png           (trimmed + optimized, icon + wordmark)
+        frontend/public/brand/logo-wordmark.png  (text + tagline only, for header)
+        frontend/public/brand/logo-icon.png      (hide mark only, for favicon)
 """
 
 from __future__ import annotations
@@ -19,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BRAND = ROOT / "frontend" / "public" / "brand"
 LOGO = BRAND / "logo.png"
 ICON = BRAND / "logo-icon.png"
+WORDMARK = BRAND / "logo-wordmark.png"
 BG_THRESHOLD = 242
 MAX_LOGO_WIDTH = 520
 ICON_SIZE = 256
@@ -92,6 +94,17 @@ def main() -> None:
     icon = icon_region.crop(icon_box) if icon_box else icon_region
     icon = square_icon(icon, ICON_SIZE)
     icon.save(ICON, format="PNG", optimize=True, compress_level=9)
+
+    # Header wordmark: text + tagline only (below hide mark).
+    wordmark_region = source.crop((0, int(h * 0.48), w, h))
+    wordmark_box = content_bbox(wordmark_region)
+    wordmark = wordmark_region.crop(wordmark_box) if wordmark_box else wordmark_region
+    wordmark = resize_width(wordmark, MAX_LOGO_WIDTH)
+    wordmark.save(WORDMARK, format="PNG", optimize=True, compress_level=9)
+    wordmark.save(BRAND / "logo-wordmark.webp", format="WEBP", quality=88, method=6)
+    print(
+        f"Wrote {WORDMARK} ({wordmark.size[0]}x{wordmark.size[1]}, {WORDMARK.stat().st_size // 1024} KB)"
+    )
 
     # Optional WebP copies for faster loading (not required by UI).
     full.save(BRAND / "logo.webp", format="WEBP", quality=88, method=6)
