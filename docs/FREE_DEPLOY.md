@@ -187,11 +187,13 @@ Hybrid mode: live API when awake, SAMPLE demo fallback when Render sleeps.
 ### Keep Render awake (GitHub Actions)
 
 Workflow **Render keep-alive** (`.github/workflows/render-keepalive.yml`) pings
-`/api/health` every **10 minutes** so the free Render service does not spin down
+`/api/health` every **5 minutes** so the free Render service does not spin down
 after 15 minutes of idle traffic.
 
 - Runs automatically on a schedule (and via **Actions → Render keep-alive → Run workflow**)
 - Optional override: repo variable `RENDER_HEALTH_URL`
+- GitHub can delay scheduled jobs; if the API still sleeps often, add a free external ping
+  (e.g. [cron-job.org](https://cron-job.org)) every 5–10 minutes to the same health URL
 - Do **not** restart the service on a timer — that causes downtime; a health ping is enough
 
 ### Custom domain (`amittradersindia.com`)
