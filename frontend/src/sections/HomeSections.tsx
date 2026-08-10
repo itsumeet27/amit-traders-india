@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { SectionReveal } from '@/components/ui/SafeImage'
+import { resolveMediaUrl } from '@/utils'
 import {
   ABOUT_HOME,
   CUSTOM_BRANDING,
@@ -53,7 +54,7 @@ export function AboutHomeSection() {
         <SectionReveal delayMs={100}>
           <div className="overflow-hidden">
             <img
-              src={IMAGES.aboutStory}
+              src={resolveMediaUrl(IMAGES.aboutStory)}
               alt="Leather craftsmanship — representative sample image"
               className="aspect-[5/4] w-full object-cover"
               loading="lazy"
