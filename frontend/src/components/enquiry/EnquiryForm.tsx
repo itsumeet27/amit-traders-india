@@ -9,7 +9,9 @@ import { categoryService } from '@/services/categoryService'
 import { productService } from '@/services/productService'
 import type { Category, EnquiryRequest, Product, ProductType } from '@/types'
 import { getErrorMessage, MIN_ORDER_QUANTITY } from '@/utils'
+import { RFQ_PRODUCT_OPTIONS } from '@/content/siteContent'
 import { CheckCircle2 } from 'lucide-react'
+import clsx from 'clsx'
 
 const empty: EnquiryRequest = {
   fullName: '',
@@ -38,6 +40,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
   const [products, setProducts] = useState<Product[]>([])
   const [selectedProductId, setSelectedProductId] = useState<number | ''>('')
   const [file, setFile] = useState<File | null>(null)
+  const [productInterests, setProductInterests] = useState<string[]>([])
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -103,17 +106,15 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       next.email = 'Valid email is required'
     }
-    if (!form.phone?.trim()) next.phone = 'Phone is required'
-    if (!form.country?.trim()) next.country = 'Country is required'
-    if (!form.city?.trim()) next.city = 'City is required'
+    if (!form.phone?.trim()) next.phone = 'Phone / WhatsApp is required'
     if (!form.quantity || form.quantity < MIN_ORDER_QUANTITY) {
       next.quantity = `Minimum order quantity is ${MIN_ORDER_QUANTITY} units.`
     }
     if (form.productType === 'CUSTOM' && !form.productName?.trim()) {
       next.productName = 'Please describe the custom product'
     }
-    if (form.productType === 'EXISTING' && !form.productName?.trim()) {
-      next.productName = 'Select or name a product'
+    if (form.productType === 'EXISTING' && !form.productName?.trim() && productInterests.length === 0) {
+      next.productName = 'Select a product interest or name a product'
     }
     setErrors(next)
     return Object.keys(next).length === 0
@@ -129,11 +130,21 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
         ...form,
         website: form.website || undefined,
         companyName: form.companyName || undefined,
+        productName:
+          form.productName ||
+          (productInterests.length ? productInterests.join('; ') : undefined),
+        additionalRequirements: [
+          productInterests.length ? `Product interests: ${productInterests.join(', ')}` : '',
+          form.additionalRequirements || '',
+        ]
+          .filter(Boolean)
+          .join('\n'),
       }
       await enquiryService.submit(payload, file)
       setSuccess(true)
       setForm(empty)
       setSelectedProductId('')
+      setProductInterests([])
       setFile(null)
     } catch (error) {
       setSubmitError(getErrorMessage(error, 'Unable to submit enquiry. Please try again.'))
@@ -160,7 +171,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
   return (
     <form onSubmit={onSubmit} className={`space-y-8 ${compact ? '' : ''}`} noValidate>
       <fieldset className="space-y-4">
-        <legend className="font-display text-2xl text-primary">Customer details</legend>
+        <legend className="font-display text-2xl text-primary">Contact information</legend>
         <div className="grid gap-4 md:grid-cols-2">
           <Input
             label="Full name"
@@ -171,7 +182,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
             onChange={(e) => update('fullName', e.target.value)}
           />
           <Input
-            label="Company name"
+            label="Company / organization name"
             name="companyName"
             required
             value={form.companyName || ''}
@@ -179,7 +190,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
             onChange={(e) => update('companyName', e.target.value)}
           />
           <Input
-            label="Email"
+            label="Official email address"
             name="email"
             type="email"
             required
@@ -188,7 +199,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
             onChange={(e) => update('email', e.target.value)}
           />
           <Input
-            label="Phone"
+            label="Phone / WhatsApp number"
             name="phone"
             required
             value={form.phone || ''}
@@ -198,17 +209,15 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
           <Input
             label="Country"
             name="country"
-            required
             value={form.country || ''}
-            error={errors.country}
+            hint="Optional"
             onChange={(e) => update('country', e.target.value)}
           />
           <Input
             label="City"
             name="city"
-            required
             value={form.city || ''}
-            error={errors.city}
+            hint="Optional"
             onChange={(e) => update('city', e.target.value)}
           />
           <Input
@@ -222,7 +231,36 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="font-display text-2xl text-primary">Product requirements</legend>
+        <legend className="font-display text-2xl text-primary">Product interest</legend>
+        <p className="text-sm text-leather">Select all product categories relevant to your enquiry.</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {RFQ_PRODUCT_OPTIONS.map((option) => {
+            const selected = productInterests.includes(option)
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() =>
+                  setProductInterests((prev) =>
+                    selected ? prev.filter((item) => item !== option) : [...prev, option],
+                  )
+                }
+                className={clsx(
+                  'border px-4 py-3 text-left text-sm transition',
+                  selected
+                    ? 'border-primary bg-primary text-cream'
+                    : 'border-light-tan/70 bg-off-white text-leather hover:border-tan',
+                )}
+              >
+                {option}
+              </button>
+            )
+          })}
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-4">
+        <legend className="font-display text-2xl text-primary">Order details</legend>
         <div className="grid gap-4 md:grid-cols-2">
           <Select
             label="Product type"
@@ -274,7 +312,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
             <p className="text-xs text-red-800 md:col-span-2">{errors.productName}</p>
           ) : null}
           <Input
-            label="Quantity"
+            label="Estimated order quantity"
             name="quantity"
             type="number"
             min={MIN_ORDER_QUANTITY}
@@ -297,17 +335,10 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
             onChange={(e) => update('preferredColor', e.target.value)}
           />
           <Input
-            label="Customization"
+            label="Specific customization / branding requirements"
             name="customizationRequirements"
             value={form.customizationRequirements || ''}
             onChange={(e) => update('customizationRequirements', e.target.value)}
-          />
-          <Input
-            label="Branding"
-            name="brandingRequirements"
-            value={form.brandingRequirements || ''}
-            onChange={(e) => update('brandingRequirements', e.target.value)}
-            hint="Embossing, logos, labels…"
           />
         </div>
         <Textarea
@@ -340,7 +371,7 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
       ) : null}
 
       <Button type="submit" size="lg" disabled={submitting}>
-        {submitting ? 'Submitting…' : 'Submit enquiry'}
+        {submitting ? 'Submitting…' : 'Request a Quote'}
       </Button>
     </form>
   )

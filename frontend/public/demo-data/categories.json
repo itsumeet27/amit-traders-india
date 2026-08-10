@@ -1,1 +1,38 @@
-[{"id":1,"name":"Wallets","slug":"wallets","description":"Genuine leather wallets for men and women — bifolds, trifolds, and card holders. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80","displayOrder":1,"active":true,"createdAt":"2026-08-08T18:55:33.464749Z","updatedAt":"2026-08-08T18:55:33.464749Z"},{"id":2,"name":"Belts","slug":"belts","description":"Classic and contemporary leather belts with solid hardware options. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1624222247344-550fb60583fd?w=800&q=80","displayOrder":2,"active":true,"createdAt":"2026-08-08T18:55:33.467625Z","updatedAt":"2026-08-08T18:55:33.467625Z"},{"id":3,"name":"Bags","slug":"bags","description":"Laptop bags, messengers, totes, and travel companions in full-grain leather. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1548036328-c9fa89d128ac?w=800&q=80","displayOrder":3,"active":true,"createdAt":"2026-08-08T18:55:33.468603Z","updatedAt":"2026-08-08T18:55:33.468603Z"},{"id":4,"name":"Jackets","slug":"jackets","description":"Tailored leather jackets crafted for retail and private-label programmes. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&q=80","displayOrder":4,"active":true,"createdAt":"2026-08-08T18:55:33.469764Z","updatedAt":"2026-08-08T18:55:33.469764Z"},{"id":5,"name":"Accessories","slug":"accessories","description":"Key fobs, card sleeves, passport covers, and small leather goods. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80","displayOrder":5,"active":true,"createdAt":"2026-08-08T18:55:33.470744Z","updatedAt":"2026-08-08T18:55:33.470744Z"},{"id":6,"name":"Office & Desk","slug":"office-desk","description":"Desk pads, organisers, and executive leather stationery. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80","displayOrder":6,"active":true,"createdAt":"2026-08-08T18:55:33.472039Z","updatedAt":"2026-08-08T18:55:33.472039Z"},{"id":7,"name":"Travel","slug":"travel","description":"Weekenders, toiletry kits, and travel organisers built for the road. [SAMPLE]","imageUrl":"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80","displayOrder":7,"active":true,"createdAt":"2026-08-08T18:55:33.473223Z","updatedAt":"2026-08-08T18:55:33.473223Z"}]
+[
+  {
+    "id": 1,
+    "name": "Executive Bags & Travel Gear",
+    "slug": "executive-bags-travel",
+    "description": "Laptop bags, trolley bags, sling bags, and nylon backpacks for business travel and corporate programs.",
+    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
+    "displayOrder": 1,
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Small Leather Accessories",
+    "slug": "leather-accessories",
+    "description": "Gents wallets, card holders, passport holders, and keychains in genuine leather.",
+    "imageUrl": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80",
+    "displayOrder": 2,
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Custom Gift Combo Sets",
+    "slug": "corporate-combos",
+    "description": "Curated combo sets for employee onboarding and client appreciation.",
+    "imageUrl": "https://images.unsplash.com/photo-1544378730-b4b36e6d9a8e?w=800&q=80",
+    "displayOrder": 3,
+    "active": true
+  },
+  {
+    "id": 4,
+    "name": "Festive & Corporate Event Solutions",
+    "slug": "festive-corporate-events",
+    "description": "Gifting programs for AGMs, service awards, festivals, and client celebrations.",
+    "imageUrl": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800&q=80",
+    "displayOrder": 4,
+    "active": true
+  }
+]

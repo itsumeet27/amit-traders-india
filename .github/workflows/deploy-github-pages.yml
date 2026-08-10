@@ -39,6 +39,11 @@ jobs:
         working-directory: frontend
         run: npm ci
 
+      - name: Prepare brand assets
+        run: |
+          pip install --quiet pillow
+          python3 scripts/prepare-brand-assets.py || echo "Brand asset script skipped (Pillow/source missing)"
+
       - name: Build for GitHub Pages (custom domain)
         working-directory: frontend
         env:

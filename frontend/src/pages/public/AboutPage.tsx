@@ -8,6 +8,7 @@ import { ProcessTimeline } from '@/sections/ProcessTimeline'
 import { LoadingSpinner } from '@/components/ui/Feedback'
 import { SafeImage, SectionReveal } from '@/components/ui/SafeImage'
 import { Button } from '@/components/ui/Button'
+import { SEO } from '@/content/siteContent'
 
 export function AboutPage() {
   const [company, setCompany] = useState<CompanyProfile | null>(null)
@@ -27,8 +28,8 @@ export function AboutPage() {
   return (
     <>
       <Seo
-        title="About Us"
-        description="Learn about Amit Traders India — a Mumbai-based genuine leather manufacturer serving B2B partners with custom and catalog products."
+        title={SEO.about.title}
+        description={SEO.about.description}
         path="/about"
         image={company?.aboutImageUrl || company?.heroImageUrl || undefined}
       />
@@ -47,7 +48,7 @@ export function AboutPage() {
         <div className="relative container-wide px-5 py-20 md:px-8 md:py-28 lg:px-12">
           <p className="text-xs uppercase tracking-[0.3em] text-gold">About</p>
           <h1 className="mt-3 max-w-3xl font-display text-5xl text-cream md:text-6xl">
-            {company?.companyName || 'Amit Traders India'}
+            Crafting Excellence Since Day One
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-light-tan">
             {company?.tagline ||
