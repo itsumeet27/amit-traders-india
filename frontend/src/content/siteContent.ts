@@ -68,8 +68,7 @@ export const HERO = {
 export const TRUST_STRIP = [
   { value: '15+ Years', label: 'Manufacturing Excellence' },
   { value: 'Custom Branding', label: 'Embossing & Engraving' },
-  { value: 'Flexible MOQ', label: 'Timely Bulk Delivery' },
-  { value: 'Bespoke Solutions', label: 'Product & Material Customization' },
+  { value: 'Flexible MOQ', label: 'Timely Bulk Delivery' }
 ] as const
 
 export const ABOUT_HOME = {

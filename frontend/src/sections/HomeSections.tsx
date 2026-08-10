@@ -14,11 +14,14 @@ import {
 export function TrustStrip() {
   return (
     <section className="border-b border-light-tan/60 bg-cream/40">
-      <div className="container-wide grid gap-6 px-5 py-10 sm:grid-cols-2 lg:grid-cols-4 md:px-8 lg:px-12">
+      <div className="container-wide grid gap-6 px-5 py-10 sm:grid-cols-2 lg:grid-cols-3 md:px-8 lg:px-12">
         {TRUST_STRIP.map((item, index) => (
           <SectionReveal key={item.label} delayMs={index * 60}>
-            <div className="border border-light-tan/50 bg-off-white px-5 py-6 text-center">
-              <p className="font-display text-2xl text-primary md:text-3xl">{item.value}</p>
+            <div
+              className="border border-light-tan/50 bg-off-white px-5 py-6 text-center"
+              style={{ minHeight: '120px', backgroundColor: '#382319' }}
+            >
+              <p className="font-display text-2xl text-white md:text-3xl">{item.value}</p>
               <p className="mt-2 text-xs uppercase tracking-[0.2em] text-gold">{item.label}</p>
             </div>
           </SectionReveal>
@@ -42,7 +45,7 @@ export function AboutHomeSection() {
             <span className="border border-light-tan/70 px-4 py-2">Custom branding</span>
           </div>
           <div className="mt-8">
-            <Button to="/about" variant="outline">
+            <Button to="/about" variant="primary" size="lg">
               About Us
             </Button>
           </div>

@@ -43,7 +43,7 @@ export function WhyChooseUs({ items }: { items?: WhyChooseItem[] }) {
         return (
           <SectionReveal key={`${item.title}-${index}`} delayMs={index * 70}>
             <div className="flex gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-primary text-gold">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-gold text-primary">
                 <Icon className="h-5 w-5" />
               </div>
               <div>

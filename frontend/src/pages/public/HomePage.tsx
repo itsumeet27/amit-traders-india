@@ -127,7 +127,7 @@ export function HomePage() {
           </SectionReveal>
           <WhyChooseUs items={whyItems} />
           <div className="mt-8">
-            <Button to="/why-choose-us" variant="outline">
+            <Button to="/why-choose-us" variant="primary" size='lg'>
               Learn more
             </Button>
           </div>
