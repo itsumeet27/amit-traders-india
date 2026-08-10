@@ -3,20 +3,34 @@ import { SectionReveal } from '@/components/ui/SafeImage'
 
 const defaults: TimelineStep[] = [
   {
-    title: 'Brief & sampling',
-    description: 'Align on materials, construction, branding, and commercial targets.',
+    step: 1,
+    title: 'Share requirement',
+    description: 'Tell us about products, quantities, branding, and timelines.',
   },
   {
-    title: 'Material selection',
-    description: 'Source genuine leather and hardware matched to your specification.',
+    step: 2,
+    title: 'Discuss customization',
+    description: 'Select products and branding methods suited to your brief.',
   },
   {
-    title: 'Pattern & prototype',
-    description: 'Develop patterns and refine samples until fit and finish are approved.',
+    step: 3,
+    title: 'Sample approval',
+    description: 'Review physical samples before production begins.',
   },
   {
-    title: 'Production & QC',
-    description: 'Scale manufacturing with staged inspections and export packing standards.',
+    step: 4,
+    title: 'Bulk manufacturing',
+    description: 'Production with staged quality checkpoints.',
+  },
+  {
+    step: 5,
+    title: 'Quality checks',
+    description: 'Inspection across construction, branding, and packaging.',
+  },
+  {
+    step: 6,
+    title: 'Delivery',
+    description: 'Nationwide dispatch of finished corporate orders.',
   },
 ]
 
@@ -26,27 +40,26 @@ export function ProcessTimeline({ steps }: { steps?: TimelineStep[] }) {
     .sort((a, b) => (a.step ?? a.order ?? 0) - (b.step ?? b.order ?? 0))
 
   return (
-    <ol className="relative space-y-8 before:absolute before:left-[15px] before:top-2 before:h-[calc(100%-1rem)] before:w-px before:bg-light-tan md:before:left-1/2">
-      {list.map((step, index) => (
-        <SectionReveal key={`${step.title}-${index}`} delayMs={index * 80}>
-          <li className="relative grid gap-3 md:grid-cols-2 md:gap-10">
-            <div
-              className={`flex items-start gap-4 md:items-center ${
-                index % 2 === 0 ? 'md:flex-row-reverse md:text-right' : ''
-              }`}
-            >
-              <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center bg-gold font-display text-sm text-primary">
-                {index + 1}
-              </span>
-              <div className={index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}>
-                <h3 className="font-display text-2xl text-primary">{step.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-leather">{step.description}</p>
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {list.map((step, index) => {
+        const stepNumber = step.step ?? index + 1
+        return (
+          <SectionReveal key={`${step.title}-${stepNumber}`} delayMs={index * 60}>
+            <article className="flex h-full flex-col border border-light-tan/60 bg-off-white p-6 shadow-[0_12px_40px_-28px_rgba(59,36,24,0.35)]">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center bg-primary font-display text-lg text-cream">
+                  {String(stepNumber).padStart(2, '0')}
+                </span>
+                <span className="text-xs uppercase tracking-[0.22em] text-gold">
+                  Step {stepNumber}
+                </span>
               </div>
-            </div>
-            <div className="hidden md:block" />
-          </li>
-        </SectionReveal>
-      ))}
-    </ol>
+              <h3 className="font-display text-2xl text-primary">{step.title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-leather">{step.description}</p>
+            </article>
+          </SectionReveal>
+        )
+      })}
+    </div>
   )
 }

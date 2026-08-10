@@ -8,7 +8,7 @@ import { ProcessTimeline } from '@/sections/ProcessTimeline'
 import { LoadingSpinner } from '@/components/ui/Feedback'
 import { SafeImage, SectionReveal } from '@/components/ui/SafeImage'
 import { Button } from '@/components/ui/Button'
-import { SEO } from '@/content/siteContent'
+import { IMAGES, SEO } from '@/content/siteContent'
 
 export function AboutPage() {
   const [company, setCompany] = useState<CompanyProfile | null>(null)
@@ -24,6 +24,7 @@ export function AboutPage() {
 
   const why = parseWhyChooseUs(company?.whyChooseUsJson)
   const timeline = parseTimeline(company?.manufacturingStepsJson)
+  const heroImage = resolveMediaUrl(company?.aboutImageUrl || company?.heroImageUrl) || IMAGES.aboutHero
 
   return (
     <>
@@ -31,19 +32,13 @@ export function AboutPage() {
         title={SEO.about.title}
         description={SEO.about.description}
         path="/about"
-        image={company?.aboutImageUrl || company?.heroImageUrl || undefined}
+        image={heroImage}
       />
 
       <section className="relative overflow-hidden bg-primary text-cream">
-        <div className="absolute inset-0 opacity-40">
-          {(company?.aboutImageUrl || company?.heroImageUrl) && (
-            <img
-              src={resolveMediaUrl(company.aboutImageUrl || company.heroImageUrl)}
-              alt=""
-              className="h-full w-full object-cover"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/60" />
+        <div className="absolute inset-0">
+          <img src={heroImage} alt="" className="h-full w-full object-cover opacity-35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/92 to-primary/75" />
         </div>
         <div className="relative container-wide px-5 py-20 md:px-8 md:py-28 lg:px-12">
           <p className="text-xs uppercase tracking-[0.3em] text-gold">About</p>
@@ -62,13 +57,13 @@ export function AboutPage() {
       ) : (
         <>
           <section className="section-pad">
-            <div className="container-wide grid gap-10 lg:grid-cols-2 lg:items-start">
+            <div className="container-wide grid gap-10 lg:grid-cols-2 lg:items-center">
               <SectionReveal>
                 <h2 className="font-display text-4xl text-primary">Our story</h2>
                 <p className="mt-5 text-base leading-relaxed text-leather">
                   {company?.history ||
                     company?.description ||
-                    'Amit Traders India develops and manufactures genuine leather products for retailers, exporters, and private-label brands. We combine careful material selection with disciplined production so partners can launch collections with confidence.'}
+                    'Amit Traders develops and manufactures genuine leather products for retailers, exporters, and private-label brands. We combine careful material selection with disciplined production so partners can launch collections with confidence.'}
                 </p>
                 {company?.mission ? (
                   <div className="mt-8">
@@ -85,9 +80,10 @@ export function AboutPage() {
               </SectionReveal>
               <SectionReveal delayMs={80}>
                 <SafeImage
-                  src={company?.aboutImageUrl || company?.heroImageUrl}
-                  alt="Leather craftsmanship at Amit Traders India"
+                  src={IMAGES.aboutStory}
+                  alt="Leather craftsmanship at Amit Traders"
                   aspect="aspect-[4/5]"
+                  className="shadow-[0_30px_80px_-40px_rgba(59,36,24,0.45)]"
                 />
               </SectionReveal>
             </div>
@@ -102,7 +98,15 @@ export function AboutPage() {
 
           <section className="section-pad">
             <div className="container-wide">
-              <h2 className="mb-10 font-display text-4xl text-primary">Manufacturing timeline</h2>
+              <div className="mb-10 max-w-2xl">
+                <p className="text-xs uppercase tracking-[0.28em] text-gold">Process</p>
+                <h2 className="mt-3 font-display text-4xl text-primary md:text-5xl">
+                  Manufacturing timeline
+                </h2>
+                <p className="mt-3 text-leather">
+                  From requirement through sampling, production, and delivery.
+                </p>
+              </div>
               <ProcessTimeline steps={timeline} />
             </div>
           </section>

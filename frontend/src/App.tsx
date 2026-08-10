@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import { ScrollToTop } from '@/components/ScrollToTop'
 import { ToastProvider } from '@/context/ToastContext'
 import { ToastViewport } from '@/components/ui/ToastViewport'
 import { PublicLayout } from '@/layouts/PublicLayout'
@@ -33,6 +34,7 @@ export default function App() {
     <HelmetProvider>
       <ToastProvider>
         <BrowserRouter basename={basename}>
+          <ScrollToTop />
           <Routes>
             <Route element={<PublicLayout />}>
               <Route index element={<HomePage />} />

@@ -95,7 +95,7 @@ export function CorporateGiftingPage() {
 
       <section className="section-pad bg-deep text-cream">
         <div className="container-narrow text-center">
-          <h2 className="font-display text-4xl md:text-5xl">
+          <h2 className="font-display text-4xl text-cream md:text-5xl">
             Let&apos;s create your custom corporate gifting solution
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-light-tan">

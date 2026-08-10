@@ -142,6 +142,9 @@ export function HomePage() {
               <h2 className="mt-3 font-display text-4xl text-primary md:text-5xl">
                 Corporate gifting process
               </h2>
+              <p className="mt-3 text-leather">
+                A structured path from enquiry to sample approval, production, and delivery.
+              </p>
             </div>
           </SectionReveal>
           <ProcessTimeline steps={process} />
