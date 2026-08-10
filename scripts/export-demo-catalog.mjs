@@ -22,7 +22,7 @@ function categoryImagePath(slug) {
 }
 
 function productImagePath(slug) {
-  return `/catalog/products/${slug}.jpg`
+  return `/catalog/products/${slug}.png`
 }
 
 async function main() {
