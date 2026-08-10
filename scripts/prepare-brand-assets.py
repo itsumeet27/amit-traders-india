@@ -88,7 +88,7 @@ def main() -> None:
         wordmark_box = content_bbox(wordmark)
         if wordmark_box:
             wordmark = wordmark.crop(wordmark_box)
-        wordmark = resize_width(wordmark, MAX_LOGO_WIDTH)
+        # Preserve uploaded resolution for crisp header rendering.
         wordmark.save(WORDMARK, format="PNG", optimize=True, compress_level=9)
         wordmark.save(BRAND / "logo-wordmark.webp", format="WEBP", quality=88, method=6)
         source.save(BRAND / "logo.webp", format="WEBP", quality=88, method=6)
