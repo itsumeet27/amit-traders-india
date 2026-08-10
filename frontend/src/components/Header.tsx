@@ -9,10 +9,10 @@ import clsx from 'clsx'
 
 const links = [
   { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
+  { to: '/about', label: 'About Us' },
   { to: '/products', label: 'Products' },
-  { to: '/custom-manufacturing', label: 'Custom Manufacturing' },
-  { to: '/clients', label: 'Clients' },
+  { to: '/custom-gifting', label: 'Custom Gifting' },
+  { to: '/why-choose-us', label: 'Why Choose Us' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -72,7 +72,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button to="/quote" size="sm" className="hidden sm:inline-flex">
-            Request Quote
+            Request a Quote
           </Button>
           <button
             type="button"
@@ -112,7 +112,7 @@ export function Header() {
             ))}
             <div className="pt-4">
               <Button to="/quote" className="w-full" onClick={() => setOpen(false)}>
-                Request Quote
+                Request a Quote
               </Button>
               <a
                 href="tel:+912200000000"

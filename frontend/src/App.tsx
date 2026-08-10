@@ -8,7 +8,8 @@ import { HomePage } from '@/pages/public/HomePage'
 import { AboutPage } from '@/pages/public/AboutPage'
 import { ProductsPage } from '@/pages/public/ProductsPage'
 import { ProductDetailPage } from '@/pages/public/ProductDetailPage'
-import { CustomManufacturingPage } from '@/pages/public/CustomManufacturingPage'
+import { CorporateGiftingPage } from '@/pages/public/CorporateGiftingPage'
+import { WhyChooseUsPage } from '@/pages/public/WhyChooseUsPage'
 import { ClientsPage } from '@/pages/public/ClientsPage'
 import { ContactPage } from '@/pages/public/ContactPage'
 import { QuotePage } from '@/pages/public/QuotePage'
@@ -38,7 +39,9 @@ export default function App() {
               <Route path="about" element={<AboutPage />} />
               <Route path="products" element={<ProductsPage />} />
               <Route path="products/:slug" element={<ProductDetailPage />} />
-              <Route path="custom-manufacturing" element={<CustomManufacturingPage />} />
+              <Route path="custom-gifting" element={<CorporateGiftingPage />} />
+              <Route path="custom-manufacturing" element={<CorporateGiftingPage />} />
+              <Route path="why-choose-us" element={<WhyChooseUsPage />} />
               <Route path="clients" element={<ClientsPage />} />
               <Route path="contact" element={<ContactPage />} />
               <Route path="quote" element={<QuotePage />} />

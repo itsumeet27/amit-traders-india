@@ -80,8 +80,29 @@ def main() -> None:
 
     source = Image.open(LOGO).convert("RGBA")
     w, h = source.size
+    is_wide_wordmark = w / max(h, 1) > 2.0
 
-    # Full header logo: trim cream padding, keep icon + wordmark.
+    if is_wide_wordmark:
+        # User uploaded a horizontal wordmark — preserve logo.png, sync wordmark assets only.
+        wordmark = source
+        wordmark_box = content_bbox(wordmark)
+        if wordmark_box:
+            wordmark = wordmark.crop(wordmark_box)
+        wordmark = resize_width(wordmark, MAX_LOGO_WIDTH)
+        wordmark.save(WORDMARK, format="PNG", optimize=True, compress_level=9)
+        wordmark.save(BRAND / "logo-wordmark.webp", format="WEBP", quality=88, method=6)
+        source.save(BRAND / "logo.webp", format="WEBP", quality=88, method=6)
+        print(
+            f"Wide wordmark detected — preserved {LOGO}; wrote {WORDMARK} "
+            f"({wordmark.size[0]}x{wordmark.size[1]})"
+        )
+        if not ICON.exists():
+            icon = square_icon(wordmark, ICON_SIZE)
+            icon.save(ICON, format="PNG", optimize=True, compress_level=9)
+            icon.save(BRAND / "logo-icon.webp", format="WEBP", quality=88, method=6)
+        return
+
+    # Stacked logo (icon + text): trim, optimize, and derive icon + wordmark crops.
     full_box = content_bbox(source)
     full = source.crop(full_box) if full_box else source
     full = resize_width(full, MAX_LOGO_WIDTH)
@@ -95,10 +116,16 @@ def main() -> None:
     icon = square_icon(icon, ICON_SIZE)
     icon.save(ICON, format="PNG", optimize=True, compress_level=9)
 
-    # Header wordmark: text + tagline only (below hide mark).
-    wordmark_region = source.crop((0, int(h * 0.48), w, h))
-    wordmark_box = content_bbox(wordmark_region)
-    wordmark = wordmark_region.crop(wordmark_box) if wordmark_box else wordmark_region
+    # Header wordmark: wide uploads are already wordmarks; stacked logos crop below hide mark.
+    if w / max(h, 1) > 2.0:
+        wordmark = source
+        wordmark_box = content_bbox(wordmark)
+        if wordmark_box:
+            wordmark = wordmark.crop(wordmark_box)
+    else:
+        wordmark_region = source.crop((0, int(h * 0.48), w, h))
+        wordmark_box = content_bbox(wordmark_region)
+        wordmark = wordmark_region.crop(wordmark_box) if wordmark_box else wordmark_region
     wordmark = resize_width(wordmark, MAX_LOGO_WIDTH)
     wordmark.save(WORDMARK, format="PNG", optimize=True, compress_level=9)
     wordmark.save(BRAND / "logo-wordmark.webp", format="WEBP", quality=88, method=6)

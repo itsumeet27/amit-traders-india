@@ -1,18 +1,15 @@
 import { Button } from '@/components/ui/Button'
 import { SafeImage } from '@/components/ui/SafeImage'
 import type { CompanyProfile } from '@/types'
+import { HERO } from '@/content/siteContent'
 import { resolveMediaUrl } from '@/utils'
 
 export function Hero({ company }: { company: CompanyProfile | null }) {
-  const brand = company?.companyName || 'Amit Traders India'
-  const title = company?.heroTitle || brand
-  const subtitle =
-    company?.heroSubtitle ||
-    company?.tagline ||
-    'Premium genuine leather products & custom manufacturing for discerning B2B partners.'
+  const title = company?.heroTitle || HERO.title
+  const subtitle = company?.heroSubtitle || company?.tagline || HERO.subtitle
   const heroSrc = resolveMediaUrl(company?.heroImageUrl)
-  const primaryCta = company?.heroCtaPrimary || 'Request a Quote'
-  const secondaryCta = company?.heroCtaSecondary || 'Explore Products'
+  const primaryCta = company?.heroCtaPrimary || HERO.primaryCta
+  const secondaryCta = company?.heroCtaSecondary || HERO.secondaryCta
 
   return (
     <section className="relative isolate min-h-[88vh] overflow-hidden bg-primary text-cream">
@@ -37,7 +34,7 @@ export function Hero({ company }: { company: CompanyProfile | null }) {
         <p className="mb-4 text-xs uppercase tracking-[0.35em] text-gold animate-[fade-up_0.7s_ease-out]">
           Mumbai · India
         </p>
-        <h1 className="max-w-4xl font-display text-5xl leading-[0.95] text-cream sm:text-6xl md:text-7xl lg:text-8xl animate-[fade-up_0.8s_ease-out]">
+        <h1 className="max-w-4xl font-display text-4xl leading-[1.05] text-cream sm:text-5xl md:text-6xl lg:text-7xl animate-[fade-up_0.8s_ease-out]">
           {title}
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-light-tan md:text-lg animate-[fade-up_0.9s_ease-out]">
