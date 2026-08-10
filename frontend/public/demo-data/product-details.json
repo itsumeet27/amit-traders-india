@@ -21,7 +21,7 @@
     "images": [
       {
         "id": 31,
-        "imageUrl": "/catalog/products/combo-set-001.jpg",
+        "imageUrl": "/catalog/products/combo-set-001.png",
         "altText": "Combo Set 001",
         "displayOrder": 0
       }
@@ -51,7 +51,7 @@
     "images": [
       {
         "id": 32,
-        "imageUrl": "/catalog/products/combo-set-002.jpg",
+        "imageUrl": "/catalog/products/combo-set-002.png",
         "altText": "Combo Set 002",
         "displayOrder": 0
       }
@@ -81,7 +81,7 @@
     "images": [
       {
         "id": 33,
-        "imageUrl": "/catalog/products/combo-set-003.jpg",
+        "imageUrl": "/catalog/products/combo-set-003.png",
         "altText": "Combo Set 003",
         "displayOrder": 0
       }
@@ -111,7 +111,7 @@
     "images": [
       {
         "id": 34,
-        "imageUrl": "/catalog/products/duffle-bag-001.jpg",
+        "imageUrl": "/catalog/products/duffle-bag-001.png",
         "altText": "Duffle Bag 001",
         "displayOrder": 0
       }
@@ -141,7 +141,7 @@
     "images": [
       {
         "id": 35,
-        "imageUrl": "/catalog/products/gents-wallet-001.jpg",
+        "imageUrl": "/catalog/products/gents-wallet-001.png",
         "altText": "Gents Wallet 001",
         "displayOrder": 0
       }
@@ -171,7 +171,7 @@
     "images": [
       {
         "id": 36,
-        "imageUrl": "/catalog/products/laptop-bag-at-001.jpg",
+        "imageUrl": "/catalog/products/laptop-bag-at-001.png",
         "altText": "Laptop Bag 001",
         "displayOrder": 0
       }
@@ -201,7 +201,7 @@
     "images": [
       {
         "id": 37,
-        "imageUrl": "/catalog/products/laptop-bag-002.jpg",
+        "imageUrl": "/catalog/products/laptop-bag-002.png",
         "altText": "Laptop Bag 002",
         "displayOrder": 0
       }
@@ -231,7 +231,7 @@
     "images": [
       {
         "id": 38,
-        "imageUrl": "/catalog/products/laptop-bag-003.jpg",
+        "imageUrl": "/catalog/products/laptop-bag-003.png",
         "altText": "Laptop Bag 003",
         "displayOrder": 0
       }
@@ -261,7 +261,7 @@
     "images": [
       {
         "id": 39,
-        "imageUrl": "/catalog/products/laptop-bag-004.jpg",
+        "imageUrl": "/catalog/products/laptop-bag-004.png",
         "altText": "Laptop Bag 004",
         "displayOrder": 0
       }
@@ -291,7 +291,7 @@
     "images": [
       {
         "id": 40,
-        "imageUrl": "/catalog/products/passport-holder-001.jpg",
+        "imageUrl": "/catalog/products/passport-holder-001.png",
         "altText": "Passport Holder 001",
         "displayOrder": 0
       }
@@ -321,7 +321,7 @@
     "images": [
       {
         "id": 41,
-        "imageUrl": "/catalog/products/sling-bag-001.jpg",
+        "imageUrl": "/catalog/products/sling-bag-001.png",
         "altText": "Sling Bag 001",
         "displayOrder": 0
       }
@@ -351,7 +351,7 @@
     "images": [
       {
         "id": 42,
-        "imageUrl": "/catalog/products/sling-bag-002.jpg",
+        "imageUrl": "/catalog/products/sling-bag-002.png",
         "altText": "Sling Bag 002",
         "displayOrder": 0
       }
