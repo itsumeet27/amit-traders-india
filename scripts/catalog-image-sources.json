@@ -1,0 +1,24 @@
+{
+  "categories": {
+    "combo-set": "https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1200&q=85&fm=jpg",
+    "laptop-bags": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=85&fm=jpg",
+    "gents-wallet": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=1200&q=85&fm=jpg",
+    "duffle-bags": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=1200&q=85&fm=jpg",
+    "passport-holders": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&q=85&fm=jpg",
+    "sling-bags": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=1200&q=85&fm=jpg"
+  },
+  "products": {
+    "combo-set-001": "https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1200&q=85&fm=jpg",
+    "combo-set-002": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=1200&q=85&fm=jpg",
+    "combo-set-003": "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=1200&q=85&fm=jpg",
+    "duffle-bag-001": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=85&fm=jpg",
+    "gents-wallet-001": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=1200&q=85&fm=jpg",
+    "laptop-bag-at-001": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=85&fm=jpg",
+    "laptop-bag-002": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1200&q=85&fm=jpg",
+    "laptop-bag-003": "https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=85&fm=jpg",
+    "laptop-bag-004": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=1200&q=85&fm=jpg",
+    "passport-holder-001": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&q=85&fm=jpg",
+    "sling-bag-001": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=1200&q=85&fm=jpg",
+    "sling-bag-002": "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=85&fm=jpg"
+  }
+}
