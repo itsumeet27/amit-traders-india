@@ -70,7 +70,7 @@ export function HomePage() {
       <AboutHomeSection />
       <PremiumCategorySection />
 
-      <section className="section-pad">
+      <section className="section-pad" style={{backgroundColor: '#f9f9f9'}}>
         <div className="container-wide">
           <SectionReveal>
             <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

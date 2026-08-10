@@ -33,7 +33,7 @@ export function TrustStrip() {
 
 export function AboutHomeSection() {
   return (
-    <section className="section-pad">
+    <section className="section-pad" style={{backgroundColor: '#fff'}}>
       <div className="container-wide grid items-center gap-10 lg:grid-cols-[45%_55%] lg:gap-16">
         <SectionReveal>
           <p className="text-xs uppercase tracking-[0.28em] text-gold">About Amit Traders</p>
@@ -51,7 +51,7 @@ export function AboutHomeSection() {
           </div>
         </SectionReveal>
         <SectionReveal delayMs={100}>
-          <div className="overflow-hidden shadow-[0_30px_80px_-40px_rgba(59,36,24,0.45)]">
+          <div className="overflow-hidden">
             <img
               src={IMAGES.aboutStory}
               alt="Leather craftsmanship — representative sample image"
@@ -169,7 +169,7 @@ export function MaterialsSection() {
             </h2>
           </div>
         </SectionReveal>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {MATERIALS.map((material, index) => (
             <SectionReveal key={material.title} delayMs={index * 50}>
               <article className="group overflow-hidden border border-light-tan/50">

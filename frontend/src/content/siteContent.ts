@@ -160,10 +160,6 @@ export const MATERIALS = [
     title: 'High-Durability Eco-Leatherette',
     image: IMAGES.leatherette,
   },
-  {
-    title: 'Water-Resistant Nylon',
-    image: IMAGES.nylonBag,
-  },
 ] as const
 
 export const MANUFACTURING = {
