@@ -56,7 +56,7 @@ export function AboutPage() {
         <LoadingSpinner className="py-24" />
       ) : (
         <>
-          <section className="section-pad">
+          <section className="section-pad" style={{ background: '#fff' }}>
             <div className="container-wide grid gap-10 lg:grid-cols-2 lg:items-center">
               <SectionReveal>
                 <h2 className="font-display text-4xl text-primary">Our story</h2>
@@ -82,8 +82,7 @@ export function AboutPage() {
                 <SafeImage
                   src={IMAGES.aboutStory}
                   alt="Leather craftsmanship at Amit Traders"
-                  aspect="aspect-[4/5]"
-                  className="shadow-[0_30px_80px_-40px_rgba(59,36,24,0.45)]"
+                  aspect="aspect-[3/2]"
                 />
               </SectionReveal>
             </div>

@@ -42,7 +42,7 @@ export const SEO = {
 /** Verified Unsplash URLs (commercial use) — single source for section imagery */
 export const IMAGES = {
   hero: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1600&q=80',
-  aboutStory: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=1200&q=80',
+  aboutStory: 'https://amit-traders-india-new.onrender.com/uploads/products/ee213573-ac12-4ab9-99e9-6873206c5aed.png',
   aboutHero: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80',
   whyChooseHero: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=1600&q=80',
   corporateGift: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1200&q=80',

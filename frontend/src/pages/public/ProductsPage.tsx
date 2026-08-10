@@ -82,7 +82,7 @@ export function ProductsPage() {
         </div>
       </section>
 
-      <section className="section-pad">
+      <section className="section-pad" style={{ background: '#fff' }}>
         <div className="container-wide">
           <div className="mb-8 flex flex-wrap gap-2">
             <button
