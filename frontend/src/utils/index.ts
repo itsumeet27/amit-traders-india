@@ -6,6 +6,14 @@ export function resolveMediaUrl(url?: string | null): string {
   if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
     return url
   }
+  // Static assets served from the frontend (GitHub Pages / Vite public/)
+  if (
+    url.startsWith('/catalog/') ||
+    url.startsWith('/brand/') ||
+    url.startsWith('/demo-data/')
+  ) {
+    return url
+  }
   const API_BASE = getApiBaseUrl()
   if (url.startsWith('/')) {
     return `${API_BASE}${url}`
