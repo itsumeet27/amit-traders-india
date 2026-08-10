@@ -39,6 +39,24 @@ export const SEO = {
   },
 } as const
 
+/** Verified Unsplash URLs (commercial use) — single source for section imagery */
+export const IMAGES = {
+  hero: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1600&q=80',
+  aboutStory: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=1200&q=80',
+  aboutHero: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80',
+  whyChooseHero: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=1600&q=80',
+  corporateGift: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1200&q=80',
+  festiveEvent: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=1200&q=80',
+  laptopBag: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=80',
+  wallet: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=1200&q=80',
+  leatherTexture: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+  foilStamping: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
+  laserEngraving: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80',
+  manufacturing: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
+  leatherette: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80',
+  nylonBag: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
+} as const
+
 export const HERO = {
   title: 'Elevate Your Brand Identity with Handcrafted Leather Goods & Corporate Gift Sets',
   subtitle:
@@ -67,7 +85,7 @@ export const PRODUCT_CATEGORIES = [
     items: ['Laptop Bags', 'Laptop Trolley Bags', 'Sling Bags', 'Nylon Backpacks'],
     description:
       'Executive laptop bags, trolley cases, sling bags, and water-resistant nylon backpacks for business travel and corporate programs.',
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=80',
+    image: IMAGES.laptopBag,
   },
   {
     number: '02',
@@ -76,7 +94,7 @@ export const PRODUCT_CATEGORIES = [
     items: ['Gents Wallets', 'Card Holders', 'Passport Holders', 'Keychains'],
     description:
       'Refined wallets, card holders, passport covers, and keychains crafted in genuine leather for corporate gifting and retail.',
-    image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=1200&q=80',
+    image: IMAGES.wallet,
   },
   {
     number: '03',
@@ -85,7 +103,7 @@ export const PRODUCT_CATEGORIES = [
     items: ['Keychain & Belt Combo', '3-in-1 Combo Set'],
     description:
       'Curated combo sets combining complementary leather accessories — ideal for employee onboarding and client appreciation.',
-    image: 'https://images.unsplash.com/photo-1544378730-b4b36e6d9a8e?w=1200&q=80',
+    image: IMAGES.corporateGift,
   },
   {
     number: '04',
@@ -94,7 +112,7 @@ export const PRODUCT_CATEGORIES = [
     items: ['AGMs', 'Client appreciation', 'Service awards', 'Festival celebrations'],
     description:
       'Tailored gifting programs for AGMs, client appreciation, service awards, and festival celebrations across India.',
-    image: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=1200&q=80',
+    image: IMAGES.festiveEvent,
   },
 ] as const
 
@@ -107,25 +125,25 @@ export const CUSTOM_BRANDING = {
       title: 'Blind Debossing',
       for: 'Genuine leather wallets, passport holders, bags',
       description: 'Subtle, sophisticated recessed logo finish.',
-      image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+      image: IMAGES.leatherTexture,
     },
     {
       title: 'Metallic Foil Stamping',
       for: 'Gift boxes, diaries, card holders',
       description: 'Luxury gold or silver reflective finish.',
-      image: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
+      image: IMAGES.foilStamping,
     },
     {
       title: 'Laser Engraving',
       for: 'Metal keychains, belt buckles, zippers',
       description: 'Sharp, precise and permanent detailing.',
-      image: 'https://images.unsplash.com/photo-1586075010923-2dd457fbb4d8?w=800&q=80',
+      image: IMAGES.laserEngraving,
     },
     {
       title: 'Screen Printing',
       for: 'Nylon backpacks, fabric lining',
       description: 'Vibrant, color-matched corporate branding.',
-      image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80',
+      image: IMAGES.laptopBag,
     },
   ],
 } as const
@@ -133,19 +151,19 @@ export const CUSTOM_BRANDING = {
 export const MATERIALS = [
   {
     title: 'Premium Genuine Leather',
-    image: 'https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=800&q=80',
+    image: IMAGES.leatherTexture,
   },
   {
     title: 'Top-Grain Leather',
-    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+    image: IMAGES.leatherTexture,
   },
   {
     title: 'High-Durability Eco-Leatherette',
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128ac?w=800&q=80',
+    image: IMAGES.leatherette,
   },
   {
     title: 'Water-Resistant Nylon',
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80',
+    image: IMAGES.nylonBag,
   },
 ] as const
 

@@ -4,6 +4,7 @@ import { SectionReveal } from '@/components/ui/SafeImage'
 import {
   ABOUT_HOME,
   CUSTOM_BRANDING,
+  IMAGES,
   MANUFACTURING,
   MATERIALS,
   PRODUCT_CATEGORIES,
@@ -49,7 +50,7 @@ export function AboutHomeSection() {
         <SectionReveal delayMs={100}>
           <div className="overflow-hidden shadow-[0_30px_80px_-40px_rgba(59,36,24,0.45)]">
             <img
-              src="https://images.unsplash.com/photo-1473181488821-2d23949a045a?w=1200&q=80"
+              src={IMAGES.aboutStory}
               alt="Leather craftsmanship — representative sample image"
               className="aspect-[5/4] w-full object-cover"
               loading="lazy"
@@ -204,7 +205,7 @@ export function ManufacturingSection() {
         </SectionReveal>
         <SectionReveal delayMs={100}>
           <img
-            src="https://images.unsplash.com/photo-1586075010923-2dd457fbb4d8?w=1200&q=80"
+            src={IMAGES.manufacturing}
             alt="Manufacturing and craftsmanship — representative sample"
             className="aspect-[4/3] w-full object-cover shadow-[0_30px_80px_-40px_rgba(0,0,0,0.5)]"
             loading="lazy"
