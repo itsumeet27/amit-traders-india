@@ -42,18 +42,19 @@ export const SEO = {
 /** Verified Unsplash URLs (commercial use) — single source for section imagery */
 export const IMAGES = {
   hero: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1600&q=80',
-  aboutStory: 'https://amit-traders-india-new.onrender.com/uploads/products/ee213573-ac12-4ab9-99e9-6873206c5aed.png',
+  aboutStory: '/catalog/categories/laptop-bags.jpg',
   aboutHero: 'https://images.unsplash.com/photo-1503602642458-232111445657?w=1600&q=80',
   whyChooseHero: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=1600&q=80',
   corporateGift: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=1200&q=80',
   festiveEvent: 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=1200&q=80',
   laptopBag: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1200&q=80',
   wallet: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=1200&q=80',
-  leatherTexture: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+  leatherTexture: '/catalog/samples/leather-texture.avif',
+  grainLeather: '/catalog/samples/full-grain-leather.avif',
   foilStamping: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
   laserEngraving: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80',
   manufacturing: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
-  leatherette: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80',
+  leatherette: '/catalog/samples/durable-eco-leather.avif',
   nylonBag: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
 } as const
 
@@ -154,7 +155,7 @@ export const MATERIALS = [
   },
   {
     title: 'Top-Grain Leather',
-    image: IMAGES.leatherTexture,
+    image: IMAGES.grainLeather,
   },
   {
     title: 'High-Durability Eco-Leatherette',
