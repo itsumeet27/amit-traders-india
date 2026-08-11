@@ -86,9 +86,6 @@ export function CustomBrandingSection() {
                 />
                 <div className="p-5">
                   <h3 className="font-display text-2xl text-gold">{method.title}</h3>
-                  <p className="mt-2 text-xs uppercase tracking-[0.14em] text-light-tan/90">
-                    For: {method.for}
-                  </p>
                   <p className="mt-3 text-sm text-light-tan">{method.description}</p>
                 </div>
               </article>
