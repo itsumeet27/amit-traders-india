@@ -67,7 +67,7 @@ export function AboutPage() {
         <LoadingSpinner className="py-24" />
       ) : (
         <>
-          <section className="section-pad bg-off-white">
+          <section className="section-pad bg-white">
             <div className="container-wide grid gap-10 lg:grid-cols-2 lg:items-start">
               <SectionReveal>
                 <p className="text-xs uppercase tracking-[0.28em] text-gold">Our Story</p>
@@ -198,7 +198,7 @@ export function AboutPage() {
             </section>
           ) : null}
 
-          <section className="section-pad bg-off-white">
+          <section className="section-pad bg-white">
             <div className="container-wide">
               <div className="mb-10 max-w-2xl">
                 <p className="text-xs uppercase tracking-[0.28em] text-gold">Process</p>
