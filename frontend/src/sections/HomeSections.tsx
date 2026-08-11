@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { SectionReveal } from '@/components/ui/SafeImage'
 import {
@@ -7,7 +6,6 @@ import {
   IMAGES,
   MANUFACTURING,
   MATERIALS,
-  PRODUCT_CATEGORIES,
   TRUST_STRIP,
 } from '@/content/siteContent'
 
@@ -60,61 +58,6 @@ export function AboutHomeSection() {
             />
           </div>
         </SectionReveal>
-      </div>
-    </section>
-  )
-}
-
-export function PremiumCategorySection() {
-  return (
-    <section className="section-pad bg-cream/30">
-      <div className="container-wide">
-        <SectionReveal>
-          <div className="mb-10 max-w-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-gold">Collections</p>
-            <h2 className="mt-3 font-display text-4xl text-primary md:text-5xl">Product categories</h2>
-            <p className="mt-3 text-leather">
-              Executive bags, leather accessories, corporate combos, and festive gifting solutions for
-              enterprises across India.
-            </p>
-          </div>
-        </SectionReveal>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {PRODUCT_CATEGORIES.map((cat, index) => (
-            <SectionReveal key={cat.slug} delayMs={index * 70}>
-              <article className="group grid overflow-hidden border border-light-tan/50 bg-off-white md:grid-cols-[42%_58%]">
-                <div className="overflow-hidden">
-                  <img
-                    src={cat.image}
-                    alt={`${cat.title} — representative sample`}
-                    className="h-full min-h-[220px] w-full object-cover transition duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-col justify-center p-6 md:p-8">
-                  <p className="text-xs uppercase tracking-[0.28em] text-gold">{cat.number}</p>
-                  <h3 className="mt-2 font-display text-2xl text-primary md:text-3xl">{cat.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-leather">{cat.description}</p>
-                  <ul className="mt-4 flex flex-wrap gap-2 text-xs text-leather/90">
-                    {cat.items.map((item) => (
-                      <li key={item} className="border border-light-tan/60 px-2 py-1">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6">
-                    <Link
-                      to={`/products?category=${cat.slug}`}
-                      className="text-sm font-medium uppercase tracking-[0.16em] text-primary hover:text-gold"
-                    >
-                      Explore Category →
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            </SectionReveal>
-          ))}
-        </div>
       </div>
     </section>
   )
