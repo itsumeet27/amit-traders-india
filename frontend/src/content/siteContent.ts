@@ -54,6 +54,10 @@ export const IMAGES = {
   foilStamping: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
   laserEngraving: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=800&q=80',
   manufacturing: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
+  leatherCutting: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
+  stitching: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=800&q=80',
+  finishing: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
+  packaging: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=800&q=80',
   leatherette: '/catalog/samples/durable-eco-leather.avif',
   nylonBag: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
 } as const
@@ -78,33 +82,29 @@ export const ABOUT_HOME = {
 } as const
 
 export const CUSTOM_BRANDING = {
-  title: 'Your Brand. Your Product. Your Identity.',
+  title: 'Precision Craftsmanship at Every Stage',
   intro:
-    'Integrate your corporate identity across leather goods and gift packaging with professional branding methods suited to each material and product type.',
+    'Every product moves through disciplined leather cutting, stitching, finishing, and packaging before it reaches your brand.',
   methods: [
     {
-      title: 'Blind Debossing',
-      for: 'Genuine leather wallets, passport holders, bags',
-      description: 'Subtle, sophisticated recessed logo finish.',
-      image: IMAGES.leatherTexture,
+      title: 'Leather Cutting',
+      description: 'Accurate panel cutting with careful material selection and pattern precision.',
+      image: IMAGES.leatherCutting,
     },
     {
-      title: 'Metallic Foil Stamping',
-      for: 'Gift boxes, diaries, card holders',
-      description: 'Luxury gold or silver reflective finish.',
-      image: IMAGES.foilStamping,
+      title: 'Stitching',
+      description: 'Skilled stitching and assembly for strength, structure, and refined construction.',
+      image: IMAGES.stitching,
     },
     {
-      title: 'Laser Engraving',
-      for: 'Metal keychains, belt buckles, zippers',
-      description: 'Sharp, precise and permanent detailing.',
-      image: IMAGES.laserEngraving,
+      title: 'Finishing',
+      description: 'Edge paint, polishing, hardware fitting, and final surface detailing.',
+      image: IMAGES.finishing,
     },
     {
-      title: 'Screen Printing',
-      for: 'Nylon backpacks, fabric lining',
-      description: 'Vibrant, color-matched corporate branding.',
-      image: IMAGES.laptopBag,
+      title: 'Packaging',
+      description: 'Protective packing and presentation-ready dispatch for corporate delivery.',
+      image: IMAGES.packaging,
     },
   ],
 } as const
