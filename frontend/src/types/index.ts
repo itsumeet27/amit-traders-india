@@ -58,6 +58,11 @@ export interface WhyChooseItem {
   icon?: string
 }
 
+export interface AboutValueItem {
+  title: string
+  description: string
+}
+
 export interface TimelineStep {
   title: string
   description: string
@@ -76,8 +81,19 @@ export interface CompanyProfile {
   tagline?: string | null
   description?: string | null
   history?: string | null
+  storyHeadline?: string | null
+  missionHeadline?: string | null
   mission?: string | null
+  missionCommitmentsJson?: string | string[] | null
+  missionClosing?: string | null
+  visionHeadline?: string | null
   vision?: string | null
+  aboutHeroTitle?: string | null
+  aboutHeroSubtitle?: string | null
+  aboutValuesJson?: string | AboutValueItem[] | null
+  aboutPromiseHeadline?: string | null
+  aboutPromiseBody?: string | null
+  aboutPromiseClosing?: string | null
   phone?: string | null
   email?: string | null
   address?: string | null

@@ -1,4 +1,4 @@
-import type { FeatureItem, TimelineStep, WhyChooseItem } from '@/types'
+import type { FeatureItem, TimelineStep, WhyChooseItem, AboutValueItem } from '@/types'
 import { getApiBaseUrl } from '@/config'
 
 export function resolveMediaUrl(url?: string | null): string {
@@ -43,6 +43,26 @@ export function parseWhyChooseUs(
   value: string | WhyChooseItem[] | null | undefined,
 ): WhyChooseItem[] {
   return parseJsonField<WhyChooseItem[]>(value, [])
+}
+
+export function parseAboutValues(
+  value: string | AboutValueItem[] | null | undefined,
+): AboutValueItem[] {
+  return parseJsonField<AboutValueItem[]>(value, [])
+}
+
+export function parseStringList(
+  value: string | string[] | null | undefined,
+): string[] {
+  return parseJsonField<string[]>(value, [])
+}
+
+export function splitParagraphs(value?: string | null): string[] {
+  if (!value?.trim()) return []
+  return value
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
 }
 
 export function parseTimeline(

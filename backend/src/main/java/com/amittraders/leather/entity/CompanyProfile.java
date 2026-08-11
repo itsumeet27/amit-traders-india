@@ -27,14 +27,41 @@ public class CompanyProfile {
     @Column(length = 5000)
     private String description;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String history;
 
-    @Column(length = 2000)
+    private String storyHeadline;
+
+    private String missionHeadline;
+
+    @Column(columnDefinition = "TEXT")
     private String mission;
 
-    @Column(length = 2000)
+    @Column(columnDefinition = "TEXT")
+    private String missionCommitmentsJson;
+
+    @Column(columnDefinition = "TEXT")
+    private String missionClosing;
+
+    private String visionHeadline;
+
+    @Column(columnDefinition = "TEXT")
     private String vision;
+
+    private String aboutHeroTitle;
+
+    private String aboutHeroSubtitle;
+
+    @Column(columnDefinition = "TEXT")
+    private String aboutValuesJson;
+
+    private String aboutPromiseHeadline;
+
+    @Column(columnDefinition = "TEXT")
+    private String aboutPromiseBody;
+
+    @Column(columnDefinition = "TEXT")
+    private String aboutPromiseClosing;
 
     private String phone;
     private String email;

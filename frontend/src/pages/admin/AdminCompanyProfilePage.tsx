@@ -44,6 +44,14 @@ export function AdminCompanyProfilePage() {
           typeof form.manufacturingStepsJson === 'string'
             ? form.manufacturingStepsJson
             : JSON.stringify(form.manufacturingStepsJson ?? []),
+        missionCommitmentsJson:
+          typeof form.missionCommitmentsJson === 'string'
+            ? form.missionCommitmentsJson
+            : JSON.stringify(form.missionCommitmentsJson ?? []),
+        aboutValuesJson:
+          typeof form.aboutValuesJson === 'string'
+            ? form.aboutValuesJson
+            : JSON.stringify(form.aboutValuesJson ?? []),
         customManufacturingFeaturesJson:
           typeof form.customManufacturingFeaturesJson === 'string'
             ? form.customManufacturingFeaturesJson
@@ -91,22 +99,102 @@ export function AdminCompanyProfilePage() {
           value={form.description || ''}
           onChange={(e) => update('description', e.target.value)}
         />
+
+        <div className="border-t border-light-tan/60 pt-6">
+          <h2 className="font-display text-2xl text-primary">About page</h2>
+          <p className="mt-1 text-sm text-leather">
+            Hero, story, mission, vision, values, and promise content for the public About Us page.
+            Use blank lines between paragraphs. Wrap emphasis in **double asterisks**.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Input
+            label="About hero title"
+            value={form.aboutHeroTitle || ''}
+            onChange={(e) => update('aboutHeroTitle', e.target.value)}
+          />
+          <Input
+            label="About hero subtitle"
+            value={form.aboutHeroSubtitle || ''}
+            onChange={(e) => update('aboutHeroSubtitle', e.target.value)}
+          />
+          <Input
+            label="Story headline"
+            value={form.storyHeadline || ''}
+            onChange={(e) => update('storyHeadline', e.target.value)}
+          />
+          <Input
+            label="Mission headline"
+            value={form.missionHeadline || ''}
+            onChange={(e) => update('missionHeadline', e.target.value)}
+          />
+          <Input
+            label="Vision headline"
+            value={form.visionHeadline || ''}
+            onChange={(e) => update('visionHeadline', e.target.value)}
+          />
+        </div>
         <Textarea
-          label="History"
+          label="Our story"
           value={form.history || ''}
           onChange={(e) => update('history', e.target.value)}
+          hint="Separate paragraphs with a blank line."
         />
-        <div className="grid gap-4 md:grid-cols-2">
-          <Textarea
-            label="Mission"
-            value={form.mission || ''}
-            onChange={(e) => update('mission', e.target.value)}
-          />
-          <Textarea
-            label="Vision"
-            value={form.vision || ''}
-            onChange={(e) => update('vision', e.target.value)}
-          />
+        <Textarea
+          label="Mission body"
+          value={form.mission || ''}
+          onChange={(e) => update('mission', e.target.value)}
+          hint="Introductory mission copy before the commitment list."
+        />
+        <Textarea
+          label="Mission commitments (JSON array)"
+          value={
+            typeof form.missionCommitmentsJson === 'string'
+              ? form.missionCommitmentsJson
+              : JSON.stringify(form.missionCommitmentsJson ?? [], null, 2)
+          }
+          onChange={(e) => update('missionCommitmentsJson', e.target.value)}
+          hint='["Delivering consistent and dependable product quality", "..."]'
+        />
+        <Textarea
+          label="Mission closing"
+          value={form.missionClosing || ''}
+          onChange={(e) => update('missionClosing', e.target.value)}
+        />
+        <Textarea
+          label="Vision body"
+          value={form.vision || ''}
+          onChange={(e) => update('vision', e.target.value)}
+          hint="Separate paragraphs with a blank line."
+        />
+        <Textarea
+          label="What we stand for (JSON array)"
+          value={
+            typeof form.aboutValuesJson === 'string'
+              ? form.aboutValuesJson
+              : JSON.stringify(form.aboutValuesJson ?? [], null, 2)
+          }
+          onChange={(e) => update('aboutValuesJson', e.target.value)}
+          hint='[{ "title": "Craftsmanship", "description": "..." }]'
+        />
+        <Input
+          label="Promise headline"
+          value={form.aboutPromiseHeadline || ''}
+          onChange={(e) => update('aboutPromiseHeadline', e.target.value)}
+        />
+        <Textarea
+          label="Promise body"
+          value={form.aboutPromiseBody || ''}
+          onChange={(e) => update('aboutPromiseBody', e.target.value)}
+        />
+        <Textarea
+          label="Promise closing"
+          value={form.aboutPromiseClosing || ''}
+          onChange={(e) => update('aboutPromiseClosing', e.target.value)}
+        />
+
+        <div className="border-t border-light-tan/60 pt-6">
+          <h2 className="font-display text-2xl text-primary">Homepage hero</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <Input
