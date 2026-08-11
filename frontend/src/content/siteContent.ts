@@ -77,45 +77,6 @@ export const ABOUT_HOME = {
   body: `Amit Traders is a Mumbai-based manufacturer and supplier specializing in genuine leather goods, executive accessories, and customized bulk corporate gift solutions. For over 15 years we have partnered with corporate HR teams, procurement managers, event planners, and marketing executives who need reliable manufacturing, brand integration, and timely delivery at scale.`,
 } as const
 
-export const PRODUCT_CATEGORIES = [
-  {
-    number: '01',
-    slug: 'executive-bags-travel',
-    title: 'Executive Bags & Travel Gear',
-    items: ['Laptop Bags', 'Laptop Trolley Bags', 'Sling Bags', 'Nylon Backpacks'],
-    description:
-      'Executive laptop bags, trolley cases, sling bags, and water-resistant nylon backpacks for business travel and corporate programs.',
-    image: IMAGES.laptopBag,
-  },
-  {
-    number: '02',
-    slug: 'leather-accessories',
-    title: 'Small Leather Accessories',
-    items: ['Gents Wallets', 'Card Holders', 'Passport Holders', 'Keychains'],
-    description:
-      'Refined wallets, card holders, passport covers, and keychains crafted in genuine leather for corporate gifting and retail.',
-    image: IMAGES.wallet,
-  },
-  {
-    number: '03',
-    slug: 'corporate-combos',
-    title: 'Custom Gift Combo Sets',
-    items: ['Keychain & Belt Combo', '3-in-1 Combo Set'],
-    description:
-      'Curated combo sets combining complementary leather accessories — ideal for employee onboarding and client appreciation.',
-    image: IMAGES.corporateGift,
-  },
-  {
-    number: '04',
-    slug: 'festive-corporate-events',
-    title: 'Festive & Corporate Event Solutions',
-    items: ['AGMs', 'Client appreciation', 'Service awards', 'Festival celebrations'],
-    description:
-      'Tailored gifting programs for AGMs, client appreciation, service awards, and festival celebrations across India.',
-    image: IMAGES.festiveEvent,
-  },
-] as const
-
 export const CUSTOM_BRANDING = {
   title: 'Your Brand. Your Product. Your Identity.',
   intro:

@@ -1,7 +1,7 @@
 import { Seo } from '@/components/Seo'
 import { Button } from '@/components/ui/Button'
 import { SectionReveal } from '@/components/ui/SafeImage'
-import { PRODUCT_CATEGORIES } from '@/content/siteContent'
+import { CategoryShowcase } from '@/sections/CategoryShowcase'
 
 const AUDIENCES = [
   {
@@ -62,36 +62,12 @@ export function CorporateGiftingPage() {
         </div>
       </section>
 
-      <section className="section-pad bg-cream/40">
-        <div className="container-wide">
-          <SectionReveal>
-            <div className="mb-10 max-w-2xl">
-              <p className="text-xs uppercase tracking-[0.28em] text-gold">Solutions</p>
-              <h2 className="mt-3 font-display text-4xl text-primary md:text-5xl">
-                Gifting programs by category
-              </h2>
-            </div>
-          </SectionReveal>
-          <div className="grid gap-5 lg:grid-cols-2">
-            {PRODUCT_CATEGORIES.map((cat, index) => (
-              <SectionReveal key={cat.slug} delayMs={index * 70}>
-                <article className="flex gap-5 border border-light-tan/50 bg-off-white p-5">
-                  <img
-                    src={cat.image}
-                    alt={`${cat.title} — representative sample`}
-                    className="h-28 w-28 shrink-0 object-cover"
-                    loading="lazy"
-                  />
-                  <div>
-                    <h3 className="font-display text-2xl text-primary">{cat.title}</h3>
-                    <p className="mt-2 text-sm text-leather">{cat.description}</p>
-                  </div>
-                </article>
-              </SectionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategoryShowcase
+        layout="compact"
+        sectionLabel="Solutions"
+        title="Gifting programs by category"
+        description=""
+      />
 
       <section className="section-pad bg-deep text-cream">
         <div className="container-narrow text-center">

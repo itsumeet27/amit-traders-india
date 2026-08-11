@@ -13,9 +13,9 @@ import {
   CustomBrandingSection,
   ManufacturingSection,
   MaterialsSection,
-  PremiumCategorySection,
   TrustStrip,
 } from '@/sections/HomeSections'
+import { CategoryShowcase } from '@/sections/CategoryShowcase'
 import { SEO, WHY_CHOOSE_US } from '@/content/siteContent'
 import { companyService } from '@/services/companyService'
 import { productService } from '@/services/productService'
@@ -68,7 +68,7 @@ export function HomePage() {
       <Hero company={company} />
       <TrustStrip />
       <AboutHomeSection />
-      <PremiumCategorySection />
+      <CategoryShowcase />
 
       <section className="section-pad" style={{backgroundColor: '#f9f9f9'}}>
         <div className="container-wide">
