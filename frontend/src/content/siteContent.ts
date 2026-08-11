@@ -20,7 +20,7 @@ export const SEO = {
   about: {
     title: 'About Amit Traders | Leather Manufacturing Excellence',
     description:
-      'Crafting excellence for 15+ years. Amit Traders manufactures fine leather goods and customized corporate keepsakes for enterprises across India.',
+      'Crafted with purpose and built to last. Amit Traders manufactures premium leather goods and corporate gift articles with craftsmanship, quality, and reliability.',
   },
   whyChooseUs: {
     title: 'Why Choose Amit Traders | Corporate Leather Gifting Partner',
@@ -76,6 +76,126 @@ export const ABOUT_HOME = {
   title: '15+ Years of Manufacturing Fine Leather Goods & Corporate Keepsakes',
   body: `Amit Traders is a Mumbai-based manufacturer and supplier specializing in genuine leather goods, executive accessories, and customized bulk corporate gift solutions. For over 15 years we have partnered with corporate HR teams, procurement managers, event planners, and marketing executives who need reliable manufacturing, brand integration, and timely delivery at scale.`,
 } as const
+
+export const ABOUT_PAGE = {
+  hero: {
+    eyebrow: 'About Us',
+    title: 'Crafted with Purpose. Built to Last.',
+    subtitle:
+      'A trusted manufacturing partner for businesses seeking thoughtfully designed leather goods and corporate gifting solutions.',
+  },
+  story: {
+    title: 'Our Story',
+    headline: 'Crafted with Purpose. Built to Last.',
+    paragraphs: [
+      'What began with a passion for quality craftsmanship has grown into a trusted manufacturing partner for businesses seeking thoughtfully designed leather goods and corporate gifting solutions.',
+      [
+        'At ',
+        { strong: 'Amit Traders' },
+        ', we believe that a well-crafted product is more than just an object—it represents the care, precision, and values behind the hands that create it. With experience in manufacturing leather goods and corporate gift articles, we combine traditional craftsmanship with contemporary designs to create products that are practical, refined, and made to leave a lasting impression.',
+      ],
+      'From selecting the right materials to the final finishing touches, every stage of our manufacturing process is guided by attention to detail. Our products are thoughtfully developed to meet the requirements of businesses, brands, institutions, and corporate clients looking for quality products that reflect their identity.',
+      [
+        'Over the years, our focus has remained simple: ',
+        {
+          strong:
+            'create beautifully handcrafted products, maintain consistent quality, and build relationships that last.',
+        },
+      ],
+      'Whether it is a customized corporate gift, a branded leather accessory, or a specially developed product for your business, we approach every requirement with the same commitment to craftsmanship and reliability.',
+    ],
+  },
+  mission: {
+    title: 'Our Mission',
+    headline: 'Creating Quality That Represents Your Brand',
+    intro: [
+      'Our mission is to manufacture high-quality leather goods and corporate gift articles that combine ',
+      { strong: 'craftsmanship, functionality, and timeless design' },
+      '.',
+    ],
+    body: 'We strive to understand the unique requirements of every client and transform their ideas into thoughtfully crafted products. By maintaining high standards throughout our manufacturing process, we aim to deliver products that not only meet expectations but also represent the quality and professionalism of the brands they carry.',
+    commitments: [
+      'Delivering consistent and dependable product quality',
+      'Combining skilled craftsmanship with modern manufacturing practices',
+      'Creating customized solutions based on individual requirements',
+      'Maintaining attention to detail across every stage of production',
+      'Building long-term relationships through trust, transparency, and reliability',
+      'Continuously improving our products, processes, and capabilities',
+    ],
+    closing: [{ strong: 'Our goal is simple: to make every product worthy of the brand it represents.' }],
+  },
+  vision: {
+    title: 'Our Vision',
+    headline: 'To Make Every Product Worth Remembering',
+    paragraphs: [
+      [
+        'Our vision is to become a trusted name in the manufacturing of ',
+        { strong: 'premium leather goods and corporate gifting products' },
+        ', recognized for craftsmanship, reliability, innovation, and the ability to turn ideas into beautifully finished products.',
+      ],
+      'We envision building long-lasting partnerships with businesses and brands by becoming more than just a manufacturer—we aim to be a dependable partner in creating products that communicate quality and make a lasting impression.',
+      'As we grow, we remain committed to preserving the essence of handcrafted workmanship while embracing evolving designs, materials, technologies, and customer expectations.',
+      [
+        {
+          strong:
+            'We believe the future of craftsmanship lies in bringing together the character of handmade work with the precision of modern manufacturing.',
+        },
+      ],
+    ],
+  },
+  values: {
+    title: 'What We Stand For',
+    items: [
+      {
+        title: 'Craftsmanship',
+        description:
+          'Every product receives careful attention to detail, from material selection to stitching, finishing, and final inspection.',
+      },
+      {
+        title: 'Quality',
+        description:
+          'We believe quality is not a feature added at the end of manufacturing—it is a standard maintained throughout the entire process.',
+      },
+      {
+        title: 'Integrity',
+        description:
+          'We value honest communication, transparent business practices, and relationships built on trust.',
+      },
+      {
+        title: 'Customization',
+        description:
+          'Every brand has a story to tell. We work closely with our clients to create products that reflect their requirements, identity, and purpose.',
+      },
+      {
+        title: 'Reliability',
+        description:
+          'From the first conversation to final delivery, we strive to be a manufacturing partner our clients can depend on.',
+      },
+      {
+        title: 'Lasting Value',
+        description:
+          'We create products designed not merely to be given, but to be used, appreciated, and remembered.',
+      },
+    ],
+  },
+  promise: {
+    title: 'Our Promise',
+    headline: 'Beautifully handcrafted. Thoughtfully made. Reliably delivered.',
+    body: 'At Amit Traders, every product carries more than a brand name. It carries the craftsmanship, attention, and commitment that went into making it.',
+    closing: [
+      'And that is what we strive to deliver—',
+      {
+        strong:
+          'leather goods and corporate gifts that people are proud to receive, use, and remember.',
+      },
+    ],
+  },
+} as const
+
+type AboutTextPart = string | { readonly strong: string }
+type AboutParagraph = string | readonly AboutTextPart[]
+
+export type { AboutTextPart, AboutParagraph }
 
 export const PRODUCT_CATEGORIES = [
   {
