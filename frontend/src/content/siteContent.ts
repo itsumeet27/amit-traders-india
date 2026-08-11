@@ -20,7 +20,7 @@ export const SEO = {
   about: {
     title: 'About Amit Traders | Leather Manufacturing Excellence',
     description:
-      'Crafting excellence for 15+ years. Amit Traders manufactures fine leather goods and customized corporate keepsakes for enterprises across India.',
+      'Crafted with purpose and built to last. Amit Traders manufactures premium leather goods and corporate gift articles with craftsmanship, quality, and reliability.',
   },
   whyChooseUs: {
     title: 'Why Choose Amit Traders | Corporate Leather Gifting Partner',
