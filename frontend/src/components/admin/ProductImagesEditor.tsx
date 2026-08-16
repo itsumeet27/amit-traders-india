@@ -81,7 +81,8 @@ export function ProductImagesEditor({
         <p className="text-sm font-medium text-deep">Product images</p>
         <p className="mt-1 text-xs text-leather">
           The first image is the primary image shown in listings. Add more images for the product
-          gallery on the detail page.
+          gallery on the detail page. Uploaded images are stored securely in the database so they
+          persist across server restarts.
         </p>
       </div>
 

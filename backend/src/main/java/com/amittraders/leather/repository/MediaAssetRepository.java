@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface MediaAssetRepository extends JpaRepository<MediaAsset, Long> {
     List<MediaAsset> findAllByOrderByCreatedAtDesc();
     Optional<MediaAsset> findByFilename(String filename);
+    Optional<MediaAsset> findByUrl(String url);
 }
