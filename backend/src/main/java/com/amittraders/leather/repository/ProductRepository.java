@@ -30,13 +30,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE p.active = true
               AND (:categoryId IS NULL OR p.category.id = :categoryId)
               AND (:featured IS NULL OR p.featured = :featured)
-              AND (:leatherType IS NULL OR LOWER(p.leatherType) = LOWER(:leatherType))
-              AND (:material IS NULL OR LOWER(p.material) = LOWER(:material))
+              AND (:leatherType = '' OR p.leatherType = :leatherType)
+              AND (:material = '' OR p.material = :material)
               AND (
-                    :search IS NULL OR :search = ''
+                    :search = ''
                     OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
                     OR LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :search, '%'))
-                    OR LOWER(p.leatherType) LIKE LOWER(CONCAT('%', :search, '%'))
+                    OR (p.leatherType IS NOT NULL AND LOWER(p.leatherType) LIKE LOWER(CONCAT('%', :search, '%')))
                   )
             """)
     Page<Product> searchActive(
@@ -52,13 +52,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
               AND (:featured IS NULL OR p.featured = :featured)
               AND (:active IS NULL OR p.active = :active)
-              AND (:leatherType IS NULL OR LOWER(p.leatherType) = LOWER(:leatherType))
-              AND (:material IS NULL OR LOWER(p.material) = LOWER(:material))
+              AND (:leatherType = '' OR p.leatherType = :leatherType)
+              AND (:material = '' OR p.material = :material)
               AND (
-                    :search IS NULL OR :search = ''
+                    :search = ''
                     OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
                     OR LOWER(p.shortDescription) LIKE LOWER(CONCAT('%', :search, '%'))
-                    OR LOWER(p.leatherType) LIKE LOWER(CONCAT('%', :search, '%'))
+                    OR (p.leatherType IS NOT NULL AND LOWER(p.leatherType) LIKE LOWER(CONCAT('%', :search, '%')))
                   )
             """)
     Page<Product> searchAdmin(
