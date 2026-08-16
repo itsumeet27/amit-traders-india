@@ -10,14 +10,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.http.MediaType;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -55,10 +56,11 @@ public class FileStorageService {
         String filename = UUID.randomUUID() + extension;
 
         try {
+            byte[] bytes = file.getBytes();
             Path folderPath = rootPath.resolve(safeFolder);
             Files.createDirectories(folderPath);
             Path target = folderPath.resolve(filename);
-            Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
+            Files.write(target, bytes);
 
             String url = urlPrefix + "/" + safeFolder + "/" + filename;
             MediaAsset asset = MediaAsset.builder()
@@ -68,12 +70,47 @@ public class FileStorageService {
                     .contentType(file.getContentType())
                     .sizeBytes(file.getSize())
                     .folder(safeFolder)
+                    .fileData(bytes)
                     .build();
 
             return EntityMapper.toMediaUploadResponse(mediaAssetRepository.save(asset));
         } catch (IOException e) {
             throw new BadRequestException("Failed to store file: " + e.getMessage());
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<StoredFile> loadByPublicUrl(String publicUrl) {
+        if (publicUrl == null || publicUrl.isBlank() || !publicUrl.startsWith(urlPrefix + "/")) {
+            return Optional.empty();
+        }
+
+        Optional<MediaAsset> asset = mediaAssetRepository.findByUrl(publicUrl);
+        if (asset.isPresent()) {
+            MediaAsset media = asset.get();
+            if (media.getFileData() != null && media.getFileData().length > 0) {
+                return Optional.of(new StoredFile(
+                        media.getFileData(),
+                        media.getContentType() != null ? media.getContentType() : MediaType.APPLICATION_OCTET_STREAM_VALUE));
+            }
+        }
+
+        try {
+            String relative = publicUrl.substring(urlPrefix.length() + 1);
+            Path filePath = rootPath.resolve(relative).normalize();
+            if (!filePath.startsWith(rootPath) || !Files.exists(filePath)) {
+                return Optional.empty();
+            }
+            String contentType = Files.probeContentType(filePath);
+            return Optional.of(new StoredFile(
+                    Files.readAllBytes(filePath),
+                    contentType != null ? contentType : MediaType.APPLICATION_OCTET_STREAM_VALUE));
+        } catch (IOException e) {
+            return Optional.empty();
+        }
+    }
+
+    public record StoredFile(byte[] data, String contentType) {
     }
 
     @Transactional(readOnly = true)

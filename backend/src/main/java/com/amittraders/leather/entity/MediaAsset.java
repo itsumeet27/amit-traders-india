@@ -35,6 +35,11 @@ public class MediaAsset {
 
     private String folder;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "file_data")
+    private byte[] fileData;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private Instant createdAt;

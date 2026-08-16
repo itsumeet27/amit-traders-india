@@ -38,9 +38,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 12MB
-  web:
-    resources:
-      static-locations: file:${FILE_STORAGE_PATH:./uploads}/
 
 app:
   jwt:
