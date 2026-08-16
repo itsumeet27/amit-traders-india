@@ -76,6 +76,11 @@ export const productService = {
     return data
   },
 
+  async setFeatured(id: number, featured: boolean): Promise<Product> {
+    const { data } = await api.put<Product>(`/api/admin/products/${id}/featured`, { featured })
+    return data
+  },
+
   async patch(id: number, payload: { featured?: boolean; active?: boolean }): Promise<Product> {
     const { data } = await api.patch<Product>(`/api/admin/products/${id}`, payload)
     return data
