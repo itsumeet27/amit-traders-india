@@ -22,7 +22,7 @@ public class ProductController {
             @RequestParam(required = false) String search,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "12") int size) {
-        return productService.searchPublic(category, featured, search, page, size);
+        return productService.searchPublic(category, featured, null, null, search, page, size);
     }
 
     @GetMapping("/{slugOrId}")

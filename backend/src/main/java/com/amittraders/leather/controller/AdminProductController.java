@@ -4,6 +4,7 @@ import com.amittraders.leather.dto.BulkDeleteResponse;
 import com.amittraders.leather.dto.BulkIdsRequest;
 import com.amittraders.leather.dto.PageResponse;
 import com.amittraders.leather.dto.ProductImageRequest;
+import com.amittraders.leather.dto.ProductPatchRequest;
 import com.amittraders.leather.dto.ProductRequest;
 import com.amittraders.leather.dto.ProductResponse;
 import com.amittraders.leather.service.ProductService;
@@ -28,10 +29,12 @@ public class AdminProductController {
             @RequestParam(required = false) Long category,
             @RequestParam(required = false) Boolean featured,
             @RequestParam(required = false) Boolean active,
+            @RequestParam(required = false) String leatherType,
+            @RequestParam(required = false) String material,
             @RequestParam(required = false) String search,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
-        return productService.searchAdmin(category, featured, active, search, page, size);
+        return productService.searchAdmin(category, featured, active, leatherType, material, search, page, size);
     }
 
     @GetMapping("/{id}")
@@ -48,6 +51,11 @@ public class AdminProductController {
     @PutMapping("/{id}")
     public ProductResponse update(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
         return productService.update(id, request);
+    }
+
+    @PatchMapping("/{id}")
+    public ProductResponse patch(@PathVariable Long id, @Valid @RequestBody ProductPatchRequest request) {
+        return productService.patch(id, request);
     }
 
     @PutMapping("/{id}/images")

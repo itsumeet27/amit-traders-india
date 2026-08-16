@@ -7,6 +7,8 @@ export interface ProductQuery {
   size?: number
   category?: number
   featured?: boolean
+  leatherType?: string
+  material?: string
   search?: string
   active?: boolean
 }
@@ -17,6 +19,8 @@ function toParams(query: ProductQuery = {}) {
   if (query.size != null) params.size = query.size
   if (query.category != null) params.category = query.category
   if (query.featured != null) params.featured = query.featured
+  if (query.leatherType) params.leatherType = query.leatherType
+  if (query.material) params.material = query.material
   if (query.search) params.search = query.search
   if (query.active != null) params.active = query.active
   return params
@@ -69,6 +73,11 @@ export const productService = {
 
   async update(id: number, payload: ProductPayload): Promise<Product> {
     const { data } = await api.put<Product>(`/api/admin/products/${id}`, payload)
+    return data
+  },
+
+  async patch(id: number, payload: { featured?: boolean; active?: boolean }): Promise<Product> {
+    const { data } = await api.patch<Product>(`/api/admin/products/${id}`, payload)
     return data
   },
 

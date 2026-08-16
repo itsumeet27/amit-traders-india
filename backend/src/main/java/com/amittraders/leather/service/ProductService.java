@@ -2,6 +2,7 @@ package com.amittraders.leather.service;
 
 import com.amittraders.leather.dto.PageResponse;
 import com.amittraders.leather.dto.ProductImageRequest;
+import com.amittraders.leather.dto.ProductPatchRequest;
 import com.amittraders.leather.dto.ProductRequest;
 import com.amittraders.leather.dto.ProductResponse;
 import com.amittraders.leather.dto.BulkDeleteResponse;
@@ -41,20 +42,35 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public PageResponse<ProductResponse> searchPublic(Long categoryId, Boolean featured, String search, int page, int size) {
+    public PageResponse<ProductResponse> searchPublic(
+            Long categoryId, Boolean featured, String leatherType, String material, String search, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
         Page<ProductResponse> result = productRepository
-                .searchActive(categoryId, featured, blankToNull(search), pageable)
+                .searchActive(categoryId, featured, blankToNull(leatherType), blankToNull(material), blankToNull(search), pageable)
                 .map(EntityMapper::toProductResponse);
         return PageResponse.from(result);
     }
 
     @Transactional(readOnly = true)
     public PageResponse<ProductResponse> searchAdmin(
-            Long categoryId, Boolean featured, Boolean active, String search, int page, int size) {
+            Long categoryId,
+            Boolean featured,
+            Boolean active,
+            String leatherType,
+            String material,
+            String search,
+            int page,
+            int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"));
         Page<ProductResponse> result = productRepository
-                .searchAdmin(categoryId, featured, active, blankToNull(search), pageable)
+                .searchAdmin(
+                        categoryId,
+                        featured,
+                        active,
+                        blankToNull(leatherType),
+                        blankToNull(material),
+                        blankToNull(search),
+                        pageable)
                 .map(EntityMapper::toProductResponse);
         return PageResponse.from(result);
     }
@@ -172,6 +188,18 @@ public class ProductService {
         Product product = findById(id);
         product.clearImages();
         applyImages(product, images);
+        return EntityMapper.toProductResponse(productRepository.save(product));
+    }
+
+    @Transactional
+    public ProductResponse patch(Long id, ProductPatchRequest request) {
+        Product product = findById(id);
+        if (request.featured() != null) {
+            product.setFeatured(request.featured());
+        }
+        if (request.active() != null) {
+            product.setActive(request.active());
+        }
         return EntityMapper.toProductResponse(productRepository.save(product));
     }
 

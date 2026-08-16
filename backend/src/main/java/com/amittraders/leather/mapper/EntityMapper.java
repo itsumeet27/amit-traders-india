@@ -166,4 +166,26 @@ public final class EntityMapper {
                 asset.getCreatedAt()
         );
     }
+
+    public static LookupOptionResponse toLookupOptionResponse(LeatherType leatherType) {
+        return new LookupOptionResponse(
+                leatherType.getId(),
+                leatherType.getName(),
+                leatherType.getDisplayOrder(),
+                leatherType.isActive(),
+                leatherType.getCreatedAt(),
+                leatherType.getUpdatedAt()
+        );
+    }
+
+    public static LookupOptionResponse toLookupOptionResponse(Material material) {
+        return new LookupOptionResponse(
+                material.getId(),
+                material.getName(),
+                material.getDisplayOrder(),
+                material.isActive(),
+                material.getCreatedAt(),
+                material.getUpdatedAt()
+        );
+    }
 }
