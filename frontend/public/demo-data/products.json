@@ -21,7 +21,7 @@
       "active": true,
       "images": [
         {
-          "id": 55,
+          "id": 70,
           "imageUrl": "/catalog/products/combo-set-001.png",
           "altText": "Combo Set 001",
           "displayOrder": 0
@@ -271,6 +271,210 @@
       "updatedAt": "2026-08-10T18:51:11.226282Z"
     },
     {
+      "id": 27,
+      "categoryId": 3,
+      "categoryName": "Laptop Bags",
+      "categorySlug": "laptop-bags",
+      "name": "Laptop Bag 005",
+      "slug": "laptop-bag-005",
+      "shortDescription": "Laptop Bag in Genuine Leather",
+      "description": "",
+      "material": "Leather",
+      "leatherType": "Sheep Napa",
+      "colors": "Tan, Black",
+      "dimensions": "",
+      "customization": "",
+      "branding": "Embossing via cast dye",
+      "manufacturingInfo": "",
+      "minimumOrderQuantity": 50,
+      "featured": false,
+      "active": true,
+      "images": [
+        {
+          "id": 71,
+          "imageUrl": "/uploads/products/5215daa4-c4b1-413e-8799-7bd35ddc36c4.jpg",
+          "altText": "Laptop Bag 005",
+          "displayOrder": 0
+        },
+        {
+          "id": 72,
+          "imageUrl": "/uploads/products/a1fdf3f8-c5fa-4cd5-a0c7-c6bce2a81a6b.jpg",
+          "altText": "Laptop Bag 005",
+          "displayOrder": 1
+        }
+      ],
+      "createdAt": "2026-08-16T20:05:02.701886Z",
+      "updatedAt": "2026-08-16T20:05:02.701886Z"
+    },
+    {
+      "id": 28,
+      "categoryId": 3,
+      "categoryName": "Laptop Bags",
+      "categorySlug": "laptop-bags",
+      "name": "Laptop Bag 006",
+      "slug": "laptop-bag-006",
+      "shortDescription": "Laptop Bag in Genuine Leather with Shoulder belt",
+      "description": "",
+      "material": "Leather",
+      "leatherType": "Sheep Napa",
+      "colors": "Brown",
+      "dimensions": "",
+      "customization": "",
+      "branding": "Embossing via cast dye",
+      "manufacturingInfo": "",
+      "minimumOrderQuantity": 50,
+      "featured": false,
+      "active": true,
+      "images": [
+        {
+          "id": 85,
+          "imageUrl": "/uploads/products/698edd71-b6a0-4603-81b1-5224af8baf95.jpg",
+          "altText": "Laptop Bag 006",
+          "displayOrder": 0
+        },
+        {
+          "id": 86,
+          "imageUrl": "/uploads/products/bc7c17da-60b3-4464-a707-0b13b3b2f3db.jpg",
+          "altText": "Laptop Bag 006",
+          "displayOrder": 1
+        },
+        {
+          "id": 87,
+          "imageUrl": "/uploads/products/a5b92789-e27d-48be-8cef-d5fe6a38ea46.jpg",
+          "altText": "Laptop Bag 006",
+          "displayOrder": 2
+        }
+      ],
+      "createdAt": "2026-08-16T20:07:46.676440Z",
+      "updatedAt": "2026-08-16T20:13:36.604745Z"
+    },
+    {
+      "id": 29,
+      "categoryId": 3,
+      "categoryName": "Laptop Bags",
+      "categorySlug": "laptop-bags",
+      "name": "Laptop Bag 007",
+      "slug": "laptop-bag-007",
+      "shortDescription": "Laptop Bag in Genuine Leather with Shoulder belt",
+      "description": "",
+      "material": "Leather",
+      "leatherType": "Croc",
+      "colors": "Purple",
+      "dimensions": "",
+      "customization": "",
+      "branding": "Embossing via cast dye",
+      "manufacturingInfo": "",
+      "minimumOrderQuantity": 50,
+      "featured": false,
+      "active": true,
+      "images": [
+        {
+          "id": 82,
+          "imageUrl": "/uploads/products/4e8bcdb3-0926-4b69-834f-03f13f92ae6a.jpg",
+          "altText": "Laptop Bag 007",
+          "displayOrder": 0
+        },
+        {
+          "id": 83,
+          "imageUrl": "/uploads/products/6acf7a22-ee37-446f-9be3-0dac438aa416.jpg",
+          "altText": "Laptop Bag 007",
+          "displayOrder": 1
+        },
+        {
+          "id": 84,
+          "imageUrl": "/uploads/products/93c7aef5-053d-4c63-9f99-97221a451aaa.jpg",
+          "altText": "Laptop Bag 007",
+          "displayOrder": 2
+        }
+      ],
+      "createdAt": "2026-08-16T20:09:39.131345Z",
+      "updatedAt": "2026-08-16T20:13:24.508198Z"
+    },
+    {
+      "id": 30,
+      "categoryId": 3,
+      "categoryName": "Laptop Bags",
+      "categorySlug": "laptop-bags",
+      "name": "Laptop Bag 008",
+      "slug": "laptop-bag-008",
+      "shortDescription": "Laptop Bag in Genuine Leather with Shoulder Belt",
+      "description": "",
+      "material": "Leather",
+      "leatherType": "NDM",
+      "colors": "Black",
+      "dimensions": "",
+      "customization": "",
+      "branding": "Embossing via cast dye",
+      "manufacturingInfo": "",
+      "minimumOrderQuantity": 50,
+      "featured": false,
+      "active": true,
+      "images": [
+        {
+          "id": 79,
+          "imageUrl": "/uploads/products/dab9716d-8802-4294-babe-cf00a6b1f80d.jpg",
+          "altText": "Laptop Bag 008",
+          "displayOrder": 0
+        },
+        {
+          "id": 80,
+          "imageUrl": "/uploads/products/1f0c2514-bbbc-48e5-b31c-dc892cfcd0ad.jpg",
+          "altText": "Laptop Bag 008",
+          "displayOrder": 1
+        },
+        {
+          "id": 81,
+          "imageUrl": "/uploads/products/3dff7390-6cc5-4b0f-a372-50dc69a7474f.jpg",
+          "altText": "Laptop Bag 008",
+          "displayOrder": 2
+        }
+      ],
+      "createdAt": "2026-08-16T20:13:02.501848Z",
+      "updatedAt": "2026-08-16T20:13:02.501848Z"
+    },
+    {
+      "id": 31,
+      "categoryId": 3,
+      "categoryName": "Laptop Bags",
+      "categorySlug": "laptop-bags",
+      "name": "Laptop Bag 009",
+      "slug": "laptop-bag-009",
+      "shortDescription": "Laptop Bag in Genuine Leather with Shoulder belt",
+      "description": "",
+      "material": "Leather",
+      "leatherType": "Cow Napa",
+      "colors": "Black, Brown",
+      "dimensions": "",
+      "customization": "",
+      "branding": "Embossing via cast dye",
+      "manufacturingInfo": "",
+      "minimumOrderQuantity": 50,
+      "featured": false,
+      "active": true,
+      "images": [
+        {
+          "id": 88,
+          "imageUrl": "/uploads/products/bd4b3edb-7489-492a-ac91-7038f59fcb78.jpg",
+          "altText": "Laptop Bag 009",
+          "displayOrder": 0
+        },
+        {
+          "id": 89,
+          "imageUrl": "/uploads/products/6757780c-35a0-434d-b010-96c4f61c1620.jpg",
+          "altText": "Laptop Bag 009",
+          "displayOrder": 1
+        },
+        {
+          "id": 90,
+          "imageUrl": "/uploads/products/205a2f58-9117-4b16-9165-9313752b57b1.jpg",
+          "altText": "Laptop Bag 009",
+          "displayOrder": 2
+        }
+      ],
+      "createdAt": "2026-08-16T20:14:44.165315Z",
+      "updatedAt": "2026-08-16T20:14:44.165315Z"
+    },
+    {
       "id": 26,
       "categoryId": 10,
       "categoryName": "Passport Holders",
@@ -362,8 +566,8 @@
     }
   ],
   "page": 0,
-  "size": 100,
-  "totalElements": 12,
+  "size": 17,
+  "totalElements": 17,
   "totalPages": 1,
   "first": true,
   "last": true

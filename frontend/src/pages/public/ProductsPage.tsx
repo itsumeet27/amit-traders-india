@@ -36,12 +36,16 @@ export function ProductsPage() {
     if (categorySlug && categories.length === 0) return
 
     productService
-      .getPublic({
-        size: 48,
+      .getAllPublic({
         category: categoryId,
       })
-      .then((page) => {
-        if (!cancelled) setProducts(page.content)
+      .then((items) => {
+        if (!cancelled) {
+          const sorted = [...items].sort(
+            (a, b) => new Date(b.updatedAt || 0).getTime() - new Date(a.updatedAt || 0).getTime(),
+          )
+          setProducts(sorted)
+        }
       })
       .catch(() => {
         if (!cancelled) setProducts([])
