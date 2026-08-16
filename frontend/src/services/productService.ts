@@ -39,9 +39,24 @@ export const productService = {
     )
   },
 
+  async getAllPublic(query: Omit<ProductQuery, 'page' | 'size'> = {}): Promise<Product[]> {
+    const pageSize = 100
+    let page = 0
+    const all: Product[] = []
+
+    while (true) {
+      const response = await this.getPublic({ ...query, page, size: pageSize })
+      all.push(...response.content)
+      if (response.last || response.content.length === 0) break
+      page += 1
+    }
+
+    return all
+  },
+
   async getFeatured(size = 8): Promise<Product[]> {
-    const page = await this.getPublic({ featured: true, size })
-    return page.content
+    const all = await this.getAllPublic({ featured: true })
+    return all.slice(0, size)
   },
 
   async getBySlug(slug: string): Promise<Product> {

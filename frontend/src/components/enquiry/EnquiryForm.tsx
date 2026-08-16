@@ -52,8 +52,8 @@ export function EnquiryForm({ compact = false }: { compact?: boolean }) {
       .then(setCategories)
       .catch(() => setCategories([]))
     productService
-      .getPublic({ size: 100 })
-      .then((page) => setProducts(page.content))
+      .getAllPublic()
+      .then(setProducts)
       .catch(() => setProducts([]))
   }, [])
 
