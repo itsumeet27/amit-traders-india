@@ -6,12 +6,12 @@ import { Input } from '@/components/ui/Input'
 import { Textarea } from '@/components/ui/Textarea'
 import { Select } from '@/components/ui/Select'
 import { Button } from '@/components/ui/Button'
-import { ImageUpload } from '@/components/admin/ImageUpload'
+import { ProductImagesEditor } from '@/components/admin/ProductImagesEditor'
 import { LoadingSpinner } from '@/components/ui/Feedback'
 import { productService } from '@/services/productService'
 import { categoryService } from '@/services/categoryService'
 import type { Category, ProductPayload } from '@/types'
-import { getErrorMessage, getPrimaryImage, MIN_ORDER_QUANTITY, slugify } from '@/utils'
+import { getErrorMessage, MIN_ORDER_QUANTITY, slugify } from '@/utils'
 import { useToast } from '@/context/ToastContext'
 
 const blank: ProductPayload = {
@@ -39,7 +39,6 @@ export function AdminProductFormPage() {
   const navigate = useNavigate()
   const { push } = useToast()
   const [form, setForm] = useState<ProductPayload>(blank)
-  const [primaryImage, setPrimaryImage] = useState('')
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(isEdit)
   const [saving, setSaving] = useState(false)
@@ -56,6 +55,9 @@ export function AdminProductFormPage() {
     productService
       .getById(Number(id))
       .then((product) => {
+        const sortedImages = [...(product.images || [])].sort(
+          (a, b) => a.displayOrder - b.displayOrder,
+        )
         setForm({
           name: product.name,
           slug: product.slug,
@@ -72,13 +74,12 @@ export function AdminProductFormPage() {
           minimumOrderQuantity: product.minimumOrderQuantity,
           featured: product.featured,
           active: product.active,
-          images: product.images?.map((img) => ({
+          images: sortedImages.map((img, index) => ({
             imageUrl: img.imageUrl,
-            altText: img.altText || undefined,
-            displayOrder: img.displayOrder,
+            altText: img.altText || product.name,
+            displayOrder: index,
           })),
         })
-        setPrimaryImage(getPrimaryImage(product.images))
       })
       .catch((error) => {
         push(getErrorMessage(error), 'error')
@@ -102,14 +103,11 @@ export function AdminProductFormPage() {
       return
     }
     setSaving(true)
-    const images = primaryImage
-      ? [
-          { imageUrl: primaryImage, altText: form.name, displayOrder: 0 },
-          ...(form.images || [])
-            .filter((img) => img.imageUrl !== primaryImage)
-            .map((img, index) => ({ ...img, displayOrder: index + 1 })),
-        ]
-      : form.images
+    const images = (form.images || []).map((image, index) => ({
+      ...image,
+      altText: image.altText || form.name,
+      displayOrder: index,
+    }))
     const payload: ProductPayload = {
       ...form,
       slug: form.slug || slugify(form.name),
@@ -217,10 +215,10 @@ export function AdminProductFormPage() {
           value={form.manufacturingInfo || ''}
           onChange={(e) => update('manufacturingInfo', e.target.value)}
         />
-        <ImageUpload
-          label="Primary image"
-          value={primaryImage}
-          onChange={setPrimaryImage}
+        <ProductImagesEditor
+          images={form.images || []}
+          onChange={(images) => update('images', images)}
+          altTextFallback={form.name || 'Product image'}
           folder="products"
         />
         <div className="flex flex-wrap gap-6">

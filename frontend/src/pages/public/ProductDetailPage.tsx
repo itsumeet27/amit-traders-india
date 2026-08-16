@@ -3,15 +3,14 @@ import { Link, useParams } from 'react-router-dom'
 import { Seo } from '@/components/Seo'
 import { productService } from '@/services/productService'
 import type { Product } from '@/types'
-import { getPrimaryImage, resolveMediaUrl } from '@/utils'
+import { getPrimaryImage } from '@/utils'
 import { Button } from '@/components/ui/Button'
 import { LoadingSpinner, EmptyState } from '@/components/ui/Feedback'
-import { SafeImage } from '@/components/ui/SafeImage'
+import { ProductImageGallery } from '@/components/ProductImageGallery'
 
 export function ProductDetailPage() {
   const { slug = '' } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
-  const [activeImage, setActiveImage] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -24,7 +23,6 @@ export function ProductDetailPage() {
       .then((data) => {
         if (cancelled) return
         setProduct(data)
-        setActiveImage(getPrimaryImage(data.images))
       })
       .catch(() => {
         if (!cancelled) {
@@ -58,7 +56,7 @@ export function ProductDetailPage() {
     )
   }
 
-  const images = [...(product.images || [])].sort((a, b) => a.displayOrder - b.displayOrder)
+  const primaryImage = getPrimaryImage(product.images)
 
   return (
     <>
@@ -66,7 +64,7 @@ export function ProductDetailPage() {
         title={product.name}
         description={product.shortDescription || product.description || undefined}
         path={`/products/${product.slug}`}
-        image={activeImage || undefined}
+        image={primaryImage || undefined}
       />
 
       <section className="section-pad">
@@ -91,37 +89,7 @@ export function ProductDetailPage() {
           </nav>
 
           <div className="grid gap-10 lg:grid-cols-2">
-            <div>
-              <SafeImage
-                src={activeImage}
-                alt={product.name}
-                aspect="aspect-square"
-                className="shadow-[0_24px_60px_-30px_rgba(59,36,24,0.45)]"
-              />
-              {images.length > 1 ? (
-                <div className="mt-4 grid grid-cols-4 gap-3">
-                  {images.map((img) => {
-                    const url = resolveMediaUrl(img.imageUrl)
-                    return (
-                      <button
-                        key={img.id}
-                        type="button"
-                        onClick={() => setActiveImage(url)}
-                        className={`overflow-hidden border ${
-                          activeImage === url ? 'border-gold' : 'border-transparent'
-                        }`}
-                      >
-                        <SafeImage
-                          src={url}
-                          alt={img.altText || product.name}
-                          aspect="aspect-square"
-                        />
-                      </button>
-                    )
-                  })}
-                </div>
-              ) : null}
-            </div>
+            <ProductImageGallery images={product.images || []} productName={product.name} />
 
             <div>
               {product.categoryName ? (
