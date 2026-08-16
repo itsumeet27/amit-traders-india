@@ -46,7 +46,13 @@ public class ProductService {
             Long categoryId, Boolean featured, String leatherType, String material, String search, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
         Page<ProductResponse> result = productRepository
-                .searchActive(categoryId, featured, blankToNull(leatherType), blankToNull(material), blankToNull(search), pageable)
+                .searchActive(
+                        categoryId,
+                        featured,
+                        emptyIfBlank(leatherType),
+                        emptyIfBlank(material),
+                        emptyIfBlank(search),
+                        pageable)
                 .map(EntityMapper::toProductResponse);
         return PageResponse.from(result);
     }
@@ -67,9 +73,9 @@ public class ProductService {
                         categoryId,
                         featured,
                         active,
-                        blankToNull(leatherType),
-                        blankToNull(material),
-                        blankToNull(search),
+                        emptyIfBlank(leatherType),
+                        emptyIfBlank(material),
+                        emptyIfBlank(search),
                         pageable)
                 .map(EntityMapper::toProductResponse);
         return PageResponse.from(result);
@@ -261,5 +267,9 @@ public class ProductService {
 
     private String blankToNull(String value) {
         return value == null || value.isBlank() ? null : value.trim();
+    }
+
+    private String emptyIfBlank(String value) {
+        return value == null || value.isBlank() ? "" : value.trim();
     }
 }
