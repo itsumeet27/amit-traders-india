@@ -203,6 +203,13 @@ public class ProductService {
         return EntityMapper.toProductResponse(productRepository.save(product));
     }
 
+    @Transactional
+    public ProductResponse setFeatured(Long id, boolean featured) {
+        Product product = findById(id);
+        product.setFeatured(featured);
+        return EntityMapper.toProductResponse(productRepository.save(product));
+    }
+
     private void applyImages(Product product, List<ProductImageRequest> images) {
         if (images == null) {
             return;

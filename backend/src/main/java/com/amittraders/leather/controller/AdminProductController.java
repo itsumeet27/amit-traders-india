@@ -3,6 +3,7 @@ package com.amittraders.leather.controller;
 import com.amittraders.leather.dto.BulkDeleteResponse;
 import com.amittraders.leather.dto.BulkIdsRequest;
 import com.amittraders.leather.dto.PageResponse;
+import com.amittraders.leather.dto.ProductFeaturedRequest;
 import com.amittraders.leather.dto.ProductImageRequest;
 import com.amittraders.leather.dto.ProductPatchRequest;
 import com.amittraders.leather.dto.ProductRequest;
@@ -56,6 +57,13 @@ public class AdminProductController {
     @PatchMapping("/{id}")
     public ProductResponse patch(@PathVariable Long id, @Valid @RequestBody ProductPatchRequest request) {
         return productService.patch(id, request);
+    }
+
+    @PutMapping("/{id}/featured")
+    public ProductResponse setFeatured(
+            @PathVariable Long id,
+            @Valid @RequestBody ProductFeaturedRequest request) {
+        return productService.setFeatured(id, request.featured());
     }
 
     @PutMapping("/{id}/images")

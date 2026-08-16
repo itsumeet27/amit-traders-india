@@ -107,7 +107,7 @@ export function AdminProductsPage() {
       prev.map((item) => (item.id === product.id ? { ...item, featured: next } : item)),
     )
     try {
-      await productService.patch(product.id, { featured: next })
+      await productService.setFeatured(product.id, next)
       push(next ? 'Product marked as featured' : 'Product removed from featured', 'success')
     } catch (error) {
       setProducts((prev) =>
