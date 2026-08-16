@@ -30,6 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE p.active = true
               AND (:categoryId IS NULL OR p.category.id = :categoryId)
               AND (:featured IS NULL OR p.featured = :featured)
+              AND (:leatherType IS NULL OR LOWER(p.leatherType) = LOWER(:leatherType))
+              AND (:material IS NULL OR LOWER(p.material) = LOWER(:material))
               AND (
                     :search IS NULL OR :search = ''
                     OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
@@ -40,6 +42,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Page<Product> searchActive(
             @Param("categoryId") Long categoryId,
             @Param("featured") Boolean featured,
+            @Param("leatherType") String leatherType,
+            @Param("material") String material,
             @Param("search") String search,
             Pageable pageable);
 
@@ -48,6 +52,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             WHERE (:categoryId IS NULL OR p.category.id = :categoryId)
               AND (:featured IS NULL OR p.featured = :featured)
               AND (:active IS NULL OR p.active = :active)
+              AND (:leatherType IS NULL OR LOWER(p.leatherType) = LOWER(:leatherType))
+              AND (:material IS NULL OR LOWER(p.material) = LOWER(:material))
               AND (
                     :search IS NULL OR :search = ''
                     OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))
@@ -59,6 +65,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("categoryId") Long categoryId,
             @Param("featured") Boolean featured,
             @Param("active") Boolean active,
+            @Param("leatherType") String leatherType,
+            @Param("material") String material,
             @Param("search") String search,
             Pageable pageable);
 
@@ -73,4 +81,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     long countByActiveTrue();
 
     long countByFeaturedTrueAndActiveTrue();
+
+    long countByLeatherTypeIgnoreCase(String leatherType);
+
+    long countByMaterialIgnoreCase(String material);
 }

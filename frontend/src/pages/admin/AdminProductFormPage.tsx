@@ -10,7 +10,9 @@ import { ProductImagesEditor } from '@/components/admin/ProductImagesEditor'
 import { LoadingSpinner } from '@/components/ui/Feedback'
 import { productService } from '@/services/productService'
 import { categoryService } from '@/services/categoryService'
-import type { Category, ProductPayload } from '@/types'
+import { leatherTypeService } from '@/services/leatherTypeService'
+import { materialService } from '@/services/materialService'
+import type { Category, LookupOption, ProductPayload } from '@/types'
 import { getErrorMessage, MIN_ORDER_QUANTITY, slugify } from '@/utils'
 import { useToast } from '@/context/ToastContext'
 
@@ -40,14 +42,27 @@ export function AdminProductFormPage() {
   const { push } = useToast()
   const [form, setForm] = useState<ProductPayload>(blank)
   const [categories, setCategories] = useState<Category[]>([])
+  const [leatherTypes, setLeatherTypes] = useState<LookupOption[]>([])
+  const [materials, setMaterials] = useState<LookupOption[]>([])
   const [loading, setLoading] = useState(isEdit)
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
-    categoryService
-      .getAdmin()
-      .then(setCategories)
-      .catch(() => setCategories([]))
+    Promise.all([
+      categoryService.getAdmin(),
+      leatherTypeService.getAdmin(),
+      materialService.getAdmin(),
+    ])
+      .then(([categoryList, leatherTypeList, materialList]) => {
+        setCategories(categoryList)
+        setLeatherTypes(leatherTypeList)
+        setMaterials(materialList)
+      })
+      .catch(() => {
+        setCategories([])
+        setLeatherTypes([])
+        setMaterials([])
+      })
   }, [])
 
   useEffect(() => {
@@ -129,6 +144,15 @@ export function AdminProductFormPage() {
     }
   }
 
+  function buildSelectOptions(options: LookupOption[], currentValue?: string | null) {
+    const names = options.map((option) => option.name)
+    const merged = currentValue && !names.includes(currentValue) ? [currentValue, ...names] : names
+    return [
+      { label: 'Select…', value: '' },
+      ...merged.map((name) => ({ label: name, value: name })),
+    ]
+  }
+
   if (loading) return <LoadingSpinner />
 
   return (
@@ -172,14 +196,16 @@ export function AdminProductFormPage() {
           onChange={(e) => update('description', e.target.value)}
         />
         <div className="grid gap-4 md:grid-cols-2">
-          <Input
+          <Select
             label="Leather type"
             value={form.leatherType || ''}
+            options={buildSelectOptions(leatherTypes, form.leatherType)}
             onChange={(e) => update('leatherType', e.target.value)}
           />
-          <Input
+          <Select
             label="Material"
             value={form.material || ''}
+            options={buildSelectOptions(materials, form.material)}
             onChange={(e) => update('material', e.target.value)}
           />
           <Input

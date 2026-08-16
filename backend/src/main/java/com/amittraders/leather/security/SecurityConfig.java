@@ -68,6 +68,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/auth/logout").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/leather-types/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/materials/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/clients/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/company-profile").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/enquiries").permitAll()

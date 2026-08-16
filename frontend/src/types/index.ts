@@ -5,6 +5,15 @@ export interface ProductImage {
   displayOrder: number
 }
 
+export interface LookupOption {
+  id: number
+  name: string
+  displayOrder: number
+  active: boolean
+  createdAt?: string
+  updatedAt?: string
+}
+
 export interface Category {
   id: number
   name: string
