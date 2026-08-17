@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { BrandLogo } from '@/components/BrandLogo'
+import { SocialLinks } from '@/components/SocialLinks'
 import { categoryService } from '@/services/categoryService'
 import type { Category } from '@/types'
 import clsx from 'clsx'
@@ -71,6 +72,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SocialLinks className="hidden md:flex" />
           <Button to="/quote" size="sm" className="hidden sm:inline-flex">
             Request a Quote
           </Button>
@@ -111,6 +113,7 @@ export function Header() {
               </Link>
             ))}
             <div className="pt-4">
+              <SocialLinks className="mb-4 justify-center" />
               <Button to="/quote" className="w-full" onClick={() => setOpen(false)}>
                 Request a Quote
               </Button>

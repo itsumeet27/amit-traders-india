@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { SocialLinks } from '@/components/SocialLinks'
 import { companyService } from '@/services/companyService'
 import { categoryService } from '@/services/categoryService'
 import type { Category, CompanyProfile } from '@/types'
@@ -42,6 +43,7 @@ export function Footer() {
             {company?.description ||
               'Mumbai-based manufacturer of genuine leather goods, executive accessories, and customized bulk corporate gift solutions for enterprises across India.'}
           </p>
+          <SocialLinks className="mt-5" variant="light" />
         </div>
 
         <div>
