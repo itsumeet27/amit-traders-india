@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://itsumeet27.github.io/amit-traders-india/sitemap.xml

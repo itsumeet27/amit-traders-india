@@ -1,0 +1,68 @@
+[
+  {
+    "id": 8,
+    "name": "Combo Set",
+    "slug": "combo-set",
+    "description": "This category includes all kind of combo sets that includes your accessories like wallet, keychain, card holder, and belts",
+    "imageUrl": "/catalog/categories/combo-set.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-10T18:54:49.721962Z",
+    "updatedAt": "2026-08-10T20:08:48.194038Z"
+  },
+  {
+    "id": 3,
+    "name": "Laptop Bags",
+    "slug": "laptop-bags",
+    "description": "Laptop bags, messengers, totes, and travel companions in full-grain leather.",
+    "imageUrl": "/catalog/categories/laptop-bags.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-08T20:52:22.574081Z",
+    "updatedAt": "2026-08-10T20:08:48.896654Z"
+  },
+  {
+    "id": 1,
+    "name": "Gents Wallet",
+    "slug": "gents-wallet",
+    "description": "",
+    "imageUrl": "/catalog/categories/gents-wallet.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-08T20:52:22.472331Z",
+    "updatedAt": "2026-08-10T20:08:49.194790Z"
+  },
+  {
+    "id": 9,
+    "name": "Duffle Bags",
+    "slug": "duffle-bags",
+    "description": "",
+    "imageUrl": "/catalog/categories/duffle-bags.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-10T18:55:08.791079Z",
+    "updatedAt": "2026-08-10T20:08:49.398404Z"
+  },
+  {
+    "id": 10,
+    "name": "Passport Holders",
+    "slug": "passport-holders",
+    "description": "",
+    "imageUrl": "/catalog/categories/passport-holders.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-10T18:57:51.904584Z",
+    "updatedAt": "2026-08-10T20:08:49.691283Z"
+  },
+  {
+    "id": 11,
+    "name": "Sling Bags",
+    "slug": "sling-bags",
+    "description": "",
+    "imageUrl": "/catalog/categories/sling-bags.jpg",
+    "displayOrder": 0,
+    "active": true,
+    "createdAt": "2026-08-10T18:58:12.760255Z",
+    "updatedAt": "2026-08-10T20:08:49.995197Z"
+  }
+]
