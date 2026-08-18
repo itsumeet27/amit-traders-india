@@ -137,7 +137,7 @@ public class DataSeeder implements CommandLineRunner {
                         ]
                         """)
                 .ctaTitle("Ready to source premium leather?")
-                .ctaSubtitle("Tell us about your product needs — our Mumbai team responds within one business day. [SAMPLE]")
+                .ctaSubtitle("Tell us about your product requirements and we'll provide a tailored quote for your order.")
                 .build());
     }
 

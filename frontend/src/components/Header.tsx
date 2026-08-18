@@ -61,8 +61,8 @@ export function Header() {
               end={link.to === '/'}
               className={({ isActive }) =>
                 clsx(
-                  'px-3 py-2 text-sm tracking-wide transition',
-                  isActive ? 'text-primary' : 'text-leather hover:text-primary',
+                  'px-3 py-2 text-md tracking-wide transition',
+                  isActive ? 'text-primary font-bold' : 'text-leather hover:text-primary',
                 )
               }
             >
