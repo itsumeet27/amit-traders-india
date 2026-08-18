@@ -1,0 +1,255 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Amit Traders India//Instagram Post Reminders//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Amit Traders Instagram Posts
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VTIMEZONE
+TZID:Asia/Kolkata
+BEGIN:STANDARD
+TZOFFSETFROM:+0530
+TZOFFSETTO:+0530
+TZNAME:IST
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-at-001-2026-08-19@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260819T113000
+DTEND;TZID=Asia/Kolkata:20260819T115000
+SUMMARY:Instagram Single image: Laptop Bag 001
+DESCRIPTION:Post Laptop Bag 001 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/laptop-bag-at-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-at-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 001 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-002-2026-08-20@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260820T113000
+DTEND;TZID=Asia/Kolkata:20260820T115000
+SUMMARY:Instagram Single image: Laptop Bag 002
+DESCRIPTION:Post Laptop Bag 002 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/laptop-bag-002.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-002\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 002 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-003-2026-08-21@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260821T113000
+DTEND;TZID=Asia/Kolkata:20260821T115000
+SUMMARY:Instagram Single image: Laptop Bag 003
+DESCRIPTION:Post Laptop Bag 003 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/laptop-bag-003.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-003\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 003 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-004-2026-08-22@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260822T193000
+DTEND;TZID=Asia/Kolkata:20260822T195000
+SUMMARY:Instagram Single image: Laptop Bag 004
+DESCRIPTION:Post Laptop Bag 004 on @amittradersindia\\nFormat: Single image\\nBest time: 07:30 PM IST — Weekend evening peak — higher general Instagram engagement in India\\n\\nShort description: Laptop Bag in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/laptop-bag-004.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-004\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 004 at 07:30 PM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-005-2026-08-23@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260823T193000
+DTEND;TZID=Asia/Kolkata:20260823T195000
+SUMMARY:Instagram Carousel (2 slides): Laptop Bag 005
+DESCRIPTION:Post Laptop Bag 005 on @amittradersindia\\nFormat: Carousel (2 slides)\\nBest time: 07:30 PM IST — Weekend evening peak — higher general Instagram engagement in India\\n\\nShort description: Laptop Bag in Genuine Leather\\n\\nImages:\\nSlide 1 (Front view): https://amit-traders-india-new.onrender.com/uploads/products/5215daa4-c4b1-413e-8799-7bd35ddc36c4.jpg\\nSlide 2 (Side / profile view): https://amit-traders-india-new.onrender.com/uploads/products/a1fdf3f8-c5fa-4cd5-a0c7-c6bce2a81a6b.jpg\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-005\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 005 at 07:30 PM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-006-2026-08-24@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260824T113000
+DTEND;TZID=Asia/Kolkata:20260824T115000
+SUMMARY:Instagram Carousel (3 slides): Laptop Bag 006
+DESCRIPTION:Post Laptop Bag 006 on @amittradersindia\\nFormat: Carousel (3 slides)\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather with Shoulder belt\\n\\nImages:\\nSlide 1 (Front view): https://amit-traders-india-new.onrender.com/uploads/products/698edd71-b6a0-4603-81b1-5224af8baf95.jpg\\nSlide 2 (Side / profile view): https://amit-traders-india-new.onrender.com/uploads/products/bc7c17da-60b3-4464-a707-0b13b3b2f3db.jpg\\nSlide 3 (Detail / interior view): https://amit-traders-india-new.onrender.com/uploads/products/a5b92789-e27d-48be-8cef-d5fe6a38ea46.jpg\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-006\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 006 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-007-2026-08-25@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260825T113000
+DTEND;TZID=Asia/Kolkata:20260825T115000
+SUMMARY:Instagram Carousel (3 slides): Laptop Bag 007
+DESCRIPTION:Post Laptop Bag 007 on @amittradersindia\\nFormat: Carousel (3 slides)\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather with Shoulder belt\\n\\nImages:\\nSlide 1 (Front view): https://amit-traders-india-new.onrender.com/uploads/products/4e8bcdb3-0926-4b69-834f-03f13f92ae6a.jpg\\nSlide 2 (Side / profile view): https://amit-traders-india-new.onrender.com/uploads/products/6acf7a22-ee37-446f-9be3-0dac438aa416.jpg\\nSlide 3 (Detail / interior view): https://amit-traders-india-new.onrender.com/uploads/products/93c7aef5-053d-4c63-9f99-97221a451aaa.jpg\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-007\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 007 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-008-2026-08-26@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260826T113000
+DTEND;TZID=Asia/Kolkata:20260826T115000
+SUMMARY:Instagram Carousel (3 slides): Laptop Bag 008
+DESCRIPTION:Post Laptop Bag 008 on @amittradersindia\\nFormat: Carousel (3 slides)\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather with Shoulder Belt\\n\\nImages:\\nSlide 1 (Front view): https://amit-traders-india-new.onrender.com/uploads/products/dab9716d-8802-4294-babe-cf00a6b1f80d.jpg\\nSlide 2 (Side / profile view): https://amit-traders-india-new.onrender.com/uploads/products/1f0c2514-bbbc-48e5-b31c-dc892cfcd0ad.jpg\\nSlide 3 (Detail / interior view): https://amit-traders-india-new.onrender.com/uploads/products/3dff7390-6cc5-4b0f-a372-50dc69a7474f.jpg\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-008\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 008 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-laptop-bag-009-2026-08-27@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260827T113000
+DTEND;TZID=Asia/Kolkata:20260827T115000
+SUMMARY:Instagram Carousel (3 slides): Laptop Bag 009
+DESCRIPTION:Post Laptop Bag 009 on @amittradersindia\\nFormat: Carousel (3 slides)\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Laptop Bag in Genuine Leather with Shoulder belt\\n\\nImages:\\nSlide 1 (Front view): https://amit-traders-india-new.onrender.com/uploads/products/bd4b3edb-7489-492a-ac91-7038f59fcb78.jpg\\nSlide 2 (Side / profile view): https://amit-traders-india-new.onrender.com/uploads/products/6757780c-35a0-434d-b010-96c4f61c1620.jpg\\nSlide 3 (Detail / interior view): https://amit-traders-india-new.onrender.com/uploads/products/205a2f58-9117-4b16-9165-9313752b57b1.jpg\\n\\nQuote CTA: https://amittradersindia.com/quote?product=laptop-bag-009\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Laptop Bag 009 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-gents-wallet-001-2026-08-28@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260828T113000
+DTEND;TZID=Asia/Kolkata:20260828T115000
+SUMMARY:Instagram Single image: Gents Wallet 001
+DESCRIPTION:Post Gents Wallet 001 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Gents wallet for regular use\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/gents-wallet-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=gents-wallet-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Gents Wallet 001 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-combo-set-001-2026-08-29@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260829T193000
+DTEND;TZID=Asia/Kolkata:20260829T195000
+SUMMARY:Instagram Single image: Combo Set 001
+DESCRIPTION:Post Combo Set 001 on @amittradersindia\\nFormat: Single image\\nBest time: 07:30 PM IST — Weekend evening peak — higher general Instagram engagement in India\\n\\nShort description: Combo Set of\nGents Wallet\,\nPassport Holder\,\nBelt\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/combo-set-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=combo-set-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Combo Set 001 at 07:30 PM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-combo-set-002-2026-08-30@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260830T193000
+DTEND;TZID=Asia/Kolkata:20260830T195000
+SUMMARY:Instagram Single image: Combo Set 002
+DESCRIPTION:Post Combo Set 002 on @amittradersindia\\nFormat: Single image\\nBest time: 07:30 PM IST — Weekend evening peak — higher general Instagram engagement in India\\n\\nShort description: Combo Set of\nGents Wallet\,\nKeychain\nBelt\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/combo-set-002.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=combo-set-002\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Combo Set 002 at 07:30 PM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-combo-set-003-2026-08-31@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260831T113000
+DTEND;TZID=Asia/Kolkata:20260831T115000
+SUMMARY:Instagram Single image: Combo Set 003
+DESCRIPTION:Post Combo Set 003 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Combo Set of\nGents Wallet\,\nKeychain\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/combo-set-003.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=combo-set-003\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Combo Set 003 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-duffle-bag-001-2026-09-01@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260901T113000
+DTEND;TZID=Asia/Kolkata:20260901T115000
+SUMMARY:Instagram Single image: Duffle Bag 001
+DESCRIPTION:Post Duffle Bag 001 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Duffle Bag in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/duffle-bag-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=duffle-bag-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Duffle Bag 001 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-passport-holder-001-2026-09-02@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260902T113000
+DTEND;TZID=Asia/Kolkata:20260902T115000
+SUMMARY:Instagram Single image: Passport Holder 001
+DESCRIPTION:Post Passport Holder 001 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Passport Holder in Genuine Leather\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/passport-holder-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=passport-holder-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Passport Holder 001 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-sling-bag-001-2026-09-03@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260903T113000
+DTEND;TZID=Asia/Kolkata:20260903T115000
+SUMMARY:Instagram Single image: Sling Bag 001
+DESCRIPTION:Post Sling Bag 001 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Sling Bags for regular office/personal use\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/sling-bag-001.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=sling-bag-001\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Sling Bag 001 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:amit-ig-sling-bag-002-2026-09-04@amittradersindia.com
+DTSTAMP:20260818T201851Z
+DTSTART;TZID=Asia/Kolkata:20260904T113000
+DTEND;TZID=Asia/Kolkata:20260904T115000
+SUMMARY:Instagram Single image: Sling Bag 002
+DESCRIPTION:Post Sling Bag 002 on @amittradersindia\\nFormat: Single image\\nBest time: 11:30 AM IST — Weekday lunch scroll — best for corporate buyers and B2B decision-makers\\n\\nShort description: Sling Laptop bag for corporate use\\n\\nImages:\\nhttps://amittradersindia.com/catalog/products/sling-bag-002.png\\n\\nQuote CTA: https://amittradersindia.com/quote?product=sling-bag-002\\n\\nFull drafts: https://amittradersindia.com/downloads/instagram-product-drafts.md
+LOCATION:Instagram
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: post Sling Bag 002 at 11:30 AM IST
+END:VALARM
+END:VEVENT
+END:VCALENDAR
