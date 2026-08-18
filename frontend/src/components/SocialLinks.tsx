@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
-const FACEBOOK_URL = 'https://www.facebook.com/itsumeet'
-const INSTAGRAM_URL = 'https://www.instagram.com/itsumeet27'
+const FACEBOOK_URL = 'https://www.facebook.com/amittradersindia'
+const INSTAGRAM_URL = 'https://www.instagram.com/amittradersindia'
 
 type SocialLinksProps = {
   className?: string
@@ -54,7 +54,7 @@ export function SocialLinks({
         target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
-        aria-label="Facebook: itsumeet"
+        aria-label="Facebook: amittradersindia"
       >
         <FacebookIcon className={iconClassName} />
       </a>
@@ -63,7 +63,7 @@ export function SocialLinks({
         target="_blank"
         rel="noopener noreferrer"
         className={linkClass}
-        aria-label="Instagram: itsumeet27"
+        aria-label="Instagram: amittradersindia"
       >
         <InstagramIcon className={iconClassName} />
       </a>
