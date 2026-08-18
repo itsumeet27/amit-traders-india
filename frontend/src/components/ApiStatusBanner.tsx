@@ -80,7 +80,7 @@ export function ApiStatusBanner() {
   if (state === 'idle' || state === 'online') return null
 
   const messages: Record<Exclude<ApiConnectionState, 'idle' | 'online'>, string> = {
-    checking: 'Connecting to the live catalogue — the free API may take up to a minute to wake…',
+    checking: 'Getting the live catalogue. Please wait a moment...',
     fallback:
       'Showing sample catalogue while the live API is waking up. Refresh in a moment for live data.',
     offline: 'Live API is unreachable. Check your Render service or try again shortly.',
